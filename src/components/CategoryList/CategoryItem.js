@@ -1,22 +1,17 @@
-import { Link } from "react-router-dom";
-import { Image, Card, Title } from "./styles";
+import { Link } from 'react-router-dom';
+//styles
+import { CategoryWrapper } from './styles';
 
 const CategoryItem = ({ category }) => {
-  return (
-    <>
-      <Card>
-        <Link to="">
-          <Image
-            style={{ width: "width:20em" }}
-            src={category.image}
-            alt={category.name}
-          />
-        </Link>
+	return (
+		<CategoryWrapper>
+			<Link to={`/categories/${category.slug}/`}>
+				<img alt={category.name} src={category.image} />
+			</Link>
 
-        <Title>{category.name}</Title>
-      </Card>
-    </>
-  );
+			<p>{category.name}</p>
+		</CategoryWrapper>
+	);
 };
 
 export default CategoryItem;
