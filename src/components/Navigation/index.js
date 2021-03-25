@@ -1,13 +1,13 @@
 import React from "react";
-import { signout } from "../store/actions/authActions";
+import { signout } from "../../store/actions/authActions";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 
-import { AuthButtonStyled } from "../styles";
+import { AuthButtonStyled } from "../../styles";
 const NavBar = () => {
+  const user = useSelector((state) => state.authReducer.user);
   const dispatch = useDispatch();
 
-  const user = useSelector((state) => state.authReducer.user);
   return (
     <>
       {user ? (
