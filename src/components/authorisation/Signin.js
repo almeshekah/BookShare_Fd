@@ -1,11 +1,33 @@
+import React from "react";
 import { useState } from "react";
+import { useForm } from "react-hook-form";
+import { register } from "../../serviceWorker";
+import { useSelector, useDispatch } from "react-redux";
+import { useHistory } from "react-router-dom";
+import { Helmet } from "react-helmet";
 import { signin } from "../../store/actions/authActions";
-import { useDispatch } from "react-redux";
-import { Link, useHistory } from "react-router-dom";
-import { AuthForm } from "./styles";
+//Styling
+import {
+  FormStyled,
+  LabelStyled,
+  InputFieldStyled,
+  FieldSetStyled,
+  LegendStyled,
+  FormAddButtonStyled,
+} from "../../styles";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faEye } from "@fortawesome/free-solid-svg-icons";
+
 const Signin = () => {
+  const eye = <FontAwesomeIcon icon={faEye} />;
+  const { errors } = useForm();
+
   const dispatch = useDispatch();
   const history = useHistory();
+  const [passwordShown, setPasswordShown] = useState(false);
+  const togglePasswordVisiblity = () => {
+    setPasswordShown(passwordShown ? false : true);
+  };
   const [user, setUser] = useState({
     username: "",
     password: "",
@@ -19,51 +41,50 @@ const Signin = () => {
     dispatch(signin(user, history));
   };
 
-  const [show, setShow] = useState("password");
-
   return (
-    <AuthForm className="col-md-6">
-      <h3>Sign in</h3>
-      <form onSubmit={handleSubmit}>
-        <div className="form-group">
-          <label>Username</label>
-          <input
-            required
-            name="username"
-            value={user.username}
-            type="text"
-            className="form-control"
-            onChange={handleChange}
-          />
-        </div>
-        <div className="form-group">
-          <label>Password</label>
-          <input
-            required
-            name="password"
-            value={user.password}
-            type={show}
-            className="form-control"
-            onChange={handleChange}
-          />
-        </div>
-        <div className="form-check">
-          <input
-            type="checkbox"
-            className="form-check-input"
-            id="exampleCheck1"
-            onChange={() => setShow(show === "password" ? "text" : "password")}
-          />
-          <label className="form-check-label">show password</label>
-        </div>
-        <button className="btn float-right" type="submit">
-          Sign in
-        </button>
-      </form>
-      <Link to="/signup">
-        <p>Create an Account?</p>
-      </Link>
-    </AuthForm>
+    <>
+      <Helmet>
+        <title> Sign In</title>
+      </Helmet>
+      <FormStyled>
+        <form onSubmit={handleSubmit}>
+          <FieldSetStyled>
+            <LegendStyled>
+              <h2> Sign In</h2>
+
+              <LabelStyled>
+                Username:
+                <InputFieldStyled
+                  type="text"
+                  name="username"
+                  value={user.username}
+                  onChange={handleChange}
+                />
+              </LabelStyled>
+
+              <LabelStyled>
+                Password:
+                <span>
+                  <i onClick={togglePasswordVisiblity}>{eye}</i>
+                </span>
+                <InputFieldStyled
+                  type={passwordShown ? "text" : "password"}
+                  name="password"
+                  value={user.password}
+                  onChange={handleChange}
+                  ref={register({ required: true, minLength: 8 })}
+                />
+                {errors.password && <p>Pass is required!!</p>}
+              </LabelStyled>
+
+              <FormAddButtonStyled onSubmit={handleSubmit}>
+                Sign In
+              </FormAddButtonStyled>
+            </LegendStyled>
+          </FieldSetStyled>
+        </form>
+      </FormStyled>
+    </>
   );
 };
 

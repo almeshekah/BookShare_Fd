@@ -1,36 +1,42 @@
-import React from "react";
-import { signout } from "../../store/actions/authActions";
-import { Link } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
+import { Nav, NavLink, NavMenu, UsernameStyled } from "./styles";
 
-import { AuthButtonStyled } from "../../styles";
-const NavBar = () => {
+import { useSelector, useDispatch } from "react-redux";
+import { useHistory } from "react-router-dom";
+import { signout, profile } from "../../store/actions/authActions";
+const NaveBar = () => {
+  const history = useHistory();
   const user = useSelector((state) => state.authReducer.user);
   const dispatch = useDispatch();
-
   return (
     <>
-      {user ? (
-        <>
-          <Link to="/">
-            <AuthButtonStyled onClick={() => dispatch(signout())}>
-              Sign out
-            </AuthButtonStyled>
-          </Link>
-          <p>Welcome {user.username}</p>
-        </>
-      ) : (
-        <>
-          <Link to="/signup">
-            <AuthButtonStyled>Sign up</AuthButtonStyled>
-          </Link>
-          <Link to="/signin">
-            <AuthButtonStyled>Sign in</AuthButtonStyled>
-          </Link>
-        </>
-      )}
+      <Nav>
+        <NavMenu>
+          <NavLink to="/" activeStyle>
+            Home
+          </NavLink>
+
+          {user && (
+            <NavLink onClick={() => dispatch(profile(user.id))} to="profile">
+              Profile
+            </NavLink>
+          )}
+          {user ? (
+            <>
+              <UsernameStyled>Welcome , {user.username}! </UsernameStyled>
+              <NavLink activeStyle onClick={() => dispatch(signout(history))}>
+                Signout
+              </NavLink>
+            </>
+          ) : (
+            <>
+              <NavLink to="/signup">Signup</NavLink>
+              <NavLink to="/signin">Signin</NavLink>
+            </>
+          )}
+        </NavMenu>
+      </Nav>
     </>
   );
 };
 
-export default NavBar;
+export default NaveBar;
