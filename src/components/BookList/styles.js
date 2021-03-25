@@ -1,12 +1,12 @@
 import styled from "styled-components";
 
-export const Image = styled.img`
-   {
-    position: relative;
-    width: 150px;
-    height: 150px;
-    border-radius: 50%;
-  }
+export const Image = styled.img`{
+display: block,
+
+width: 2%,
+height:2%
+
+}
 `;
 
 export const Card = styled.div`
@@ -36,20 +36,4 @@ export const Title = styled.h6`
 
 export const CategoryTitle = styled.h3`
   text-align: center;
-`;
-
-export const DetailWrapper = styled.div`
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  width: 80%;
-
-  img {
-    width: 40%;
-    float: left;
-  }
-
-  p {
-    vertical-align: middle;
-  }
 `;
