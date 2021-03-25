@@ -4,9 +4,13 @@ import React from "react";
 import Signup from "./authorisation/Signup";
 import Signin from "./authorisation/Signin";
 import Home from "./Home";
+import CategoryList from "./CategoryList/index";
 const Routes = () => {
   return (
     <Switch>
+      <Route path="/categories">
+        <CategoryList />
+      </Route>
       <Route path="/signup">
         <Signup />
       </Route>
