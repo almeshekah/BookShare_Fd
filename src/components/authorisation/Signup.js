@@ -2,6 +2,7 @@ import { useState } from "react";
 import { signup } from "../../store/actions/authActions";
 import { useDispatch } from "react-redux";
 import { Link, useHistory } from "react-router-dom";
+import { AuthForm } from "./styles";
 
 const Signup = () => {
   const dispatch = useDispatch();
@@ -10,7 +11,11 @@ const Signup = () => {
     username: "",
     password: "",
     email: "",
+    firstName: "",
+    lastName: "",
   });
+
+  const [show, setShow] = useState("password");
 
   const handleChange = (event) =>
     setUser({ ...user, [event.target.name]: event.target.value });
@@ -18,15 +23,10 @@ const Signup = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
     dispatch(signup(user, history));
-    return (
-      <div class="alert alert-primary" role="alert">
-        This is a primary alert—check it out!
-      </div>
-    );
   };
 
   return (
-    <div className="container">
+    <AuthForm className="col-md-6">
       <h3>Sign up</h3>
       <form onSubmit={handleSubmit}>
         <div className="form-group">
@@ -41,12 +41,34 @@ const Signup = () => {
           />
         </div>
         <div className="form-group">
+          <label>First Name</label>
+          <input
+            required
+            name="firstName"
+            value={user.firstName}
+            type="text"
+            className="form-control"
+            onChange={handleChange}
+          />
+        </div>
+        <div className="form-group">
+          <label>Last Name</label>
+          <input
+            required
+            name="lastName"
+            value={user.lastName}
+            type="text"
+            className="form-control"
+            onChange={handleChange}
+          />
+        </div>
+        <div className="form-group">
           <label>Password</label>
           <input
             required
             name="password"
             value={user.password}
-            type="password"
+            type={show}
             className="form-control"
             onChange={handleChange}
           />
@@ -62,25 +84,15 @@ const Signup = () => {
             onChange={handleChange}
           />
         </div>
-        {/* <div class="form-check">
-          <label>Type: </label><br></br>
-          <input class="form-check-input" 
-          type="radio" name="flexRadioDefault" 
-          id="flexRadioDefault1"
-          onChange={handleChange}/>
-          <label class="form-check-label" for="flexRadioDefault1">
-           Admin
-            </label>
-          </div>
-          <div class="form-check">
-            <input class="form-check-input"
-             type="radio" name="flexRadioDefault"
-             id="flexRadioDefault2" checked
-             onChange={handleChange}/>
-            <label class="form-check-label" for="flexRadioDefault2">
-              User
-            </label>
-          </div> */}
+        <div className="form-check">
+          <input
+            type="checkbox"
+            className="form-check-input"
+            id="exampleCheck1"
+            onChange={() => setShow(show === "password" ? "text" : "password")}
+          />
+          <label className="form-check-label">show password</label>
+        </div>
         <button className="btn float-right" type="submit">
           Sign up
         </button>
@@ -88,7 +100,7 @@ const Signup = () => {
       <Link to="/signin">
         <p>Already have an Account?</p>
       </Link>
-    </div>
+    </AuthForm>
   );
 };
 

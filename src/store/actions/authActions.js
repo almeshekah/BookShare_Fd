@@ -14,7 +14,7 @@ const setUser = (token) => {
 export const signup = (newUser, history) => {
   return async (dispatch) => {
     try {
-      const res = await instance.post("/signup", newUser);
+      const res = await instance.post("/user/signup", newUser);
       dispatch(setUser(res.data.token));
       history.replace("/");
     } catch (error) {
@@ -26,7 +26,7 @@ export const signup = (newUser, history) => {
 export const signin = (userData, history) => {
   return async (dispatch) => {
     try {
-      const res = await instance.post("/signin", userData);
+      const res = await instance.post("/user/signin", userData);
       dispatch(setUser(res.data.token));
       history.replace("/");
     } catch (error) {
