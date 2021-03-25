@@ -5,7 +5,7 @@ const CategoryItem = ({ category }) => {
   return (
     <>
       <Card>
-        <Link to="">
+        <Link to={`/categories/${category.slug}`}>
           <Image
             style={{ width: "width:20em" }}
             src={category.image}
