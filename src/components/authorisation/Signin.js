@@ -2,7 +2,7 @@ import React from "react";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { register } from "../../serviceWorker";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { Helmet } from "react-helmet";
 import { signin } from "../../store/actions/authActions";

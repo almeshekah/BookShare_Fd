@@ -58,7 +58,7 @@ const Signup = () => {
   return (
     <>
       <Helmet>
-        <title></title>
+        <title>Signup</title>
       </Helmet>
       <FormStyled>
         <form onSubmit={handleSubmit}>
@@ -116,7 +116,7 @@ const Signup = () => {
                 Image:
                 <InputFieldStyled
                   type="file"
-                  name="picture"
+                  name="image"
                   onChange={handleImage}
                 />
               </LabelStyled>

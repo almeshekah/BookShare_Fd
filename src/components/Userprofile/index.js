@@ -1,14 +1,15 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { DetailWrapper } from "./styles";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import { ItemWrapper } from "./styles";
+import Loading from "../Loading";
 
 const Userprofile = () => {
-  const dispatch = useDispatch();
   const profile = useSelector((state) => state.authReducer.profile);
-  // const loading = useSelector((state) => state.authReducer.loading);
+  const loading = useSelector((state) => state.authReducer.loading);
+  if (loading) return <Loading />;
 
+  console.log(profile);
   return (
     <ItemWrapper>
       <h1 style={{ marginBottom: "2%", marginLeft: "2.5%", marginTop: "2%" }}>
