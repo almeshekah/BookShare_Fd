@@ -15,8 +15,11 @@ const setUser = (token) => {
 export const signup = (newUser, history) => {
   return async (dispatch) => {
     try {
-      const res = await instance.post("/user/signup", newUser);
-      dispatch(setUser(res.data.token));
+      const formData = new FormData();
+      for (const key in newUser) formData.append(key, newUser[key]);
+      const res = await instance.post("/user/signup", formData);
+      localStorage.setItem("myToken", res.data.token);
+      await dispatch(setUser(res.data.token));
       history.replace("/");
       toast.success("Signed up successfuly!");
     } catch (error) {
@@ -29,7 +32,8 @@ export const signin = (userData, history) => {
   return async (dispatch) => {
     try {
       const res = await instance.post("/user/signin", userData);
-      dispatch(setUser(res.data.token));
+      localStorage.setItem("myToken", res.data.token);
+      await dispatch(setUser(res.data.token));
       toast.success("Signed in successfuly!");
       history.replace("/");
     } catch (error) {
@@ -88,6 +92,7 @@ export const checkForToken = () => (dispatch) => {
     if (currentTime < user.exp) {
       dispatch(setUser(token));
     } else {
+      localStorage.removeItem("myToken");
       dispatch(signout());
     }
   }
