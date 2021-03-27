@@ -1,28 +1,6 @@
 import { Link } from "react-router-dom";
 import styled, { createGlobalStyle } from "styled-components";
 
-export const AuthButtonStyled = styled.button`
-  font-size: 1em;
-  padding: 0.25em 1em;
-  margin-left: 0.5em;
-  border-radius: 3px;
-  background-color: #e7e7e7;
-  color: black;
-`;
-
-export const UsernameStyled = styled.p`
-  padding: 0.25em 1em;
-  color: black;
-`;
-
-export const Logo = styled(Link)`
-  padding: "0.25em 1em";
-
-  img {
-    width: 100px;
-  }
-`;
-
 export const GlobalStyle = createGlobalStyle`
   html {
     --primary-color: #1d3557;
@@ -39,22 +17,14 @@ body{
   font-family: 'Roboto', sans-serif;
   font-size: 1rem;
   line-height: 1.6;
-  background-color: #fff;
-  color: #333;
+  background-color: #FFFFFF;
+  color: #1d3557;
 
-background-color: #d5fefd;
-background-image: linear-gradient(315deg, #d5fefd 0%, #fffcff 74%);
+/* background-color: #d5fefd;
+background-image: linear-gradient(315deg, #d5fefd 0%, #fffcff 74%); */
 height: 100%;
 width: 100%;
-  // position: absolute;
-  // top: 50%;
-  // left: 50%;
-  // transform: translateX(-50%) translateY(-50%);
-  // display: flex;
-  // align-items: center;
-  // justify-content: center;
-  // flex-direction: column;
-  background-attachment: fixed;
+
 
 }
 `;
