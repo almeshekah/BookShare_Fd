@@ -1,20 +1,16 @@
-import { Link } from "react-router-dom";
-import { Image, Card, Title } from "./styles";
+import { Link } from 'react-router-dom';
+//styles
+import { BookWrapper } from './styles';
 
 const BookItem = ({ book }) => {
-  return (
-    <>
-      <Link to="">
-        <Image
-          style={{ width: "width:20%", height: "height:20%" }}
-          src={book.image}
-          alt={book.name}
-        />
-      </Link>
-
-      <Title>{book.name}</Title>
-    </>
-  );
+	return (
+		<BookWrapper>
+			<Link to={`/categories/${book.slug}/`}>
+				<img alt={book.name} src={book.image} />
+			</Link>
+			<p>{book.name}</p>
+		</BookWrapper>
+	);
 };
 
 export default BookItem;
