@@ -1,5 +1,5 @@
 import React from "react";
-import Navbar from "./components/Navbar";
+import Sidebar from "./components/Sidebar";
 import Routes from "./components/Routes";
 import { GlobalStyle } from "./styles";
 import { ToastContainer } from "react-toastify";
@@ -20,7 +20,7 @@ function App() {
         draggable
         pauseOnHover
       />
-      <Navbar />
+      <Sidebar />
       <span>&nbsp;&nbsp;</span>
       <Routes />
     </>
