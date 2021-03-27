@@ -3,7 +3,6 @@ import CategoryItem from './CategoryItem';
 import { useState } from 'react';
 import SearchBar from '../SearchBar';
 import { useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
 import Loading from '../Loading';
 // Styling
 import { ListWrapper } from './styles';
