@@ -2,6 +2,7 @@ import { toast } from "react-toastify";
 import instance from "./instance";
 import * as types from "./types";
 
+// REVIEW: A better naming would be `fetchBooks`
 export const fetchBook = () => {
   return async (dispatch) => {
     try {

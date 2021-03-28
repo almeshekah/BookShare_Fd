@@ -30,8 +30,12 @@ const Routes = () => {
         <BookDetail />
       </Route>
 
+
       <Route path="/books">
         <BookList books={books} />
+      </Route>
+      <Route path="/categories">
+        <CategoryList />
       </Route>
 
       <Route path={["/signup", "/profile/edit"]}>
@@ -44,6 +48,7 @@ const Routes = () => {
       <Route path="/profile">
         <Userprofile />
       </Route>
+
       <Route path="/">
         <Home />
       </Route>

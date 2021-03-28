@@ -1,7 +1,9 @@
 // Styling
 import { SearchBarStyled } from "./styles";
+
 const SearchBar = (props) => {
   return (
+    // REVIEW: You dont need fragament here
     <>
       <SearchBarStyled
         placeholder="Search..."

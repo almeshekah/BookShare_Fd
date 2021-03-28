@@ -1,5 +1,7 @@
 import { Link } from "react-router-dom";
 
+// REVIEW: Cleanup imports
+
 //styles
 import { BookWrapper } from "./styles";
 

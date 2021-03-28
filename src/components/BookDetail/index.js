@@ -1,8 +1,10 @@
 import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
+
 // Components
 import Loading from "../Loading";
-//styles
+
+// Styling
 import { BookWrapper } from "./styles";
 
 const BookDetail = () => {
@@ -11,6 +13,7 @@ const BookDetail = () => {
   const book = useSelector((state) =>
     state.bookReducer.books.find((book) => book.slug === bookSlug)
   );
+
 
   const loading = useSelector((state) => state.bookReducer.loading);
   if (loading) return <Loading />;

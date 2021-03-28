@@ -9,6 +9,7 @@ import { register } from "../../serviceWorker";
 import { signin } from "../../store/actions/authActions";
 
 //styles
+
 import {
   FormStyled,
   LabelStyled,
@@ -21,7 +22,11 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye } from "@fortawesome/free-solid-svg-icons";
 
+// REVIEW: Inside a component, you first use your hooks
+// (useState, useDispatch, useForm, useHistory)
+// then you define your variables and functions
 const Signin = () => {
+
   const [user, setUser] = useState({
     username: "",
     password: "",
