@@ -27,7 +27,10 @@ const Userprofile = () => {
           }
           alt={profile.firstName}
         />
-        <p>{`Name: ${profile.firstName} ${profile.lastName}`}</p>
+        {/* REVIEW: No need for birdies here */}
+        <p>
+          Name: {profile.firstName} {profile.lastName}
+        </p>
         <p>{`Email: ${profile.email}`}</p>
         <div className="buttons">
           <Link to="/profile/edit">

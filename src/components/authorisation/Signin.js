@@ -5,8 +5,11 @@ import { register } from "../../serviceWorker";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { Helmet } from "react-helmet";
+
+// Actions
 import { signin } from "../../store/actions/authActions";
-//Styling
+
+// Styling
 import {
   FormStyled,
   LabelStyled,
@@ -18,6 +21,9 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye } from "@fortawesome/free-solid-svg-icons";
 
+// REVIEW: Inside a component, you first use your hooks
+// (useState, useDispatch, useForm, useHistory)
+// then you define your variables and functions
 const Signin = () => {
   const eye = <FontAwesomeIcon icon={faEye} />;
   const { errors } = useForm();
@@ -25,6 +31,7 @@ const Signin = () => {
   const dispatch = useDispatch();
   const history = useHistory();
   const [passwordShown, setPasswordShown] = useState(false);
+
   const togglePasswordVisiblity = () => {
     setPasswordShown(passwordShown ? false : true);
   };

@@ -1,6 +1,8 @@
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 
+// REVIEW: Cleanup imports
+
 //styles
 import { BookWrapper } from "./styles";
 

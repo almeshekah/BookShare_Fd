@@ -19,17 +19,18 @@ const Routes = () => {
         <CategoryDetail />
       </Route>
       <Route path="/books/add">
+        {/* REVIEW: /books/new is a better naming  */}
         <AddBook />
       </Route>
       <Route path="/book/:bookSlug">
+        {/* REVIEW: /books/:bookSlug is a better naming  */}
         <BookDetail />
+      </Route>
+      <Route path="/books">
+        <BookList books={books} />
       </Route>
       <Route path="/categories">
         <CategoryList />
-      </Route>
-
-      <Route path="/books">
-        <BookList books={books} />
       </Route>
 
       <Route path={["/signup", "/profile/edit"]}>
@@ -46,6 +47,7 @@ const Routes = () => {
         <Userprofile />
       </Route>
       <Route path="/category">
+        {/* REVIEW: /categories is a better naming  */}
         <CategoryList />
       </Route>
       <Route path="/">
