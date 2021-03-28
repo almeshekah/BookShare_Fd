@@ -82,7 +82,7 @@ const Sidebar = () => {
 						{user && (
 							<SidebarLink
 								to="profile"
-								onClick={() => dispatch(profile(user.id)) && showSubnav}
+								onClick={() => dispatch(profile()) && showSubnav}
 							>
 								<div>
 									<CgIcons.CgProfile /> <SidebarLabel>Profile</SidebarLabel>
