@@ -13,6 +13,12 @@ const reducer = (state = initialState, action) => {
         books: action.payload,
         loading: false,
       };
+    case types.CREATE_BOOK:
+      const { newBook } = action.payload;
+      return {
+        ...state,
+        flights: [...state.flights, newBook],
+      };
 
     default:
       return state;
