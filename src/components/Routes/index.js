@@ -9,6 +9,7 @@ import CategoryList from "../CategoryList";
 import BookList from "../BookList";
 import CategoryDetail from "../CategoryDetail";
 import AddBook from "../AddBook";
+import BookDetail from "../BookDetail";
 
 const Routes = () => {
   const books = useSelector((state) => state.bookReducer.books);
@@ -17,12 +18,14 @@ const Routes = () => {
       <Route path="/categories/:categorySlug">
         <CategoryDetail />
       </Route>
-      <Route path="/categories">
-        <CategoryList />
-      </Route>
-
       <Route path="/books/add">
         <AddBook />
+      </Route>
+      <Route path="/book/:bookSlug">
+        <BookDetail />
+      </Route>
+      <Route path="/categories">
+        <CategoryList />
       </Route>
 
       <Route path="/books">
