@@ -8,12 +8,12 @@ import Loading from "../Loading";
 import { BookWrapper } from "./styles";
 
 const BookDetail = () => {
-  const bookSlug = useParams().bookSlug;
+  const { bookSlug } = useParams();
+
   const book = useSelector((state) =>
     state.bookReducer.books.find((book) => book.slug === bookSlug)
   );
-  //REVIEW: remove console logs
-  console.log("🚀 ~ file: index.js ~ line 15 ~ BookDetail ~ book", book);
+
 
   const loading = useSelector((state) => state.bookReducer.loading);
   if (loading) return <Loading />;

@@ -1,10 +1,9 @@
-// Components
-import React from "react";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
+// Components
 import Loading from "../Loading";
 import BookList from "../BookList";
-// Styling
+// Styles
 import { ItemWrapper, Title, ButtonWrapper } from "./styles";
 import { AddButtonStyled } from "../../styles";
 
@@ -13,7 +12,6 @@ const Userprofile = () => {
   const loading = useSelector((state) => state.authReducer.loading);
   if (loading) return <Loading />;
 
-  // console.log(profile);
   return (
     <>
       <ItemWrapper>
@@ -43,7 +41,7 @@ const Userprofile = () => {
       <Title>My Book</Title>
       <ButtonWrapper>
         {/* <Link to={`/user/${user.id}/books/add`}> */}
-        <Link to={`/books/add`}>
+        <Link to={`/books/new`}>
           <AddButtonStyled>Add books</AddButtonStyled>
         </Link>
       </ButtonWrapper>

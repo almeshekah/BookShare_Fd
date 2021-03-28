@@ -1,12 +1,13 @@
-import React from "react";
 import { useState } from "react";
+import { Helmet } from "react-helmet";
 import { useForm } from "react-hook-form";
-import { register } from "../../serviceWorker";
 import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
-import { Helmet } from "react-helmet";
+
+import { register } from "../../serviceWorker";
+//Actions
 import { signup, updateProfile } from "../../store/actions/authActions";
-//Styling
+//styles
 import {
   FormStyled,
   LabelStyled,
@@ -19,16 +20,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye } from "@fortawesome/free-solid-svg-icons";
 
 const Signup = () => {
-  const eye = <FontAwesomeIcon icon={faEye} />;
   const profile = useSelector((state) => state.authReducer.profile);
-  const { errors } = useForm();
 
-  const [passwordShown, setPasswordShown] = useState(false);
-  const togglePasswordVisiblity = () => {
-    setPasswordShown(passwordShown ? false : true);
-  };
-  const dispatch = useDispatch();
-  const history = useHistory();
   const [user, setUser] = useState(
     profile ?? {
       username: "",
@@ -39,6 +32,17 @@ const Signup = () => {
       image: "",
     }
   );
+  const [passwordShown, setPasswordShown] = useState(false);
+
+  const dispatch = useDispatch();
+  const history = useHistory();
+
+  const eye = <FontAwesomeIcon icon={faEye} />;
+  const { errors } = useForm();
+
+  const togglePasswordVisiblity = () => {
+    setPasswordShown(passwordShown ? false : true);
+  };
 
   const handleChange = (event) =>
     setUser({ ...user, [event.target.name]: event.target.value });
