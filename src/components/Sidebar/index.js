@@ -92,7 +92,7 @@ const Sidebar = () => {
 
 						<SidebarLink
 							to="categories"
-							onClick={() => dispatch(fetchBook) && showSubnav}
+							onClick={() => dispatch(fetchCategory) && showSubnav}
 						>
 							<div>
 								<FaIcons.FaListAlt /> <SidebarLabel>Categories</SidebarLabel>
