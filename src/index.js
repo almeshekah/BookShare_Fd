@@ -8,6 +8,8 @@ import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter } from "react-router-dom";
 import { Provider } from "react-redux"; // STEP 2
 import store from "./store"; //STEP 3
+// REVIEW: Remove extra comments
+
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
