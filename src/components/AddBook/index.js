@@ -1,12 +1,8 @@
 import React from "react";
 import { useState } from "react";
-import { useForm } from "react-hook-form";
-import { register } from "../../serviceWorker";
-
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
 import { Helmet } from "react-helmet";
-import Loading from "../Loading";
 import { createBook } from "../../store/actions/bookActions";
 //styling
 import {
