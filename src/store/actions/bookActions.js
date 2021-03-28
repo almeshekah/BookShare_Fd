@@ -19,7 +19,9 @@ export const fetchBook = () => {
 export const createBook = (newBook) => {
   return async (dispatch) => {
     try {
-      const res = await instance.post(`/books`, newBook);
+      const formData = new FormData();
+      for (const key in newBook) formData.append(key, newBook[key]);
+      const res = await instance.post("/book", formData);
       await dispatch({
         type: types.CREATE_BOOK,
         payload: { newBook: res.data },

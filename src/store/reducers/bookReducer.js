@@ -17,7 +17,7 @@ const reducer = (state = initialState, action) => {
       const { newBook } = action.payload;
       return {
         ...state,
-        flights: [...state.flights, newBook],
+        books: [...state.books, newBook],
       };
 
     default:
