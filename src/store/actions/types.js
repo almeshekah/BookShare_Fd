@@ -10,4 +10,5 @@ export const FETCH_CATEGORY_BOOKS = "FETCH_CATEGORY_BOOKS";
 
 //BOOK Types
 export const FETCH_BOOK = "FETCH_BOOK";
+export const CREATE_BOOK = "CREATE_BOOK";
 export const FETCH_BOOK_DETAIL = "FETCH_BOOK_DETAIL";

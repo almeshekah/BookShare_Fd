@@ -8,6 +8,7 @@ import Home from "../Home";
 import CategoryList from "../CategoryList";
 import BookList from "../BookList";
 import CategoryDetail from "../CategoryDetail";
+import AddBook from "../AddBook";
 import BookDetail from "../BookDetail";
 
 const Routes = () => {
@@ -16,6 +17,9 @@ const Routes = () => {
     <Switch>
       <Route path="/categories/:categorySlug">
         <CategoryDetail />
+      </Route>
+      <Route path="/books/add">
+        <AddBook />
       </Route>
       <Route path="/book/:bookSlug">
         <BookDetail />
