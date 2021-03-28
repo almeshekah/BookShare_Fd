@@ -5,7 +5,7 @@ import * as types from "./types";
 export const fetchBook = () => {
   return async (dispatch) => {
     try {
-      const res = await instance.get("/book");
+      const res = await instance.get("/books");
       dispatch({
         type: types.FETCH_BOOK,
         payload: res.data,
@@ -21,7 +21,7 @@ export const createBook = (newBook) => {
     try {
       const formData = new FormData();
       for (const key in newBook) formData.append(key, newBook[key]);
-      const res = await instance.post("/book", formData);
+      const res = await instance.post("/books", formData);
       await dispatch({
         type: types.CREATE_BOOK,
         payload: { newBook: res.data },

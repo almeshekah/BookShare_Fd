@@ -1,17 +1,16 @@
-// Components
 import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-
+// Components
 import Loading from "../Loading";
 //styles
 import { BookWrapper } from "./styles";
 
 const BookDetail = () => {
-  const bookSlug = useParams().bookSlug;
+  const { bookSlug } = useParams();
+
   const book = useSelector((state) =>
     state.bookReducer.books.find((book) => book.slug === bookSlug)
   );
-  console.log("🚀 ~ file: index.js ~ line 15 ~ BookDetail ~ book", book);
 
   const loading = useSelector((state) => state.bookReducer.loading);
   if (loading) return <Loading />;

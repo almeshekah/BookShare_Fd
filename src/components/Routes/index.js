@@ -1,6 +1,7 @@
 import { Route, Switch } from "react-router";
 import { useSelector } from "react-redux";
-import React from "react";
+
+// Components
 import Signup from "../authorisation/Signup";
 import Signin from "../authorisation/Signin";
 import Userprofile from "../Userprofile";
@@ -18,14 +19,15 @@ const Routes = () => {
       <Route path="/categories/:categorySlug">
         <CategoryDetail />
       </Route>
-      <Route path="/books/add">
-        <AddBook />
-      </Route>
-      <Route path="/book/:bookSlug">
-        <BookDetail />
-      </Route>
       <Route path="/categories">
         <CategoryList />
+      </Route>
+
+      <Route path="/books/new">
+        <AddBook />
+      </Route>
+      <Route path="/books/:bookSlug">
+        <BookDetail />
       </Route>
 
       <Route path="/books">
@@ -36,17 +38,11 @@ const Routes = () => {
         <Signup />
       </Route>
 
-      <Route exact path="/profile">
-        <Userprofile />
-      </Route>
       <Route path="/signin">
         <Signin />
       </Route>
       <Route path="/profile">
         <Userprofile />
-      </Route>
-      <Route path="/category">
-        <CategoryList />
       </Route>
       <Route path="/">
         <Home />

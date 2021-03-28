@@ -1,30 +1,32 @@
 // Components
-import CategoryItem from './CategoryItem';
-import { useState } from 'react';
-import SearchBar from '../SearchBar';
-import { useSelector } from 'react-redux';
-import Loading from '../Loading';
+import { useState } from "react";
+import { useSelector } from "react-redux";
 // Styling
-import { ListWrapper } from './styles';
+import CategoryItem from "./CategoryItem";
+import SearchBar from "../SearchBar";
+import Loading from "../Loading";
+//Styles
+import { ListWrapper } from "./styles";
 
 const CategoryList = () => {
-	const [query, setQuery] = useState('');
-	const categories = useSelector((state) => state.categoryReducer.categories);
-	const loading = useSelector((state) => state.categoryReducer.loading);
-	if (loading) return <Loading />;
+  const [query, setQuery] = useState("");
 
-	const categoryList = categories
-		.filter((category) =>
-			category.name.toLowerCase().includes(query.toLowerCase())
-		)
-		.map((category) => <CategoryItem category={category} key={category.id} />);
+  const categories = useSelector((state) => state.categoryReducer.categories);
+  const loading = useSelector((state) => state.categoryReducer.loading);
+  if (loading) return <Loading />;
 
-	return (
-		<div>
-			<SearchBar setQuery={setQuery} />
-			<ListWrapper>{categoryList}</ListWrapper>
-		</div>
-	);
+  const categoryList = categories
+    .filter((category) =>
+      category.name.toLowerCase().includes(query.toLowerCase())
+    )
+    .map((category) => <CategoryItem category={category} key={category.id} />);
+
+  return (
+    <div>
+      <SearchBar setQuery={setQuery} />
+      <ListWrapper>{categoryList}</ListWrapper>
+    </div>
+  );
 };
 
 export default CategoryList;

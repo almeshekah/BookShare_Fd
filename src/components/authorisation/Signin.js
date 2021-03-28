@@ -1,12 +1,14 @@
-import React from "react";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { register } from "../../serviceWorker";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { Helmet } from "react-helmet";
+
+import { register } from "../../serviceWorker";
+//Actions
 import { signin } from "../../store/actions/authActions";
-//Styling
+
+//styles
 import {
   FormStyled,
   LabelStyled,
@@ -15,24 +17,25 @@ import {
   LegendStyled,
   FormAddButtonStyled,
 } from "../../styles";
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye } from "@fortawesome/free-solid-svg-icons";
 
 const Signin = () => {
-  const eye = <FontAwesomeIcon icon={faEye} />;
-  const { errors } = useForm();
-
-  const dispatch = useDispatch();
-  const history = useHistory();
-  const [passwordShown, setPasswordShown] = useState(false);
-  const togglePasswordVisiblity = () => {
-    setPasswordShown(passwordShown ? false : true);
-  };
   const [user, setUser] = useState({
     username: "",
     password: "",
   });
+  const [passwordShown, setPasswordShown] = useState(false);
+  const dispatch = useDispatch();
+  const history = useHistory();
 
+  const { errors } = useForm();
+  const eye = <FontAwesomeIcon icon={faEye} />;
+
+  const togglePasswordVisiblity = () => {
+    setPasswordShown(passwordShown ? false : true);
+  };
   const handleChange = (event) =>
     setUser({ ...user, [event.target.name]: event.target.value });
 
