@@ -1,6 +1,6 @@
 import React from "react";
 import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
 import { Helmet } from "react-helmet";
 
@@ -18,6 +18,7 @@ import {
 } from "../../styles";
 
 import TypeSelect from "./TypeSelect";
+import CategorySelect from "./CategorySelect";
 
 const AddBook = () => {
   const history = useHistory();
@@ -26,22 +27,43 @@ const AddBook = () => {
 
   const { userId } = useParams();
 
+  const categories = useSelector((state) => state.categoryReducer.categories);
+
   const [book, setBook] = useState({
     userId: userId,
     name: "",
     author: "",
     type: "",
+    categoryId: "",
     image: "",
   });
 
   const [options, setOptions] = useState({
     trade: null,
     giveaway: null,
+    categoryId: null,
   });
+
+  const categoryOptionsList = categories.map((category) => ({
+    value: category.id,
+    label: `${category.name} `,
+    name: "categoryId",
+  }));
 
   const handleOptions = (selectedOption) => {
     console.log(selectedOption);
-    setOptions({ ...options, type: selectedOption.value });
+    setOptions({
+      ...options,
+      type: selectedOption.value,
+    });
+  };
+
+  const _handleOptions = (selectedOption) => {
+    console.log(selectedOption);
+    setOptions({
+      ...options,
+      [selectedOption.name]: selectedOption,
+    });
   };
 
   const handleChange = (event) => {
@@ -58,6 +80,7 @@ const AddBook = () => {
       createBook({
         ...book,
         type: options.type,
+        categoryId: options.categoryId.value,
       })
     );
     history.replace("/profile");
@@ -100,6 +123,17 @@ const AddBook = () => {
                   name="type"
                   options={options}
                   handleOptions={handleOptions}
+                />
+              </LabelStyled>
+
+              <LabelStyled>
+                Book Category:
+                <CategorySelect
+                  name="category"
+                  options={options}
+                  _handleOptions={_handleOptions}
+                  _options={categoryOptionsList}
+                  set="categoryId"
                 />
               </LabelStyled>
 

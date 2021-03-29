@@ -20,11 +20,7 @@ const BookDetail = () => {
     state.bookReducer.books.find((book) => book.slug === bookSlug)
   );
 
-  const user = useSelector((state) => state.authReducer.user);
-
   const profile = useSelector((state) => state.authReducer.profile);
-
-  console.log("🚀 ~ file: index.js ~ line 23 ~ BookDetail ~ user", user);
 
   const loading = useSelector((state) => state.bookReducer.loading);
   if (loading) return <Loading />;
@@ -45,7 +41,6 @@ const BookDetail = () => {
         <p>Book Name: {book.name}</p>
         <p>Author: {book.author}</p>
         <p>Type: {book.type}</p>
-        {/* <p>User: {user.username}</p> */}
         <p>User: {profile.username}</p>
       </ItemWrapper>
     </>
