@@ -3,8 +3,11 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
 import { Helmet } from "react-helmet";
+
+//Actions
 import { createBook } from "../../store/actions/bookActions";
-//styling
+
+//Styling
 import {
   FormStyled,
   LabelStyled,
@@ -14,30 +17,34 @@ import {
   FormAddButtonStyled,
 } from "../../styles";
 
+import TypeSelect from "./TypeSelect";
+import CategorySelect from "./CategorySelect";
+
 const AddBook = () => {
   const history = useHistory();
 
   const dispatch = useDispatch();
 
-  const { userId, bookId } = useParams();
+  const { userId } = useParams();
 
-  const foundBook = useSelector((state) =>
-    state.bookReducer.books.find((book) => book.id === +bookId)
-  );
+  const [book, setBook] = useState({
+    userId: userId,
+    name: "",
+    author: "",
+    type: "",
+    categoryId: "",
+    image: "",
+  });
 
-  // const user = useSelector((state) => state.authReducer.user);
+  const [options, setOptions] = useState({
+    trade: null,
+    giveaway: null,
+  });
 
-  const [book, setBook] = useState(
-    foundBook
-      ? foundBook
-      : {
-          userId: userId,
-          name: "",
-          author: "",
-          type: "",
-          image: "",
-        }
-  );
+  const handleOptions = (selectedOption) => {
+    console.log(selectedOption);
+    setOptions({ ...options, type: selectedOption.value });
+  };
 
   const handleChange = (event) => {
     setBook({ ...book, [event.target.name]: event.target.value });
@@ -49,7 +56,13 @@ const AddBook = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    dispatch(createBook(book, history));
+    dispatch(
+      createBook({
+        ...book,
+        type: options.type,
+      })
+    );
+    history.replace("/profile");
   };
 
   return (
@@ -85,11 +98,10 @@ const AddBook = () => {
 
               <LabelStyled>
                 Type:
-                <InputFieldStyled
-                  type="text"
+                <TypeSelect
                   name="type"
-                  value={book.type}
-                  onChange={handleChange}
+                  options={options}
+                  handleOptions={handleOptions}
                 />
               </LabelStyled>
 
