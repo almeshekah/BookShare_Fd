@@ -6,7 +6,6 @@ import BookItem from "./BookItem";
 import Loading from "../Loading";
 import SearchBar from "../SearchBar";
 // Styles
-import { ListWrapper } from "./styles";
 
 const BookList = ({ books }) => {
   const [query, setQuery] = useState("");
@@ -19,10 +18,12 @@ const BookList = ({ books }) => {
     .map((book) => <BookItem book={book} key={book.id} />);
 
   return (
-    <div>
-      <SearchBar setQuery={setQuery} />
-      <ListWrapper>{bookList}</ListWrapper>
-    </div>
+    <>
+      <div>
+        <SearchBar setQuery={setQuery} />
+      </div>
+      <div>{bookList}</div>
+    </>
   );
 };
 

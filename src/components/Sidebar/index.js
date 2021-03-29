@@ -107,7 +107,7 @@ const Sidebar = () => {
               onClick={() => dispatch(fetchBook) && showSubnav}
             >
               <div>
-                <FaIcons.FaListAlt /> <SidebarLabel>All Books</SidebarLabel>
+                <FaIcons.FaBookOpen /> <SidebarLabel>All Books</SidebarLabel>
               </div>
             </SidebarLink>
           </SidebarWrap>
