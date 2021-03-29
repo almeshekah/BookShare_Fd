@@ -1,6 +1,6 @@
 import React from "react";
 import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
 import { Helmet } from "react-helmet";
 
@@ -18,7 +18,6 @@ import {
 } from "../../styles";
 
 import TypeSelect from "./TypeSelect";
-import CategorySelect from "./CategorySelect";
 
 const AddBook = () => {
   const history = useHistory();
@@ -32,7 +31,6 @@ const AddBook = () => {
     name: "",
     author: "",
     type: "",
-    categoryId: "",
     image: "",
   });
 
