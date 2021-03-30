@@ -1,5 +1,6 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { Link, NavLink } from "react-router-dom";
+import DetailDialog from "./DetailDialog";
 import Card from "@material-ui/core/Card";
 import CardHeader from "@material-ui/core/CardHeader";
 import CardMedia from "@material-ui/core/CardMedia";
@@ -7,13 +8,25 @@ import CardContent from "@material-ui/core/CardContent";
 import Avatar from "@material-ui/core/Avatar";
 import IconButton from "@material-ui/core/IconButton";
 import { red } from "@material-ui/core/colors";
-import MoreVertIcon from "@material-ui/icons/MoreVert";
+import MoreIcon from "@material-ui/icons/More";
+import Typography from "@material-ui/core/Typography";
+
 import Grid from "@material-ui/core/Grid";
 
-//Styling
+import { useDispatch } from "react-redux";
+
+import { viewProfile } from "../../store/actions/authActions";
+
+//Styles
 import { makeStyles } from "@material-ui/core/styles";
 
 const BookItem = ({ book }) => {
+  const [profile, setProfile] = useState(null);
+
+  useEffect(() => {
+    dispatch(viewProfile(book.userId));
+  });
+
   const useStyles = makeStyles(() => ({
     root: {
       maxWidth: 345,
@@ -29,6 +42,7 @@ const BookItem = ({ book }) => {
   }));
 
   const classes = useStyles();
+  const dispatch = useDispatch();
 
   return (
     <>
@@ -43,27 +57,34 @@ const BookItem = ({ book }) => {
           <Card className={classes.root}>
             <CardHeader
               avatar={
-                <Avatar aria-label="book" className={classes.avatar}>
-                  R
-                </Avatar>
+                <Link to="/otherprofile">
+                  <Avatar aria-label="book" className={classes.avatar}>
+                    R
+                  </Avatar>
+                </Link>
               }
               action={
                 <IconButton aria-label="more">
                   <Link to={`/books/${book.slug}`}>
-                    <MoreVertIcon />
+                    <MoreIcon />
                   </Link>
+                  <DetailDialog />
                 </IconButton>
               }
               title={book.name}
               subheader={book.author}
+
+              // onClick={() => alert("Hello from here")}
             />
+            {/* <Typography align="left">Deatils</Typography> */}
 
             <CardMedia
               className={classes.media}
               image={book.image}
               title={book.name}
+              onClick={() => setProfile(profile)}
+              // onClick={() => dispatch(viewProfile(book.userId))}
             />
-
             <CardContent>Listed for {book.type}</CardContent>
           </Card>
         </Grid>

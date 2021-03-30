@@ -1,4 +1,16 @@
 import styled, { createGlobalStyle } from "styled-components";
+import { createMuiTheme } from "@material-ui/core/styles";
+
+export const theme = createMuiTheme({
+  palette: {
+    primary: {
+      main: "#1d3557",
+    },
+    secondary: {
+      main: "#82DDF0",
+    },
+  },
+});
 
 export const GlobalStyle = createGlobalStyle`
   html {

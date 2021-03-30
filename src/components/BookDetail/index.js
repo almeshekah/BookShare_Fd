@@ -41,7 +41,10 @@ const BookDetail = () => {
         <p>Book Name: {book.name}</p>
         <p>Author: {book.author}</p>
         <p>Type: {book.type}</p>
-        {/* <p>User: {profile.username}</p> */}
+        <p>
+          User:
+          {/* {profile.username} */}
+        </p>
       </ItemWrapper>
     </>
   );
