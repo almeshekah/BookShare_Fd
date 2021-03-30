@@ -4,6 +4,8 @@ const initialState = {
   user: null,
   profile: null,
   loading: true,
+  otheProfile: null,
+  otheProfileloading: true,
 };
 
 const reducer = (state = initialState, action) => {
@@ -24,6 +26,13 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         profile: updatedProfile,
+      };
+
+    case types.VIEW_PROFILE:
+      return {
+        ...state,
+        otheProfile: action.payload,
+        otheProfileloading: false,
       };
     default:
       return state;

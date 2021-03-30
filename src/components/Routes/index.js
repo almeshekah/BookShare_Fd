@@ -11,16 +11,28 @@ import BookList from "../BookList";
 import CategoryDetail from "../CategoryDetail";
 import AddBook from "../AddBook";
 import BookDetail from "../BookDetail";
+import DetailDialog from "../BookList/DetailDialog";
+import Request from "../Request";
 
 const Routes = () => {
   const books = useSelector((state) => state.bookReducer.books);
+  const categories = useSelector((state) => state.categoryReducer.categories);
+
   return (
     <Switch>
+      <Route path="/requests/new">
+        <Request />
+      </Route>
+
+      <Route path="/detaildialog">
+        <DetailDialog />
+      </Route>
+
       <Route path="/categories/:categorySlug">
         <CategoryDetail />
       </Route>
       <Route path="/categories">
-        <CategoryList />
+        <CategoryList categories={categories} />
       </Route>
 
       <Route path="/books/new">
@@ -29,7 +41,6 @@ const Routes = () => {
       <Route path="/books/:bookSlug">
         <BookDetail />
       </Route>
-
 
       <Route path="/books">
         <BookList books={books} />
@@ -45,7 +56,7 @@ const Routes = () => {
       <Route path="/signin">
         <Signin />
       </Route>
-      <Route path="/profile">
+      <Route path={["/profile", "/otherprofile"]}>
         <Userprofile />
       </Route>
 

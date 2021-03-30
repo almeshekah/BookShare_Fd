@@ -41,9 +41,14 @@ const Userprofile = () => {
       <div>
         <Title>My Books</Title>
         <ButtonWrapper>
-          <Link to={`/books/new`}>
-            <AddButtonStyled>Add books</AddButtonStyled>
-          </Link>
+          <ButtonWrapper>
+            <Link to={`/books/new`}>
+              <AddButtonStyled>Add books</AddButtonStyled>
+            </Link>
+            <Link to={`/requests/new`}>
+              <AddButtonStyled>Request</AddButtonStyled>
+            </Link>
+          </ButtonWrapper>
         </ButtonWrapper>
         <BookList books={profile.mybook} />
       </div>

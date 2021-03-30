@@ -5,3 +5,4 @@ yarn add @fortawesome/fontawesome-free @fortawesome/fontawesome-svg-core @fortaw
 yarn add react-icons
 yarn add react-select
 yarn add @material-ui/core @material-ui/icons
+yarn add classnames

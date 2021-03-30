@@ -85,6 +85,24 @@ export const updateProfile = (user) => async (dispatch) => {
   }
 };
 
+export const viewProfile = (userId) => async (dispatch) => {
+  try {
+    const res = await instance.get("/viewProfile", userId);
+
+    console.log(
+      "🚀 ~ file: authActions.js ~ line 96 ~ viewProfile ~ res.data",
+      res.data
+    );
+    await dispatch({
+      type: types.VIEW_PROFILE,
+      payload: res.data,
+    });
+    toast.success("You can see user profile");
+  } catch (error) {
+    console.log("ERROR: ", error);
+  }
+};
+
 export const checkForToken = () => (dispatch) => {
   const token = localStorage.getItem("myToken");
   if (token) {
