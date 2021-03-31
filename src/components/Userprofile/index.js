@@ -28,9 +28,9 @@ const Userprofile = () => {
 	const otheProfileloading = useSelector(
 		(state) => state.authReducer.otheProfileloading
 	);
-
-	if (!userId) if (loading) return <Loading />;
-	if (userId) if (otheProfileloading) return <Loading />;
+	if (!userId) {
+		if (loading) return <Loading />;
+	} else if (otheProfileloading) return <Loading />;
 
 	return (
 		<>
