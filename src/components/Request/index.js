@@ -1,80 +1,119 @@
-import { useState } from "react";
-import { Helmet } from "react-helmet";
-import { useForm } from "react-hook-form";
-import { useSelector, useDispatch } from "react-redux";
-import { useHistory } from "react-router-dom";
-import { register } from "../../serviceWorker";
+import { useState } from 'react';
+import { Helmet } from 'react-helmet';
+import { useSelector, useDispatch } from 'react-redux';
+import { useHistory } from 'react-router-dom';
+import BookSelect from './BookSelect';
 
 //Actions
-import {
-  createRequest,
-  acceptRequest,
-  rejectRequest,
-} from "../../store/actions/requestActions";
+import { createRequest } from '../../store/actions/requestActions';
 
 //styling
 import {
-  FormStyled,
-  LabelStyled,
-  InputFieldStyled,
-  FieldSetStyled,
-  LegendStyled,
-  FormAddButtonStyled,
-} from "../../styles";
+	FormStyled,
+	LabelStyled,
+	FieldSetStyled,
+	LegendStyled,
+	FormAddButtonStyled,
+} from '../../styles';
+import Loading from '../Loading';
 
 const Request = () => {
-  const user = useSelector((state) => state.authReducer.user);
+	const user = useSelector((state) => state.authReducer.user);
+	const users = useSelector((state) => state.authReducer.users);
+	const otheProfile = useSelector((state) => state.authReducer.otheProfile);
+	const otheProfileloading = useSelector(
+		(state) => state.authReducer.otheProfileloading
+	);
 
-  console.log("🚀 ~ file: index.js ~ line 27 ~ Request ~ user", user);
+	const requser = users.find((_user) => _user.id === user.id);
+	console.log(requser);
 
-  const [request, setRequest] = useState({
-    requstUserId: user.id,
-    receivedUserId: "",
-    bookId: "",
-    status: "",
-  });
+	const [request, setRequest] = useState({
+		requstUserId: user.id,
+		receivedUserId: otheProfile.userId,
+		bookId: '',
+		status: 0,
+		books: '',
+	});
 
-  const dispatch = useDispatch();
-  const history = useHistory();
+	const dispatch = useDispatch();
+	const history = useHistory();
+	const [options, setOptions] = useState({
+		bookId: null,
+		books: null,
+	});
 
-  const handleChange = (event) =>
-    setRequest({ ...request, [event.target.name]: event.target.value });
+	const mybookOptionsList = requser.mybooks.map((book) => ({
+		value: book.id,
+		label: `${book.name} `,
+		name: 'bookId',
+	}));
+	if (otheProfileloading) return <Loading />;
+	const otherBookOptionsList = otheProfile.hasbook.map((book) => ({
+		value: book.id,
+		label: `${book.name} `,
+		name: 'books',
+	}));
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    dispatch(createRequest(request, history));
-    history.replace("/");
-  };
-  return (
-    <>
-      <Helmet>
-        <title>Request</title>
-      </Helmet>
-      <FormStyled>
-        <form onSubmit={handleSubmit}>
-          <FieldSetStyled>
-            <LegendStyled>
-              <h2>Make a Request</h2>
+	const _handleOptions = (selectedOption) => {
+		setOptions({
+			...options,
+			[selectedOption.name]: selectedOption,
+		});
+	};
 
-              <LabelStyled>
-                Books :
-                <InputFieldStyled
-                  type="text"
-                  name="firstName"
-                  // value={user.firstName}
-                  onChange={handleChange}
-                />
-              </LabelStyled>
+	const handleSubmit = (event) => {
+		event.preventDefault();
+		dispatch(
+			createRequest({
+				...request,
+				books: options.books.value,
+				bookId: options.bookId.value,
+			})
+		);
+		history.replace('/');
+	};
+	return (
+		<>
+			<Helmet>
+				<title>Request</title>
+			</Helmet>
+			<FormStyled>
+				<form onSubmit={handleSubmit}>
+					<FieldSetStyled>
+						<LegendStyled>
+							<h2>Make a Request</h2>
 
-              <FormAddButtonStyled onSubmit={handleSubmit}>
-                Send a Request
-              </FormAddButtonStyled>
-            </LegendStyled>
-          </FieldSetStyled>
-        </form>
-      </FormStyled>
-    </>
-  );
+							<LabelStyled>
+								My Books:
+								<BookSelect
+									name="bookId"
+									options={options}
+									_handleOptions={_handleOptions}
+									_options={mybookOptionsList}
+									set="bookId"
+								/>
+							</LabelStyled>
+							<LabelStyled>
+								{otheProfile.firstName} {otheProfile.lastName} Books:
+								<BookSelect
+									name="books"
+									options={options}
+									_handleOptions={_handleOptions}
+									_options={otherBookOptionsList}
+									set="books"
+								/>
+							</LabelStyled>
+
+							<FormAddButtonStyled onSubmit={handleSubmit}>
+								Send a Request
+							</FormAddButtonStyled>
+						</LegendStyled>
+					</FieldSetStyled>
+				</form>
+			</FormStyled>
+		</>
+	);
 };
 
 export default Request;

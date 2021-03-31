@@ -1,5 +1,5 @@
-import { Route, Switch } from "react-router";
-import { useSelector } from "react-redux";
+import { Route, Switch } from 'react-router';
+import { useSelector } from 'react-redux';
 
 // Components
 import Signup from "../authorisation/Signup";
@@ -52,6 +52,7 @@ const Routes = () => {
       </Route>
     </Switch>
   );
+
 };
 
 export default Routes;

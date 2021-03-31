@@ -1,5 +1,5 @@
-import instance from "./instance";
-import * as types from "../actions/types";
+import instance from './instance';
+import * as types from '../actions/types';
 
 export const fetchCategories = () => {
   return async (dispatch) => {
