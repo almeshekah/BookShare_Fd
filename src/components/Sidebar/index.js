@@ -9,7 +9,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 //Actions
 import { signout, profile } from "../../store/actions/authActions";
-import { fetchCategories } from "../../store/actions/categoryActions";
+import { fetchCategory } from "../../store/actions/categoryActions";
 import { fetchBook } from "../../store/actions/bookActions";
 //Styles
 import {
@@ -95,7 +95,7 @@ const Sidebar = () => {
 
             <SidebarLink
               to="categories"
-              onClick={() => dispatch(fetchCategories()) && showSubnav}
+              onClick={() => dispatch(fetchCategory) && showSubnav}
             >
               <div>
                 <FaIcons.FaListAlt /> <SidebarLabel>Categories</SidebarLabel>
