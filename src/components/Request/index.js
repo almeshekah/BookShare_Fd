@@ -15,13 +15,18 @@ import {
 	LegendStyled,
 	FormAddButtonStyled,
 } from '../../styles';
+import Loading from '../Loading';
 
 const Request = () => {
 	const user = useSelector((state) => state.authReducer.user);
 	const users = useSelector((state) => state.authReducer.users);
 	const otheProfile = useSelector((state) => state.authReducer.otheProfile);
+	const otheProfileloading = useSelector(
+		(state) => state.authReducer.otheProfileloading
+	);
 
 	const requser = users.find((_user) => _user.id === user.id);
+	console.log(requser);
 
 	const [request, setRequest] = useState({
 		requstUserId: user.id,
@@ -43,7 +48,7 @@ const Request = () => {
 		label: `${book.name} `,
 		name: 'bookId',
 	}));
-
+	if (otheProfileloading) return <Loading />;
 	const otherBookOptionsList = otheProfile.hasbook.map((book) => ({
 		value: book.id,
 		label: `${book.name} `,
