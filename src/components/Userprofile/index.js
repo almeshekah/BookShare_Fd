@@ -11,6 +11,7 @@ import { viewProfile } from "../../store/actions/authActions";
 import { ItemWrapper, Title, ButtonWrapper } from "./styles";
 import { AddButtonStyled } from "../../styles";
 
+
 const Userprofile = () => {
   const userId = useParams().userId;
 

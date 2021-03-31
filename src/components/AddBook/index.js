@@ -1,4 +1,3 @@
-import React from "react";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
@@ -21,14 +20,6 @@ import TypeSelect from "./TypeSelect";
 import CategorySelect from "./CategorySelect";
 
 const AddBook = () => {
-  const history = useHistory();
-
-  const dispatch = useDispatch();
-
-  const { userId } = useParams();
-
-  const categories = useSelector((state) => state.categoryReducer.categories);
-
   const [book, setBook] = useState({
     userId: userId,
     name: "",
@@ -43,6 +34,13 @@ const AddBook = () => {
     giveaway: null,
     categoryId: null,
   });
+  const history = useHistory();
+
+  const dispatch = useDispatch();
+
+  const { userId } = useParams();
+
+  const categories = useSelector((state) => state.categoryReducer.categories);
 
   const categoryOptionsList = categories.map((category) => ({
     value: category.id,
