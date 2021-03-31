@@ -5,7 +5,6 @@ import { useSelector } from "react-redux";
 import CategoryItem from "./CategoryItem";
 import SearchBar from "../SearchBar";
 import Loading from "../Loading";
-//Styles
 import { ListWrapper } from "./styles";
 
 const CategoryList = () => {
