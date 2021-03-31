@@ -14,13 +14,10 @@ export const fetchRequest = () => {
 	};
 };
 
-export const createRequest = (newRequest, userId2) => {
+export const createRequest = (newRequest) => {
 	return async (dispatch) => {
 		try {
-			const res = await instance.post(
-				`/requests/sendRequest/${userId2}`,
-				newRequest
-			);
+			const res = await instance.post(`/requests/sendRequest`, newRequest);
 			await dispatch({
 				type: types.CREATE_REQUEST,
 				payload: { newRequest: res.data },

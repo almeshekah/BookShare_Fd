@@ -109,3 +109,17 @@ export const checkForToken = () => (dispatch) => {
 		}
 	}
 };
+
+export const fetchUsers = () => {
+	return async (dispatch) => {
+		try {
+			const res = await instance.get('/users');
+			dispatch({
+				type: types.FETCH_USERS,
+				payload: res.data,
+			});
+		} catch (error) {
+			console.log(error);
+		}
+	};
+};

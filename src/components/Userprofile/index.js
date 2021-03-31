@@ -18,7 +18,6 @@ const Userprofile = () => {
 	useEffect(() => {
 		if (userId) {
 			dispatch(viewProfile(userId));
-			console.log(userId, 'gg');
 		}
 	}, []);
 
@@ -72,9 +71,6 @@ const Userprofile = () => {
 							<ButtonWrapper>
 								<Link to={`/books/new`}>
 									<AddButtonStyled>Add books</AddButtonStyled>
-								</Link>
-								<Link to={`/requests/new`}>
-									<AddButtonStyled>Request</AddButtonStyled>
 								</Link>
 							</ButtonWrapper>
 						</ButtonWrapper>
