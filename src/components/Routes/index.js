@@ -10,8 +10,6 @@ import CategoryList from "../CategoryList";
 import BookList from "../BookList";
 import CategoryDetail from "../CategoryDetail";
 import AddBook from "../AddBook";
-import BookDetail from "../BookDetail";
-import DetailDialog from "../BookList/DetailDialog";
 import Request from "../Request";
 
 const Routes = () => {
@@ -24,10 +22,6 @@ const Routes = () => {
         <Request />
       </Route>
 
-      <Route path="/detaildialog">
-        <DetailDialog />
-      </Route>
-
       <Route path="/categories/:categorySlug">
         <CategoryDetail />
       </Route>
@@ -38,15 +32,8 @@ const Routes = () => {
       <Route path="/books/new">
         <AddBook />
       </Route>
-      <Route path="/books/:bookSlug">
-        <BookDetail />
-      </Route>
-
       <Route path="/books">
         <BookList books={books} />
-      </Route>
-      <Route path="/categories">
-        <CategoryList />
       </Route>
 
       <Route path={["/signup", "/profile/edit"]}>
@@ -56,7 +43,7 @@ const Routes = () => {
       <Route path="/signin">
         <Signin />
       </Route>
-      <Route path={["/profile", "/otherprofile"]}>
+      <Route path={["/profile", "/otherprofile/:userId"]}>
         <Userprofile />
       </Route>
 

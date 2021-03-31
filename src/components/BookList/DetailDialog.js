@@ -76,16 +76,8 @@ const DetailDialog = () => {
 
   const { bookSlug } = useParams();
   const books = useSelector((state) => state.bookReducer.books);
-  // console.log(
-  //   "🚀 ~ file: DetailDialog.js ~ line 79 ~ DetailDialog ~ books",
-  //   books
-  // );
 
   const book = books.find((book) => book.slug === bookSlug);
-  // console.log(
-  //   "🚀 ~ file: DetailDialog.js ~ line 82 ~ DetailDialog ~ book",
-  //   book
-  // );
 
   const profile = useSelector((state) => state.authReducer.profile);
 
@@ -104,22 +96,21 @@ const DetailDialog = () => {
 
   return (
     <>
-      <div>
-        <MoreIcon
-          variant="outlined"
-          color="primary"
-          onClick={handleClickOpen}
-        ></MoreIcon>
-        <Dialog
-          onClose={handleClose}
-          aria-labelledby="customized-dialog-title"
-          open={open}
-        >
-          <DialogTitle id="customized-dialog-title" onClose={handleClose}>
-            Book Details
-          </DialogTitle>
-          <DialogContent dividers>
-            {/* <Helmet>
+      <MoreIcon
+        variant="outlined"
+        color="primary"
+        onClick={handleClickOpen}
+      ></MoreIcon>
+      <Dialog
+        onClose={handleClose}
+        aria-labelledby="customized-dialog-title"
+        open={open}
+      >
+        <DialogTitle id="customized-dialog-title" onClose={handleClose}>
+          Book Details
+        </DialogTitle>
+        <DialogContent dividers>
+          {/* <Helmet>
               <title>{book.name}</title>
             </Helmet>
             <ButtonWrapper>
@@ -134,21 +125,20 @@ const DetailDialog = () => {
               <p>Book Name: {book.name}</p>
               <p>Author: {book.author}</p>
               <p>Type: {book.type}</p> */}
-            {/* <p>User: {profile.username}</p> */}
-            {/* </ItemWrapper> */}
-            <Typography gutterBottom>
-              Cras mattis consectetur purus sit amet fermentum. Cras justo odio,
-              dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta
-              ac consectetur ac, vestibulum at eros.
-            </Typography>
-          </DialogContent>
-          <DialogActions>
-            <Button autoFocus onClick={handleClose} color="primary">
-              Save changes
-            </Button>
-          </DialogActions>
-        </Dialog>
-      </div>
+          {/* <p>User: {profile.username}</p> */}
+          {/* </ItemWrapper> */}
+          <Typography gutterBottom>
+            Cras mattis consectetur purus sit amet fermentum. Cras justo odio,
+            dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta
+            ac consectetur ac, vestibulum at eros.
+          </Typography>
+        </DialogContent>
+        <DialogActions>
+          <Button autoFocus onClick={handleClose} color="primary">
+            Save changes
+          </Button>
+        </DialogActions>
+      </Dialog>
     </>
   );
 };

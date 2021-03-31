@@ -12,7 +12,7 @@ import {
   rejectRequest,
 } from "../../store/actions/requestActions";
 
-//styles
+//styling
 import {
   FormStyled,
   LabelStyled,

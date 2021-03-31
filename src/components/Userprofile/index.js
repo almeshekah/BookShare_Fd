@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 // Components
 import Loading from "../Loading";
 import BookList from "../BookList";
-// Styles
+// Styling
 import { ItemWrapper, Title, ButtonWrapper } from "./styles";
 import { AddButtonStyled } from "../../styles";
 
