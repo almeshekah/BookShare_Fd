@@ -5,10 +5,10 @@ import * as types from './types';
 export const fetchRequest = () => {
 	return async (dispatch) => {
 		try {
-			const res = await instance.get('/requests');
+			//const res = await instance.get('/requests');
 			dispatch({
 				type: types.FETCH_REQUEST,
-				payload: res.data,
+				//payload: res.data,
 			});
 		} catch (error) {}
 	};

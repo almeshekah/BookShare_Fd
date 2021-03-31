@@ -11,7 +11,6 @@ const setUser = (token) => {
 		payload: decode(token),
 	};
 };
-// if changing backend for redundency, change newUser prop
 export const signup = (newUser, history) => {
 	return async (dispatch) => {
 		try {
@@ -59,10 +58,9 @@ export const signout = (history) => {
 	};
 };
 
-export const profile = (userId) => async (dispatch) => {
+export const profile = () => async (dispatch) => {
 	try {
 		const res = await instance.get(`/myprofile`);
-		console.log(res.data);
 		await dispatch({
 			type: types.FETCH_PROFILE,
 			payload: res.data,
@@ -87,19 +85,14 @@ export const updateProfile = (user) => async (dispatch) => {
 
 export const viewProfile = (userId) => async (dispatch) => {
 	try {
-		const res = await instance.get('/viewProfile', userId);
-
-		console.log(
-			'🚀 ~ file: authActions.js ~ line 96 ~ viewProfile ~ res.data',
-			res.data
-		);
+		const res = await instance.get(`/viewProfile/${userId}`);
 		await dispatch({
 			type: types.VIEW_PROFILE,
 			payload: res.data,
 		});
 		toast.success('You can see user profile');
 	} catch (error) {
-		//console.log("ERROR: ", error);
+		console.log('ERROR: ', error);
 	}
 };
 
