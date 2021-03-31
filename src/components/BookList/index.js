@@ -6,6 +6,7 @@ import BookItem from './BookItem';
 import Loading from '../Loading';
 import SearchBar from '../SearchBar';
 // Styles
+import Grid from '@material-ui/core/Grid';
 
 const BookList = ({ books }) => {
 	const [query, setQuery] = useState('');
@@ -22,7 +23,21 @@ const BookList = ({ books }) => {
 			<div>
 				<SearchBar setQuery={setQuery} />
 			</div>
-			<div>{bookList}</div>
+			<Grid
+				container
+				spacing={4}
+				direction="row"
+				alignItems="center"
+				justify="center"
+				flexWrap="wrap"
+				display="flex"
+				style={{
+					marginLeft: '2em',
+					marginTop: '3em',
+				}}
+			>
+				{bookList}
+			</Grid>
 		</>
 	);
 };
