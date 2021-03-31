@@ -7,7 +7,7 @@ import BookSelect from "./BookSelect";
 //Actions
 import { createRequest } from "../../store/actions/requestActions";
 
-//styling
+//styles
 import {
   FormStyled,
   LabelStyled,

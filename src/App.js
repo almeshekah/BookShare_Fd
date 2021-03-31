@@ -22,7 +22,6 @@ function App() {
       />
       <Sidebar />
       <span>&nbsp;&nbsp;</span>
-
       {/* REVIEW: Replace with margin or padding */}
       <Routes />
     </>

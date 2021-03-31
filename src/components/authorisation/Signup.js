@@ -7,7 +7,7 @@ import { useHistory } from "react-router-dom";
 import { register } from "../../serviceWorker";
 //Actions
 import { signup, updateProfile } from "../../store/actions/authActions";
-//styling
+//styles
 import {
   FormStyled,
   LabelStyled,
