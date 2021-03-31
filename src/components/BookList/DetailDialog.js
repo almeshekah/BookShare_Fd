@@ -51,7 +51,6 @@ const DialogContent = withStyles((theme) => ({
 	},
 }))(MuiDialogContent);
 
-
 const DetailDialog = ({ bookId }) => {
 	const [open, setOpen] = useState(false);
 
