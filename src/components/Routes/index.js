@@ -11,6 +11,7 @@ import BookList from '../BookList';
 import CategoryDetail from '../CategoryDetail';
 import AddBook from '../AddBook';
 import Request from '../Request';
+import ViewRequest from '../Request/ViewRequest';
 
 const Routes = () => {
 	const books = useSelector((state) => state.bookReducer.books);
@@ -20,6 +21,9 @@ const Routes = () => {
 		<Switch>
 			<Route path="/requests/new">
 				<Request />
+			</Route>
+			<Route path="/viewrequest">
+				<ViewRequest />
 			</Route>
 
 			<Route path="/categories/:categorySlug">
