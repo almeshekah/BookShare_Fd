@@ -4,11 +4,14 @@ import * as types from './types';
 import { toast } from 'react-toastify';
 
 const setUser = (token) => {
-	localStorage.setItem('myToken', token);
-	instance.defaults.headers.common.Authorization = `Bearer ${token}`;
-	return {
-		type: types.SET_USER,
-		payload: decode(token),
+	return async (dispatch) => {
+		localStorage.setItem('myToken', token);
+		instance.defaults.headers.common.Authorization = `Bearer ${token}`;
+		await dispatch(profile());
+		await dispatch({
+			type: types.SET_USER,
+			payload: decode(token),
+		});
 	};
 };
 export const signup = (newUser, history) => {
