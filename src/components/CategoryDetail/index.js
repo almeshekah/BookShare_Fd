@@ -1,15 +1,21 @@
 import { useSelector } from "react-redux";
-
+import { useParams } from "react-router-dom";
 // Components
-import BookList from "../BookList";
+import BookItem from "../BookList/BookItem";
 import Loading from "../Loading";
 
 const CategoryDetail = () => {
-  const books = useSelector((state) => state.categoryReducer.books);
-  const loading = useSelector((state) => state.categoryReducer.loadingOfBooks);
+  const { categorySlug } = useParams();
 
+  const loading = useSelector((state) => state.categoryReducer.loading);
+  const category = useSelector((state) =>
+    state.categoryReducer.categories.find(
+      (category) => category.slug === categorySlug
+    )
+  );
+  //console.log(category.books);
   if (loading) return <Loading />;
-  return <BookList books={books} />;
+  return <BookItem book={category.books} key={category.books.id} />;
 };
 
 export default CategoryDetail;
