@@ -14,17 +14,16 @@ import Grid from "@material-ui/core/Grid";
 
 //Styles
 import { makeStyles } from "@material-ui/core/styles";
-import { theme } from "../../styles";
 import * as FaIcons from "react-icons/fa";
 import * as BsIcons from "react-icons/bs";
 
 const BookItem = ({ book }) => {
-  const useStyles = makeStyles(() => ({
+  const useStyles = makeStyles((theme) => ({
     root: {
       maxWidth: 250,
       borderRadius: 15,
-      backgroundColor: "#b0e9f5",
-      color: "#1d3557",
+      backgroundColor: theme.palette.secondary.main,
+      color: theme.palette.primary.main,
     },
     media: {
       height: 0,
