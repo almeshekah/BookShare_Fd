@@ -4,7 +4,6 @@ import { useParams } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 // Components
-
 import Loading from '../Loading';
 import BookList from '../BookList';
 import { viewProfile } from '../../store/actions/authActions';
@@ -20,6 +19,7 @@ const Userprofile = () => {
 	useEffect(() => {
 		if (userId) {
 			dispatch(viewProfile(userId));
+		} else {
 		}
 	}, [userId]);
 
@@ -40,14 +40,6 @@ const Userprofile = () => {
 		<>
 			{!userId ? (
 				<>
-					<Link to="/viewrequest">
-						<BellIcon
-							width="30"
-							active={true}
-							animate={true}
-							onClick={() => console.log('kkkk')}
-						/>
-					</Link>
 					<ItemWrapper>
 						<h1
 							style={{
@@ -71,6 +63,11 @@ const Userprofile = () => {
 						</p>
 						<p>{`Email: ${profile.email}`}</p>
 						<div className="buttons">
+							<Link to="/viewrequest">
+								<button type="button" className="btn btn-dark ">
+									View Request
+								</button>
+							</Link>
 							<Link to="/profile/edit">
 								<button type="button" className="btn btn-dark ">
 									Edit My Profile
@@ -78,6 +75,7 @@ const Userprofile = () => {
 							</Link>
 						</div>
 					</ItemWrapper>
+
 					<div>
 						<Title>My Books</Title>
 						<ButtonWrapper>
@@ -114,6 +112,7 @@ const Userprofile = () => {
 						<p>{`Email: ${otheProfile.email}`}</p>
 						<div className="buttons"></div>
 					</ItemWrapper>
+
 					<div>
 						<Title>has Books</Title>
 

@@ -2,7 +2,7 @@ import instance from './instance';
 import decode from 'jwt-decode';
 import * as types from './types';
 import { toast } from 'react-toastify';
-
+import { fetchRequest } from './requestActions';
 const setUser = (token) => {
 	return async (dispatch) => {
 		localStorage.setItem('myToken', token);
@@ -36,6 +36,7 @@ export const signin = (userData, history) => {
 			const res = await instance.post('/signin', userData);
 			localStorage.setItem('myToken', res.data.token);
 			await dispatch(setUser(res.data.token));
+			await dispatch(fetchRequest());
 			toast.success('Signed in successfuly!');
 			history.replace('/');
 		} catch (error) {
