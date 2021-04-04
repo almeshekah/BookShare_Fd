@@ -10,7 +10,6 @@ import { viewProfile } from '../../store/actions/authActions';
 // Styles
 import { ItemWrapper, Title, ButtonWrapper } from './styles';
 import { AddButtonStyled } from '../../styles';
-import BellIcon from 'react-bell-icon';
 
 const Userprofile = () => {
 	const userId = useParams().userId;
