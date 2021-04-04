@@ -1,12 +1,13 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
+import Grid from "@material-ui/core/Grid";
 
 // Components
 import BookItem from "./BookItem";
 import Loading from "../Loading";
 import SearchBar from "../SearchBar";
+
 // Styles
-import Grid from "@material-ui/core/Grid";
 
 const BookList = ({ books }) => {
   const [query, setQuery] = useState("");
