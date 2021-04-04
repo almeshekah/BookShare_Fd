@@ -1,6 +1,5 @@
-import { applyMiddleware, compose, createStore } from "redux";
-import thunk from "redux-thunk";
-
+import { applyMiddleware, compose, createStore } from 'redux';
+import thunk from 'redux-thunk';
 
 import reducer from './reducers';
 import { checkForToken, fetchUsers } from './actions/authActions';
