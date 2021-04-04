@@ -4,6 +4,8 @@ import Card from "@material-ui/core/Card";
 import CardHeader from "@material-ui/core/CardHeader";
 import CardMedia from "@material-ui/core/CardMedia";
 import CardContent from "@material-ui/core/CardContent";
+import Typography from "@material-ui/core/Typography";
+
 import Avatar from "@material-ui/core/Avatar";
 import IconButton from "@material-ui/core/IconButton";
 import { red } from "@material-ui/core/colors";
@@ -12,11 +14,17 @@ import Grid from "@material-ui/core/Grid";
 
 //Styles
 import { makeStyles } from "@material-ui/core/styles";
+import { theme } from "../../styles";
+import * as FaIcons from "react-icons/fa";
+import * as BsIcons from "react-icons/bs";
 
 const BookItem = ({ book }) => {
   const useStyles = makeStyles(() => ({
     root: {
       maxWidth: 250,
+      borderRadius: 15,
+      backgroundColor: "#b0e9f5",
+      color: "#1d3557",
     },
     media: {
       height: 0,
@@ -24,14 +32,14 @@ const BookItem = ({ book }) => {
     },
 
     avatar: {
-      backgroundColor: red[500],
+      // backgroundColor: red[500],
     },
   }));
   const classes = useStyles();
   return (
     <>
       <Grid item xs={3}>
-        <Card className={classes.root}>
+        <Card className={classes.root} backgroundColor="secondary">
           <CardHeader
             avatar={
               <Link to={`/otherprofile/${book.userId}`}>
@@ -53,7 +61,25 @@ const BookItem = ({ book }) => {
             image={book.image}
             title={book.name}
           />
-          <CardContent>Listed for {book.type}</CardContent>
+          <CardContent>
+            {book.type === "trade" ? (
+              <>
+                <Typography align="center" color="primary">
+                  Listed for {book.type}
+                  &nbsp;
+                  <FaIcons.FaExchangeAlt />
+                </Typography>
+              </>
+            ) : (
+              <>
+                <Typography align="center" color="primary">
+                  Listed for {book.type}
+                  &nbsp;
+                  <BsIcons.BsGiftFill />
+                </Typography>
+              </>
+            )}
+          </CardContent>
         </Card>
       </Grid>
     </>
