@@ -14,57 +14,23 @@ const ViewRequest = () => {
     requests
   );
 
-  //////
-  // const bookName = books.map((book) =>
-  //   requests.find((request) => request.bookId === book.id)
-  // );
-
-  // const mybook = bookName.map((book) => book.name);
-  /////
-
   const user = requests.map((request) =>
     users.find((_user) => request.receivedUserId === _user.id)
   );
-  const userlist = user.map((user) => <RequestItem user={user} />);
+  const requstUser = requests.map((request) =>
+    users.find((_user) => request.requstUserId === _user.id)
+  );
 
-  console.log("🚀 ~ file: index.js ~ line 41 ~ ViewRequest ~ user", user);
+  const requstUserlist = user.map((reqUser) => (
+    <RequestItem reqUser={reqUser} />
+  ));
 
-  // const userNamesss = user.map((user) => user.firstName);
+  const myBooks = requests.map((user1Book) =>
+    books.find((book) => user1Book.bookId === book.id)
+  );
+  const myBooklist = myBooks.map((myBook) => <RequestItem myBook={myBook} />);
+  console.log("🚀 ~ file: index.js ~ line 31 ~ ViewRequest ~ myBooks", myBooks);
 
-  // console.log(
-  //   "🚀 ~ file: index.js ~ line 43 ~ ViewRequest ~ userNamesss",
-  //   userNamesss
-  // );
-
-  // console.log("🚀 ~ file: index.js ~ line 46 ~ ViewRequest ~ user2Name3", user);
-
-  // const bookNameId = books.map((book) =>
-  //   requests.find((request) => request.bookId === book.id)
-  // );
-  // console.log(
-  //   "🚀 ~ file: index.js ~ line 27 ~ ViewRequest ~ bookName",
-  //   bookNameId
-  // );
-
-  // console.log("🚀 ~ file: index.js ~ line 7 ~ ViewRequest ~ users", users);
-
-  // console.log(
-  //   "🚀 ~ file: index.js ~ line 6 ~ ViewRequest ~ requests",
-  //   requests
-  // );
-
-  // const myBooks = requests.find((userBook) => userBook.bookId === books.id);
-
-  // const user1Id = useSelector((state) =>
-  //   state.authReducer.users.find((user1) => user1.id === users.id)
-  // );
-
-  // console.log("🚀 ~ file: index.js ~ line 24 ~ ViewRequest ~ user1Id", user1Id);
-
-  // console.log(
-  //   "🚀 ~ file: index.js ~ line 17 ~ ViewRequest ~ user1Books",
-  //   myBooks
-  // );
   return (
     <div>
       <div>
@@ -84,11 +50,9 @@ const ViewRequest = () => {
                 </thead>
                 <tbody>
                   <td>My Books</td>
-                  <td>
-                    {user.firstName} {user.lastName}
-                  </td>
+                  <td>{requstUserlist}</td>
                   <td>User 2 Books</td>
-                  {/* <td>{requests.status}</td> */}
+                  <td>{}</td>
                   <td>
                     <button>Accpet</button>
                   </td>

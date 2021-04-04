@@ -11,7 +11,7 @@ import BookList from "../BookList";
 import CategoryDetail from "../CategoryDetail";
 import AddBook from "../AddBook";
 import Request from "../Request";
-import ViewRequest from "../Request/ViewRequest";
+import ViewRequest from "../ViewRequest";
 
 const Routes = () => {
   const books = useSelector((state) => state.bookReducer.books);
