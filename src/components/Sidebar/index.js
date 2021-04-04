@@ -8,7 +8,7 @@ import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 //Actions
-import { signout, profile } from '../../store/actions/authActions';
+import { signout } from '../../store/actions/authActions';
 import { fetchCategory } from '../../store/actions/categoryActions';
 import { fetchBook } from '../../store/actions/bookActions';
 //Styles

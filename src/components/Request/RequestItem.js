@@ -7,13 +7,14 @@ const RequestItem = ({ request }) => {
 	const users = useSelector((state) => state.authReducer.users);
 	const requestby = users.find((_user) => _user.id === request.requstUserId);
 	const books = useSelector((state) => state.bookReducer.books);
-	const hisbook = books.find((_book) => _book.id === request.bookId);
+	const mybook = books.find((_book) => _book.id === request.bookId);
+	const hisbook = request.Books.map((book) => book.name);
 
 	return (
 		<tr>
 			<td>{requestby.firstName}</td>
-			<td>{}</td>
-			<td>{hisbook.name}</td>
+			<td>{mybook.name}</td>
+			<td>{hisbook}</td>
 			<td>
 				<button onClick={() => dispatch(acceptRequest(request.requstUserId))}>
 					Accpet

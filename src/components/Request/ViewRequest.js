@@ -9,6 +9,7 @@ const ViewRequest = () => {
 	const requestList = requests.map((request) => (
 		<RequestItem request={request} key={request.id} />
 	));
+
 	return (
 		<div className="App">
 			<h1 className="mt-5"> my Request </h1>
