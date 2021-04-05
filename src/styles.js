@@ -7,7 +7,17 @@ export const theme = createMuiTheme({
       main: "#1d3557",
     },
     secondary: {
-      main: "#82DDF0",
+      main: "#b0e9f5",
+    },
+
+    success: {
+      main: "#57cc99",
+      secondary: "#ABE5CB",
+    },
+
+    error: {
+      main: "#e63946",
+      secondary: "#F29CA2",
     },
   },
 });
