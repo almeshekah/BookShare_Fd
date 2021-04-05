@@ -8,92 +8,89 @@ import { register } from "../../serviceWorker";
 //Actions
 import { signin } from "../../store/actions/authActions";
 
-//styles
+//Styling
 
 import {
-  FormStyled,
-  LabelStyled,
-  InputFieldStyled,
-  FieldSetStyled,
-  LegendStyled,
-  FormAddButtonStyled,
+	FormStyled,
+	LabelStyled,
+	InputFieldStyled,
+	FieldSetStyled,
+	LegendStyled,
+	FormAddButtonStyled,
 } from "../../styles";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye } from "@fortawesome/free-solid-svg-icons";
 
-// REVIEW: Inside a component, you first use your hooks
-// (useState, useDispatch, useForm, useHistory)
-// then you define your variables and functions
 const Signin = () => {
+	const dispatch = useDispatch();
+	const history = useHistory();
 
-  const [user, setUser] = useState({
-    username: "",
-    password: "",
-  });
-  const [passwordShown, setPasswordShown] = useState(false);
-  const dispatch = useDispatch();
-  const history = useHistory();
+	const [user, setUser] = useState({
+		username: "",
+		password: "",
+	});
+	const [passwordShown, setPasswordShown] = useState(false);
 
-  const { errors } = useForm();
-  const eye = <FontAwesomeIcon icon={faEye} />;
+	const { errors } = useForm();
+	const eye = <FontAwesomeIcon icon={faEye} />;
 
-  const togglePasswordVisiblity = () => {
-    setPasswordShown(passwordShown ? false : true);
-  };
-  const handleChange = (event) =>
-    setUser({ ...user, [event.target.name]: event.target.value });
+	const togglePasswordVisiblity = () => {
+		setPasswordShown(passwordShown ? false : true);
+	};
+	const handleChange = (event) =>
+		setUser({ ...user, [event.target.name]: event.target.value });
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    dispatch(signin(user, history));
-  };
+	const handleSubmit = (event) => {
+		event.preventDefault();
+		dispatch(signin(user, history));
+	};
 
-  return (
-    <>
-      <Helmet>
-        <title> Sign In</title>
-      </Helmet>
-      <FormStyled>
-        <form onSubmit={handleSubmit}>
-          <FieldSetStyled>
-            <LegendStyled>
-              <h2> Sign In</h2>
+	return (
+		<>
+			<Helmet>
+				<title> Sign In</title>
+			</Helmet>
+			<FormStyled>
+				<form onSubmit={handleSubmit}>
+					<FieldSetStyled>
+						<LegendStyled>
+							<h2> Sign In</h2>
 
-              <LabelStyled>
-                Username:
-                <InputFieldStyled
-                  type="text"
-                  name="username"
-                  value={user.username}
-                  onChange={handleChange}
-                />
-              </LabelStyled>
+							<LabelStyled>
+								Username:
+								<InputFieldStyled
+									type="text"
+									name="username"
+									value={user.username}
+									onChange={handleChange}
+								/>
+							</LabelStyled>
 
-              <LabelStyled>
-                Password:
-                <span>
-                  <i onClick={togglePasswordVisiblity}>{eye}</i>
-                </span>
-                <InputFieldStyled
-                  type={passwordShown ? "text" : "password"}
-                  name="password"
-                  value={user.password}
-                  onChange={handleChange}
-                  ref={register({ required: true, minLength: 8 })}
-                />
-                {errors.password && <p>Pass is required!!</p>}
-              </LabelStyled>
+							<LabelStyled>
+								Password:
+								<span>
+									<i onClick={togglePasswordVisiblity}>{eye}</i>
+								</span>
+								<InputFieldStyled
+									type={passwordShown ? "text" : "password"}
+									name="password"
+									value={user.password}
+									onChange={handleChange}
+									ref={register({ required: true, minLength: 8 })}
+								/>
+								{errors.password && <p>Pass is required!!</p>}
+							</LabelStyled>
 
-              <FormAddButtonStyled onSubmit={handleSubmit}>
-                Sign In
-              </FormAddButtonStyled>
-            </LegendStyled>
-          </FieldSetStyled>
-        </form>
-      </FormStyled>
-    </>
-  );
+							<FormAddButtonStyled onSubmit={handleSubmit}>
+								Sign In
+							</FormAddButtonStyled>
+						</LegendStyled>
+					</FieldSetStyled>
+				</form>
+			</FormStyled>
+		</>
+	);
 };
 
 export default Signin;

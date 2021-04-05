@@ -1,12 +1,9 @@
-// import NavBar from "../Navigation";
-
 const Home = () => {
-  return (
-    <div>
-      {/* <NavBar /> */}
-      <h3> Home page</h3>
-    </div>
-  );
+	return (
+		<div>
+			<h3> Home page</h3>
+		</div>
+	);
 };
 
 export default Home;

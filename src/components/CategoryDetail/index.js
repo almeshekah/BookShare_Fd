@@ -1,8 +1,9 @@
-import { useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import { useSelector } from "react-redux";
+import { useParams } from "react-router-dom";
+
 // Components
-import BookList from '../BookList';
-import Loading from '../Loading';
+import BookList from "../BookList";
+import Loading from "../Loading";
 
 const CategoryDetail = () => {
 	const { categorySlug } = useParams();

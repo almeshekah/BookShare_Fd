@@ -1,4 +1,4 @@
-import * as types from '../actions/types';
+import * as types from "../actions/types";
 
 const initialState = {
 	categories: [],
@@ -9,18 +9,11 @@ const initialState = {
 
 const reducer = (state = initialState, action) => {
 	switch (action.type) {
-		case types.FETCH_CATEGORY:
+		case types.FETCH_CATEGORIES:
 			return {
 				...state,
 				categories: action.payload,
 				loading: false,
-			};
-
-		case types.FETCH_CATEGORY_BOOKS:
-			return {
-				...state,
-				books: action.payload,
-				loadingOfBooks: false,
 			};
 
 		default:

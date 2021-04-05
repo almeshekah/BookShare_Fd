@@ -6,10 +6,10 @@ import bookReducer from "./bookReducer";
 import requestReducer from "./requestReducer";
 
 const rootReducer = combineReducers({
-  authReducer,
-  categoryReducer,
-  bookReducer,
-  requestReducer,
+	authReducer,
+	categoryReducer,
+	bookReducer,
+	requestReducer,
 });
 
 export default rootReducer;

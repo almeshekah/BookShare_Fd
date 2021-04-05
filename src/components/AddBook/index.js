@@ -9,152 +9,153 @@ import { createBook } from "../../store/actions/bookActions";
 
 //Styling
 import {
-  FormStyled,
-  LabelStyled,
-  InputFieldStyled,
-  FieldSetStyled,
-  LegendStyled,
-  FormAddButtonStyled,
+	FormStyled,
+	LabelStyled,
+	InputFieldStyled,
+	FieldSetStyled,
+	LegendStyled,
+	FormAddButtonStyled,
 } from "../../styles";
 
+//Components
 import TypeSelect from "./TypeSelect";
 import CategorySelect from "./CategorySelect";
 
 const AddBook = () => {
-  const history = useHistory();
+	const history = useHistory();
 
-  const dispatch = useDispatch();
+	const dispatch = useDispatch();
 
-  const { userId } = useParams();
+	const { userId } = useParams();
 
-  const categories = useSelector((state) => state.categoryReducer.categories);
+	const categories = useSelector((state) => state.categoryReducer.categories);
 
-  const [book, setBook] = useState({
-    userId: userId,
-    name: "",
-    author: "",
-    type: "",
-    categoryId: "",
-    image: "",
-  });
+	const [book, setBook] = useState({
+		userId: userId,
+		name: "",
+		author: "",
+		type: "",
+		categoryId: "",
+		image: "",
+	});
 
-  const [options, setOptions] = useState({
-    trade: null,
-    giveaway: null,
-    categoryId: null,
-  });
+	const [options, setOptions] = useState({
+		trade: null,
+		giveaway: null,
+		categoryId: null,
+	});
 
-  const categoryOptionsList = categories.map((category) => ({
-    value: category.id,
-    label: `${category.name} `,
-    name: "categoryId",
-  }));
+	const categoryOptionsList = categories.map((category) => ({
+		value: category.id,
+		label: `${category.name} `,
+		name: "categoryId",
+	}));
 
-  const handleOptions = (selectedOption) => {
-    console.log(selectedOption);
-    setOptions({
-      ...options,
-      type: selectedOption.value,
-    });
-  };
+	const handleOptions = (selectedOption) => {
+		console.log(selectedOption);
+		setOptions({
+			...options,
+			type: selectedOption.value,
+		});
+	};
 
-  const _handleOptions = (selectedOption) => {
-    console.log(selectedOption);
-    setOptions({
-      ...options,
-      [selectedOption.name]: selectedOption,
-    });
-  };
+	const _handleOptions = (selectedOption) => {
+		console.log(selectedOption);
+		setOptions({
+			...options,
+			[selectedOption.name]: selectedOption,
+		});
+	};
 
-  const handleChange = (event) => {
-    setBook({ ...book, [event.target.name]: event.target.value });
-  };
+	const handleChange = (event) => {
+		setBook({ ...book, [event.target.name]: event.target.value });
+	};
 
-  const handleImage = (event) => {
-    setBook({ ...book, image: event.target.files[0] });
-  };
+	const handleImage = (event) => {
+		setBook({ ...book, image: event.target.files[0] });
+	};
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    dispatch(
-      createBook({
-        ...book,
-        type: options.type,
-        categoryId: options.categoryId.value,
-      })
-    );
-    history.replace("/profile");
-  };
+	const handleSubmit = (event) => {
+		event.preventDefault();
+		dispatch(
+			createBook({
+				...book,
+				type: options.type,
+				categoryId: options.categoryId.value,
+			})
+		);
+		history.replace("/profile");
+	};
 
-  return (
-    <>
-      <Helmet>
-        <title>Add Book</title>
-      </Helmet>
-      <FormStyled>
-        <form onSubmit={handleSubmit}>
-          <FieldSetStyled>
-            <LegendStyled>
-              <h2>New Book</h2>
+	return (
+		<>
+			<Helmet>
+				<title>Add Book</title>
+			</Helmet>
+			<FormStyled>
+				<form onSubmit={handleSubmit}>
+					<FieldSetStyled>
+						<LegendStyled>
+							<h2>New Book</h2>
 
-              <LabelStyled>
-                Name:
-                <InputFieldStyled
-                  type="text"
-                  name="name"
-                  value={book.name}
-                  onChange={handleChange}
-                />
-              </LabelStyled>
+							<LabelStyled>
+								Name:
+								<InputFieldStyled
+									type="text"
+									name="name"
+									value={book.name}
+									onChange={handleChange}
+								/>
+							</LabelStyled>
 
-              <LabelStyled>
-                Author:
-                <InputFieldStyled
-                  type="text"
-                  name="author"
-                  value={book.author}
-                  onChange={handleChange}
-                />
-              </LabelStyled>
+							<LabelStyled>
+								Author:
+								<InputFieldStyled
+									type="text"
+									name="author"
+									value={book.author}
+									onChange={handleChange}
+								/>
+							</LabelStyled>
 
-              <LabelStyled>
-                Type:
-                <TypeSelect
-                  name="type"
-                  options={options}
-                  handleOptions={handleOptions}
-                />
-              </LabelStyled>
+							<LabelStyled>
+								Type:
+								<TypeSelect
+									name="type"
+									options={options}
+									handleOptions={handleOptions}
+								/>
+							</LabelStyled>
 
-              <LabelStyled>
-                Book Category:
-                <CategorySelect
-                  name="category"
-                  options={options}
-                  _handleOptions={_handleOptions}
-                  _options={categoryOptionsList}
-                  set="categoryId"
-                />
-              </LabelStyled>
+							<LabelStyled>
+								Book Category:
+								<CategorySelect
+									name="category"
+									options={options}
+									_handleOptions={_handleOptions}
+									_options={categoryOptionsList}
+									set="categoryId"
+								/>
+							</LabelStyled>
 
-              <LabelStyled>
-                Image:
-                <InputFieldStyled
-                  type="file"
-                  name="image"
-                  onChange={handleImage}
-                />
-              </LabelStyled>
+							<LabelStyled>
+								Image:
+								<InputFieldStyled
+									type="file"
+									name="image"
+									onChange={handleImage}
+								/>
+							</LabelStyled>
 
-              <FormAddButtonStyled onSubmit={handleSubmit}>
-                New Book
-              </FormAddButtonStyled>
-            </LegendStyled>
-          </FieldSetStyled>
-        </form>
-      </FormStyled>
-    </>
-  );
+							<FormAddButtonStyled onSubmit={handleSubmit}>
+								New Book
+							</FormAddButtonStyled>
+						</LegendStyled>
+					</FieldSetStyled>
+				</form>
+			</FormStyled>
+		</>
+	);
 };
 
 export default AddBook;
