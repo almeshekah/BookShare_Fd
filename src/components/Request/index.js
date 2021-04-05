@@ -22,6 +22,14 @@ import Loading from "../Loading";
 const Request = () => {
 	const dispatch = useDispatch();
 	const history = useHistory();
+	const user = useSelector((state) => state.authReducer.user);
+	const users = useSelector((state) => state.authReducer.users);
+	const otheProfile = useSelector((state) => state.authReducer.otheProfile);
+	const otheProfileloading = useSelector(
+		(state) => state.authReducer.otheProfileloading
+	);
+
+	const requser = users.find((_user) => _user.id === user.id);
 
 	const [request, setRequest] = useState({
 		requstUserId: user.id,
@@ -35,15 +43,6 @@ const Request = () => {
 		bookId: null,
 		books: null,
 	});
-
-	const user = useSelector((state) => state.authReducer.user);
-	const users = useSelector((state) => state.authReducer.users);
-	const otheProfile = useSelector((state) => state.authReducer.otheProfile);
-	const otheProfileloading = useSelector(
-		(state) => state.authReducer.otheProfileloading
-	);
-
-	const requser = users.find((_user) => _user.id === user.id);
 
 	const mybookOptionsList = requser.mybooks.map((book) => ({
 		value: book.id,
