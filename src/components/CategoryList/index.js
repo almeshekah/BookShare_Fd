@@ -1,6 +1,9 @@
 // Components
 import { useState } from "react";
 import { useSelector } from "react-redux";
+
+import Grid from "@material-ui/core/Grid";
+
 // Styling
 import CategoryItem from "./CategoryItem";
 import SearchBar from "../SearchBar";
@@ -24,7 +27,21 @@ const CategoryList = () => {
   return (
     <div>
       <SearchBar setQuery={setQuery} />
-      <ListWrapper>{categoryList}</ListWrapper>
+      <Grid
+        container
+        spacing={3}
+        direction="row"
+        alignItems="center"
+        justify="center"
+        flexWrap="wrap"
+        display="flex"
+        style={{
+          marginLeft: "2em",
+          marginTop: "3em",
+        }}
+      >
+        <ListWrapper>{categoryList}</ListWrapper>
+      </Grid>
     </div>
   );
 };

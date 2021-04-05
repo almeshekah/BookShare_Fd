@@ -1,13 +1,12 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
-import Grid from "@material-ui/core/Grid";
 
 // Components
 import BookItem from "./BookItem";
 import Loading from "../Loading";
 import SearchBar from "../SearchBar";
-
 // Styles
+import Grid from "@material-ui/core/Grid";
 
 const BookList = ({ books }) => {
   const [query, setQuery] = useState("");
@@ -26,14 +25,14 @@ const BookList = ({ books }) => {
       </div>
       <Grid
         container
-        spacing={3}
+        spacing={4}
         direction="row"
         alignItems="center"
         justify="center"
         flexWrap="wrap"
         display="flex"
         style={{
-          marginLeft: "17em",
+          marginLeft: "2em",
           marginTop: "3em",
         }}
       >
