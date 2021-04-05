@@ -1,20 +1,24 @@
-import React from 'react';
-import { Helmet } from 'react-helmet';
-import { useSelector } from 'react-redux';
+import React from "react";
+import { Helmet } from "react-helmet";
+import { useSelector } from "react-redux";
 
-// Styles
-import Typography from '@material-ui/core/Typography';
-import CardMedia from '@material-ui/core/CardMedia';
-import Card from '@material-ui/core/Card';
-import CardActionArea from '@material-ui/core/CardActionArea';
-import CardContent from '@material-ui/core/CardContent';
-import Grid from '@material-ui/core/Grid';
-import { makeStyles } from '@material-ui/core/styles';
+//Material-Ui
+import Typography from "@material-ui/core/Typography";
+import CardMedia from "@material-ui/core/CardMedia";
+import Card from "@material-ui/core/Card";
+import CardActionArea from "@material-ui/core/CardActionArea";
+import CardContent from "@material-ui/core/CardContent";
+import Grid from "@material-ui/core/Grid";
+
+// Styling
+import { makeStyles } from "@material-ui/core/styles";
 
 const CardDetail = ({ bookId }) => {
 	const books = useSelector((state) => state.bookReducer.books);
 
 	const book = books.find((book) => book.id === bookId);
+
+	const classes = useStyles();
 
 	const useStyles = makeStyles({
 		root: {
@@ -24,8 +28,6 @@ const CardDetail = ({ bookId }) => {
 			height: 500,
 		},
 	});
-
-	const classes = useStyles();
 
 	return (
 		<>
@@ -38,7 +40,7 @@ const CardDetail = ({ bookId }) => {
 				direction="column"
 				alignItems="center"
 				justify="center"
-				style={{ minHeight: '100vh' }}
+				style={{ minHeight: "100vh" }}
 			>
 				<Grid item xs={12}>
 					<Card className={classes.root}>

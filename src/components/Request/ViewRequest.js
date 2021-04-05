@@ -1,10 +1,12 @@
-import { useSelector } from 'react-redux';
-import Grid from '@material-ui/core/Grid';
-import Typography from '@material-ui/core/Typography';
+import { useSelector } from "react-redux";
+
+//Material-Ui
+import Grid from "@material-ui/core/Grid";
+import Typography from "@material-ui/core/Typography";
 
 // Components
-import Loading from '../Loading';
-import RequestItem from './RequestItem';
+import Loading from "../Loading";
+import RequestItem from "./RequestItem";
 
 const ViewRequest = () => {
 	const requests = useSelector((state) => state.requestReducer.requests);
@@ -30,8 +32,8 @@ const ViewRequest = () => {
 					container
 					spacing={3}
 					style={{
-						marginLeft: '17em',
-						marginTop: '3em',
+						marginLeft: "17em",
+						marginTop: "3em",
 					}}
 				>
 					{requestList}
