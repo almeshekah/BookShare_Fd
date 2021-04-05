@@ -1,3 +1,4 @@
+
 import { Link } from "react-router-dom";
 import DetailDialog from "./DetailDialog";
 import Card from "@material-ui/core/Card";
@@ -11,13 +12,14 @@ import IconButton from "@material-ui/core/IconButton";
 import { red } from "@material-ui/core/colors";
 
 import Grid from "@material-ui/core/Grid";
-
+import { useSelector } from 'react-redux';
 //Styles
 import { makeStyles } from "@material-ui/core/styles";
 import * as FaIcons from "react-icons/fa";
 import * as BsIcons from "react-icons/bs";
 
 const BookItem = ({ book }) => {
+const user = useSelector((state) => state.authReducer.user);
   const useStyles = makeStyles((theme) => ({
     root: {
       maxWidth: 250,
@@ -39,21 +41,45 @@ const BookItem = ({ book }) => {
     <>
       <Grid item xs={3}>
         <Card className={classes.root} backgroundColor="secondary">
-          <CardHeader
-            avatar={
-              <Link to={`/otherprofile/${book.userId}`}>
-                <Avatar aria-label="book" className={classes.avatar}>
-                  R
-                </Avatar>
-              </Link>
-            }
-            action={
-              <IconButton aria-label="more">
-                <DetailDialog bookId={book.id} />
-              </IconButton>
-            }
-            title={book.name}
-          />
+          {user.id === book.userId ? (
+						<>
+							<CardHeader
+								avatar={
+									<Link to={`/profile`}>
+										<Avatar
+											aria-label="book"
+											src={user.image}
+											alt={user.firstName}
+										></Avatar>
+									</Link>
+								}
+								action={
+									<IconButton aria-label="more">
+										<DetailDialog bookId={book.id} />
+									</IconButton>
+								}
+								title={book.name}
+							/>
+						</>
+					) : (
+						<>
+							<CardHeader
+								avatar={
+									<Link to={`/otherprofile/${book.userId}`}>
+										<Avatar aria-label="book" className={classes.avatar}>
+											R
+										</Avatar>
+									</Link>
+								}
+								action={
+									<IconButton aria-label="more">
+										<DetailDialog bookId={book.id} />
+									</IconButton>
+								}
+								title={book.name}
+							/>
+						</>
+					)}
 
           <CardMedia
             className={classes.media}
@@ -83,6 +109,7 @@ const BookItem = ({ book }) => {
       </Grid>
     </>
   );
+
 };
 
 export default BookItem;
