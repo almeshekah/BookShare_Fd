@@ -3,44 +3,48 @@ import { useSelector } from "react-redux";
 
 // Components
 import Loading from "../Loading";
-import { ListWrapper } from "./styles";
 
 //Material-Ui
 import Grid from "@material-ui/core/Grid";
+import Typography from "@material-ui/core/Typography";
 
 // Styling
 import CategoryItem from "./CategoryItem";
-import SearchBar from "../SearchBar";
 
 const CategoryList = () => {
-  const [query, setQuery] = useState("");
-
   const categories = useSelector((state) => state.categoryReducer.categories);
   const loading = useSelector((state) => state.categoryReducer.loading);
   if (loading) return <Loading />;
 
-  const categoryList = categories
-    .filter((category) =>
-      category.name.toLowerCase().includes(query.toLowerCase())
-    )
-    .map((category) => <CategoryItem category={category} key={category.id} />);
+  const categoryList = categories.map((category) => (
+    <CategoryItem category={category} key={category.id} />
+  ));
 
   return (
     <>
-      <SearchBar setQuery={setQuery} />
       <Grid
         container
-        spacing={4}
+        spacing={3}
         direction="row"
         alignItems="center"
         justify="center"
         flexWrap="wrap"
         display="flex"
         style={{
-          marginLeft: "17em",
-          marginTop: "3em",
+          marginLeft: "3em",
+          marginTop: "2em",
         }}
       >
+        <Typography
+          align="center"
+          variant="h6"
+          style={{
+            marginTop: "0.3em",
+          }}
+        >
+          Select a category to see books
+        </Typography>
+
         {categoryList}
       </Grid>
     </>
