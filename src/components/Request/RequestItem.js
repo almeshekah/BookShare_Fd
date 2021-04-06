@@ -66,7 +66,7 @@ const RequestItem = ({ request }) => {
         </>
       ) : (
         <>
-          <Grid
+          {/* <Grid
             item
             xs={4}
             sm={5}
@@ -158,7 +158,42 @@ const RequestItem = ({ request }) => {
                 </Button>
               </Grid>
             </Card>
-          </Grid>
+          </Grid> */}
+          <tr>
+            <td>{requestby.firstName}</td>
+            <td>{mybook.name}</td>
+            <td>{hisbook}</td>
+            <td>
+              <Button
+                onClick={() => dispatch(acceptRequest(request.requstUserId))}
+                variant="contained"
+                className={classes.successColor}
+                endIcon={<CheckIcon></CheckIcon>}
+                style={{
+                  marginTop: "0.8em",
+                  marginBottom: "0.8em",
+                  // marginRight: "4em",
+                }}
+              >
+                Accpet
+              </Button>
+            </td>
+            <td>
+              <Button
+                onClick={() => dispatch(rejectRequest(request.requstUserId))}
+                variant="contained"
+                className={classes.errorColor}
+                endIcon={<CloseIcon></CloseIcon>}
+                style={{
+                  marginTop: "0.8em",
+                  marginBottom: "0.8em",
+                  marginLeft: "2em",
+                }}
+              >
+                Reject
+              </Button>
+            </td>
+          </tr>
         </>
       )}
     </>
