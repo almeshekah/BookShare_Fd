@@ -4,132 +4,317 @@ import { useParams } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { useEffect } from "react";
 
+//Material-Ui
+import Card from "@material-ui/core/Card";
+import Grid from "@material-ui/core/Grid";
+import Typography from "@material-ui/core/Typography";
+import Divider from "@material-ui/core/Divider";
+import Button from "@material-ui/core/Button";
+import CardMedia from "@material-ui/core/CardMedia";
+import CardContent from "@material-ui/core/CardContent";
+
 // Components
 import Loading from "../Loading";
 import BookList from "../BookList";
 import { viewProfile } from "../../store/actions/authActions";
 
 // Styling
+import { makeStyles } from "@material-ui/core/styles";
 import { ItemWrapper, Title, ButtonWrapper } from "./styles";
 import { AddButtonStyled } from "../../styles";
+import MessageIcon from "@material-ui/icons/Message";
+import AddIcon from "@material-ui/icons/Add";
+import * as FaIcons from "react-icons/fa";
 
 const Userprofile = () => {
-	const userId = useParams().userId;
+  const userId = useParams().userId;
 
-	const dispatch = useDispatch();
-	useEffect(() => {
-		if (userId) {
-			dispatch(viewProfile(userId));
-		} else {
-		}
-	}, [userId]);
+  const useStyles = makeStyles((theme) => ({
+    root: {
+      maxWidth: 600,
+      maxHeight: 600,
+      borderRadius: 5,
+      backgroundColor: theme.palette.secondary.main,
+      color: theme.palette.primary.main,
+    },
+    media: {
+      height: 200,
+      width: 200,
+    },
 
-	const profile = useSelector((state) => state.authReducer.profile);
-	const loading = useSelector((state) => state.authReducer.loading);
+    primaryColor: {
+      backgroundColor: theme.palette.primary.main,
+      "&:hover": {
+        background: theme.palette.secondary.main,
+        color: theme.palette.primary.main,
+      },
+      color: theme.palette.secondary.main,
+    },
 
-	const otheProfile = useSelector((state) => state.authReducer.otheProfile);
-	const otheProfileloading = useSelector(
-		(state) => state.authReducer.otheProfileloading
-	);
-	if (!userId) {
-		if (loading) return <Loading />;
-	} else {
-		if (otheProfileloading) return <Loading />;
-	}
+    successColor: {
+      backgroundColor: theme.palette.success.main,
+      "&:hover": {
+        background: theme.palette.success.secondary,
+      },
+      color: theme.palette.primary.main,
+    },
+    errorColor: {
+      backgroundColor: theme.palette.error.main,
+      // "&:hover": {
+      //   background: theme.palette.error.secondary,
+      // },
+    },
+    divider: {
+      background: theme.palette.primary.main,
+    },
+  }));
 
-	return (
-		<>
-			{!userId ? (
-				<>
-					<ItemWrapper>
-						<h1
-							style={{
-								marginBottom: "2%",
-								marginLeft: "2.5%",
-								marginTop: "2%",
-							}}
-						>
-							{profile.username}
-						</h1>
+  const classes = useStyles();
 
-						<img
-							src={
-								profile.image ??
-								"https://www.kindpng.com/picc/m/105-1055656_account-user-profile-avatar-avatar-user-profile-icon.png"
-							}
-							alt={profile.firstName}
-						/>
-						<p>
-							Name: {profile.firstName} {profile.lastName}
-						</p>
-						<p>{`Email: ${profile.email}`}</p>
-						<div className="buttons">
-							<Link to="/viewrequest">
-								<button type="button" className="btn btn-dark ">
-									View Request
-								</button>
-							</Link>
-							<Link to="/profile/edit">
-								<button type="button" className="btn btn-dark ">
-									Edit My Profile
-								</button>
-							</Link>
-						</div>
-					</ItemWrapper>
+  const dispatch = useDispatch();
+  useEffect(() => {
+    if (userId) {
+      dispatch(viewProfile(userId));
+    } else {
+    }
+  }, [userId]);
 
-					<div>
-						<Title>My Books</Title>
-						<ButtonWrapper>
-							<ButtonWrapper>
-								<Link to={`/books/new`}>
-									<AddButtonStyled>Add books</AddButtonStyled>
-								</Link>
-							</ButtonWrapper>
-						</ButtonWrapper>
-						<BookList books={profile.mybook} />
-					</div>
-				</>
-			) : (
-				<>
-					<ItemWrapper>
-						<h1
-							style={{
-								marginBottom: "2%",
-								marginLeft: "2.5%",
-								marginTop: "2%",
-							}}
-						>
-							{otheProfile.username}
-						</h1>
-						<img
-							src={
-								"https://www.kindpng.com/picc/m/105-1055656_account-user-profile-avatar-avatar-user-profile-icon.png"
-							}
-							alt={otheProfile.firstName}
-						/>
-						<p>
-							Name: {otheProfile.firstName} {otheProfile.lastName}
-						</p>
-						<p>{`Email: ${otheProfile.email}`}</p>
-						<div className="buttons"></div>
-					</ItemWrapper>
+  const profile = useSelector((state) => state.authReducer.profile);
+  const loading = useSelector((state) => state.authReducer.loading);
 
-					<div>
-						<Title>has Books</Title>
+  const otheProfile = useSelector((state) => state.authReducer.otheProfile);
+  const otheProfileloading = useSelector(
+    (state) => state.authReducer.otheProfileloading
+  );
+  if (!userId) {
+    if (loading) return <Loading />;
+  } else {
+    if (otheProfileloading) return <Loading />;
+  }
 
-						<ButtonWrapper>
-							<ButtonWrapper>
-								<Link to={`/requests/new`}>
-									<AddButtonStyled>Request</AddButtonStyled>
-								</Link>
-							</ButtonWrapper>
-						</ButtonWrapper>
-						<BookList books={otheProfile.hasbook} />
-					</div>
-				</>
-			)}
-		</>
-	);
+  return (
+    <>
+      {!userId ? (
+        <>
+          <>
+            <Grid
+              container
+              spacing={0}
+              direction="row"
+              alignItems="center"
+              justify="center"
+              flexWrap="wrap"
+              display="flex"
+              style={{
+                marginTop: "0.8em",
+              }}
+            >
+              <Grid item xs={6}>
+                <Card
+                  container
+                  spacing={3}
+                  direction="row"
+                  alignItems="center"
+                  justify="center"
+                  flexWrap="wrap"
+                  display="flex"
+                  style={{
+                    marginLeft: "8em",
+                    marginTop: "3em",
+                  }}
+                  className={classes.root}
+                >
+                  <CardContent>
+                    <Typography
+                      align="center"
+                      color="primary"
+                      variant="h4"
+                      style={{
+                        marginTop: "0.8em",
+                        marginBottom: "0.8em",
+                      }}
+                    >
+                      {profile.username}
+                    </Typography>
+                    <Grid
+                      item
+                      // xs={12}
+                      direction="row"
+                      justify="flex-end"
+                      alignItems="center"
+                      spacing="0"
+                      style={{
+                        // marginTop: "0.8em",
+                        marginBottom: "0.8em",
+                      }}
+                    >
+                      <Link to="/profile/edit">
+                        <Button
+                          variant="contained"
+                          className={classes.successColor}
+                          endIcon={<FaIcons.FaUserEdit />}
+                          style={{
+                            // marginTop: "0.8em",
+                            // marginBottom: "0.8em",
+                            marginLeft: "28em",
+                            // paddingTop: "0.5em",
+                          }}
+                        >
+                          Edit My Profile
+                        </Button>
+                      </Link>
+                    </Grid>
+                    <Divider className={classes.divider} />
+
+                    <Grid
+                      container
+                      spacing={0}
+                      // direction="row"
+                      alignItems="center"
+                      justify="center"
+                      flexWrap="wrap"
+                      display="flex"
+                      // style={{
+                      //   marginTop: "0.8em",
+                      // }}
+                    >
+                      <CardMedia
+                        className={classes.media}
+                        image={profile.image}
+                        title="Profile image"
+                        style={{
+                          marginTop: "0.8em",
+                          marginBottom: "0.8em",
+                        }}
+                      />
+                    </Grid>
+
+                    <Typography
+                      align="center"
+                      color="primary"
+                      variant="h6"
+                      style={{
+                        marginTop: "0.8em",
+                        marginBottom: "0.8em",
+                      }}
+                    >
+                      Name: {profile.firstName} {profile.lastName}
+                    </Typography>
+
+                    <Divider className={classes.divider} />
+                    <Typography
+                      align="center"
+                      color="primary"
+                      variant="h6"
+                      style={{
+                        marginTop: "0.8em",
+                        marginBottom: "0.8em",
+                      }}
+                    >
+                      {`Email: ${profile.email}`}
+                    </Typography>
+                    <Divider className={classes.divider} />
+                    <>
+                      <Grid
+                        item
+                        container
+                        direction="row"
+                        justify="center"
+                        alignItems="center"
+                        spacing="0"
+                        style={{
+                          // marginTop: "0.8em",
+                          marginBottom: "0.8em",
+                        }}
+                      >
+                        {/* <div style={{ textDecoration: 'none' }> */}
+                        <>
+                          <Link to="/viewrequest">
+                            <Button
+                              variant="contained"
+                              className={classes.primaryColor}
+                              endIcon={<MessageIcon />}
+                              style={{
+                                marginTop: "0.8em",
+                                marginBottom: "0.8em",
+                                marginRight: "4em",
+                              }}
+                            >
+                              View Requests
+                            </Button>
+                          </Link>
+
+                          <Link to={`/books/new`}>
+                            <Button
+                              variant="contained"
+                              className={classes.primaryColor}
+                              startIcon={<AddIcon />}
+                              style={{
+                                marginTop: "0.8em",
+                                marginBottom: "0.8em",
+                                // marginRight: "4em",
+                              }}
+                            >
+                              Add books
+                            </Button>
+                          </Link>
+                        </>
+                        {/* </div> */}
+                      </Grid>
+                    </>
+                  </CardContent>
+                </Card>
+              </Grid>
+            </Grid>
+          </>
+
+          <div>
+            <Title>My Books</Title>
+
+            <BookList books={profile.mybook} />
+          </div>
+        </>
+      ) : (
+        <>
+          <ItemWrapper>
+            <h1
+              style={{
+                marginBottom: "2%",
+                marginLeft: "2.5%",
+                marginTop: "2%",
+              }}
+            >
+              {otheProfile.username}
+            </h1>
+            <img
+              src={
+                "https://www.kindpng.com/picc/m/105-1055656_account-user-profile-avatar-avatar-user-profile-icon.png"
+              }
+              alt={otheProfile.firstName}
+            />
+            <p>
+              Name: {otheProfile.firstName} {otheProfile.lastName}
+            </p>
+            <p>{`Email: ${otheProfile.email}`}</p>
+            <div className="buttons"></div>
+          </ItemWrapper>
+
+          <div>
+            <Title>has Books</Title>
+
+            <ButtonWrapper>
+              <ButtonWrapper>
+                <Link to={`/requests/new`}>
+                  <AddButtonStyled>Request</AddButtonStyled>
+                </Link>
+              </ButtonWrapper>
+            </ButtonWrapper>
+            <BookList books={otheProfile.hasbook} />
+          </div>
+        </>
+      )}
+    </>
+  );
 };
 
 export default Userprofile;
