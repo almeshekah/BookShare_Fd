@@ -31,8 +31,8 @@ const Userprofile = () => {
 
   const useStyles = makeStyles((theme) => ({
     root: {
-      maxWidth: 600,
-      maxHeight: 600,
+      maxWidth: 300,
+      maxHeight: 700,
       borderRadius: 5,
       backgroundColor: theme.palette.secondary.main,
       color: theme.palette.primary.main,
@@ -125,17 +125,15 @@ const Userprofile = () => {
                   className={classes.root}
                 >
                   <CardContent>
-                    <Typography
-                      align="center"
-                      color="primary"
-                      variant="h4"
+                    <CardMedia
+                      className={classes.media}
+                      image={profile.image}
+                      title="Profile image"
                       style={{
                         marginTop: "0.8em",
                         marginBottom: "0.8em",
                       }}
-                    >
-                      {profile.username}
-                    </Typography>
+                    />
                     <Grid
                       item
                       // xs={12}
@@ -153,18 +151,35 @@ const Userprofile = () => {
                           variant="contained"
                           className={classes.successColor}
                           endIcon={<FaIcons.FaUserEdit />}
-                          style={{
-                            // marginTop: "0.8em",
-                            // marginBottom: "0.8em",
-                            marginLeft: "28em",
-                            // paddingTop: "0.5em",
-                          }}
+                          style={
+                            {
+                              // marginTop: "0.8em",
+                              // marginBottom: "0.8em",
+                              // marginLeft: "28em",
+                              // paddingTop: "0.5em",
+                            }
+                          }
                         >
                           Edit My Profile
                         </Button>
                       </Link>
                     </Grid>
                     <Divider className={classes.divider} />
+
+                    <Typography
+                      align="left"
+                      align="left"
+                      color="primary"
+                      variant="h6"
+                      style={{
+                        marginTop: "0.8em",
+                        marginBottom: "0.8em",
+                      }}
+                    >
+                      UserName: {profile.username}
+                    </Typography>
+
+                    {/* <Divider className={classes.divider} /> */}
 
                     <Grid
                       container
@@ -177,20 +192,11 @@ const Userprofile = () => {
                       // style={{
                       //   marginTop: "0.8em",
                       // }}
-                    >
-                      <CardMedia
-                        className={classes.media}
-                        image={profile.image}
-                        title="Profile image"
-                        style={{
-                          marginTop: "0.8em",
-                          marginBottom: "0.8em",
-                        }}
-                      />
-                    </Grid>
+                    ></Grid>
 
                     <Typography
-                      align="center"
+                      align="left"
+                      align="left"
                       color="primary"
                       variant="h6"
                       style={{
@@ -201,9 +207,9 @@ const Userprofile = () => {
                       Name: {profile.firstName} {profile.lastName}
                     </Typography>
 
-                    <Divider className={classes.divider} />
+                    {/* <Divider className={classes.divider} /> */}
                     <Typography
-                      align="center"
+                      align="left"
                       color="primary"
                       variant="h6"
                       style={{
@@ -215,7 +221,7 @@ const Userprofile = () => {
                     </Typography>
                     <Divider className={classes.divider} />
                     <>
-                      <Grid
+                      {/* <Grid
                         item
                         container
                         direction="row"
@@ -226,41 +232,42 @@ const Userprofile = () => {
                           // marginTop: "0.8em",
                           marginBottom: "0.8em",
                         }}
-                      >
-                        {/* <div style={{ textDecoration: 'none' }> */}
-                        <>
-                          <Link to="/viewrequest">
-                            <Button
-                              variant="contained"
-                              className={classes.primaryColor}
-                              endIcon={<MessageIcon />}
-                              style={{
-                                marginTop: "0.8em",
-                                marginBottom: "0.8em",
-                                marginRight: "4em",
-                              }}
-                            >
-                              View Requests
-                            </Button>
-                          </Link>
+                      > */}
+                      {/* <div style={{ textDecoration: 'none' }> */}
 
-                          <Link to={`/books/new`}>
-                            <Button
-                              variant="contained"
-                              className={classes.primaryColor}
-                              startIcon={<AddIcon />}
-                              style={{
-                                marginTop: "0.8em",
-                                marginBottom: "0.8em",
-                                // marginRight: "4em",
-                              }}
-                            >
-                              Add books
-                            </Button>
-                          </Link>
-                        </>
-                        {/* </div> */}
-                      </Grid>
+                      <Link to="/viewrequest">
+                        <Button
+                          variant="contained"
+                          className={classes.primaryColor}
+                          endIcon={<MessageIcon />}
+                          style={{
+                            marginTop: "0.8em",
+                            marginBottom: "0.8em",
+                            marginRight: "4em",
+                          }}
+                        >
+                          View Requests
+                        </Button>
+                      </Link>
+                      {/* </Grid> */}
+
+                      {/* </div> */}
+                    </>
+                    <>
+                      <Link to={`/books/new`}>
+                        <Button
+                          variant="contained"
+                          className={classes.primaryColor}
+                          startIcon={<AddIcon />}
+                          // style={{
+                          //   marginTop: "0.8em",
+                          //   marginBottom: "0.8em",
+                          //   marginRight: "4em",
+                          // }}
+                        >
+                          Add books
+                        </Button>
+                      </Link>
                     </>
                   </CardContent>
                 </Card>
