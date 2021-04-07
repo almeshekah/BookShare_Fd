@@ -18,14 +18,19 @@ const CardDetail = ({ bookId }) => {
 
   const book = books.find((book) => book.id === bookId);
 
-  const useStyles = makeStyles({
+  const useStyles = makeStyles((theme) => ({
     root: {
       maxWidth: 500,
+      borderRadius: 15,
+      backgroundColor: theme.palette.secondary.main,
+      color: theme.palette.primary.main,
     },
+
     media: {
       height: 500,
+      width: 500,
     },
-  });
+  }));
 
   const classes = useStyles();
 
@@ -52,16 +57,36 @@ const CardDetail = ({ bookId }) => {
               />
               <CardContent>
                 <>
-                  <Typography gutterBottom variant="h6" component="h2">
+                  <Typography
+                    gutterBottom
+                    variant="h6"
+                    component="h2"
+                    align="center"
+                  >
                     Book Name: {book.name}
                   </Typography>
-                  <Typography gutterBottom variant="h6" component="h2">
+                  <Typography
+                    gutterBottom
+                    variant="h6"
+                    component="h2"
+                    align="center"
+                  >
                     Author: {book.author}
                   </Typography>
-                  <Typography gutterBottom variant="h6" component="h2">
+                  <Typography
+                    gutterBottom
+                    variant="h6"
+                    component="h2"
+                    align="center"
+                  >
                     Type: {book.type}
                   </Typography>
-                  <Typography gutterBottom variant="h6" component="h2">
+                  <Typography
+                    gutterBottom
+                    variant="h6"
+                    component="h2"
+                    align="center"
+                  >
                     Category: {book.category.name}
                   </Typography>
                 </>
