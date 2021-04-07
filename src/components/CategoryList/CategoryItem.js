@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom";
 
 //Material-Ui
-import Card from "@material-ui/core/Card";
 import Typography from "@material-ui/core/Typography";
 import CardMedia from "@material-ui/core/CardMedia";
 import Grid from "@material-ui/core/Grid";
@@ -9,63 +8,51 @@ import clsx from "clsx";
 
 //Styling
 import { makeStyles } from "@material-ui/core/styles";
+import { HoverEff } from "./styles";
 
 const CategoryItem = ({ category }) => {
   const useStyles = makeStyles((theme) => ({
     root: {
-      minWidth: 200,
-      borderRadius: 15,
+      minWidth: 250,
+      borderRadius: "50%",
+      height: "250px",
+      margin: "10px",
+      width: "250px",
       backgroundColor: theme.palette.secondary.main,
       color: theme.palette.primary.main,
     },
 
     media: {
-      // paddingTop: "20%",
       borderRadius: "50%",
       height: "200px",
       margin: "10px",
       width: "200px",
-      "&:hover": {
-        // backgroundPosition: "right",
-        backgroundColor: "#fff000",
-      },
+
+      // "&:hover": {
+      //   transform: "scale(1.2)",
+      // },
     },
-    title: {
-      fontSize: 14,
-    },
-    // pos: {
-    //   marginBottom: 12,
-    // },
   }));
 
   const classes = useStyles();
 
   return (
     <>
-      <Grid container direction="row" justify="center" alignItems="flex-start">
+      <Grid container item xs={4} spacing={3}>
         <Grid item xs={6} spacing={3}>
-          {/* <Card className={classes.root}> */}
-          {/* <CategoryWrapper> */}
-          <Link to={`/categories/${category.slug}`}>
-            <Grid
-              container
-              direction="row"
-              justify="center"
-              alignItems="center"
-            >
+          <HoverEff>
+            <Link to={`/categories/${category.slug}`}>
               <CardMedia
-                className={clsx(classes.root, classes.media)}
-                // className={classes.media}
+                className={clsx(classes.media, classes.tr)}
+                className={classes.media}
                 image={category.image}
                 title={category.name}
               />
-            </Grid>
-          </Link>
-          <Typography align="center" variant="h6">
-            {category.name}
-          </Typography>
-          {/* </CategoryWrapper> */}
-          {/* </Card> */}
+            </Link>
+            <Typography align="center" variant="h6" className={classes.tr}>
+              {category.name}
+            </Typography>
+          </HoverEff>
         </Grid>
       </Grid>
     </>

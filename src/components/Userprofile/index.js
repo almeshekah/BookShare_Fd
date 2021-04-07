@@ -176,7 +176,7 @@ const Userprofile = () => {
                         marginBottom: "0.8em",
                       }}
                     >
-                      UserName: {profile.username}
+                      Username: {profile.username}
                     </Typography>
 
                     {/* <Divider className={classes.divider} /> */}
