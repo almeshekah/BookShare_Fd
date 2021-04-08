@@ -1,11 +1,10 @@
-import React from "react";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
 import { Helmet } from "react-helmet";
 
 //Actions
-import { createBook } from "../../store/actions/bookActions";
+import { createMyBook } from "../../store/actions/bookActions";
 
 //Styling
 import {
@@ -20,50 +19,60 @@ import {
 //Components
 import TypeSelect from "./TypeSelect";
 import CategorySelect from "./CategorySelect";
+import TypeOfCoverSelect from "./TypeOfCoverSelect";
+import ConditionSelect from "./ConditionSelect";
+import SearchBar from "../SearchBar";
 
 const AddBook = () => {
 	const history = useHistory();
 
 	const dispatch = useDispatch();
 
-	const { userId } = useParams();
-
-	const categories = useSelector((state) => state.categoryReducer.categories);
+	const user = useSelector((state) => state.authReducer.user);
 
 	const [book, setBook] = useState({
-		userId: userId,
-		name: "",
-		author: "",
-		type: "",
-		categoryId: "",
-		image: "",
+		userId: user.id,
+		edition: "",
+		typeOfCover: "",
+		condition: "",
+		typeOfExchange: "",
+		bookId: 1,
 	});
 
-	const [options, setOptions] = useState({
+	const [cover, setCover] = useState({
+		hardcover: null,
+		paperback: null,
+		masspaperback: null,
+	});
+	const [bookCondition, setBookCondition] = useState({
+		good: null,
+		likenew: null,
+		acceptable: null,
+	});
+	const [type, setType] = useState({
 		trade: null,
 		giveaway: null,
-		categoryId: null,
 	});
 
-	const categoryOptionsList = categories.map((category) => ({
-		value: category.id,
-		label: `${category.name} `,
-		name: "categoryId",
-	}));
-
-	const handleOptions = (selectedOption) => {
+	const handleCover = (selectedOption) => {
 		console.log(selectedOption);
-		setOptions({
-			...options,
-			type: selectedOption.value,
+		setCover({
+			...cover,
+			typeOfCover: selectedOption.value,
 		});
 	};
-
-	const _handleOptions = (selectedOption) => {
+	const handleBookCondition = (selectedOption) => {
 		console.log(selectedOption);
-		setOptions({
-			...options,
-			[selectedOption.name]: selectedOption,
+		setBookCondition({
+			...bookCondition,
+			condition: selectedOption.value,
+		});
+	};
+	const handleType = (selectedOption) => {
+		console.log(selectedOption);
+		setType({
+			...type,
+			typeOfExchange: selectedOption.value,
 		});
 	};
 
@@ -71,20 +80,17 @@ const AddBook = () => {
 		setBook({ ...book, [event.target.name]: event.target.value });
 	};
 
-	const handleImage = (event) => {
-		setBook({ ...book, image: event.target.files[0] });
-	};
-
 	const handleSubmit = (event) => {
 		event.preventDefault();
 		dispatch(
-			createBook({
+			createMyBook({
 				...book,
-				type: options.type,
-				categoryId: options.categoryId.value,
+				typeOfExchange: type.typeOfExchange,
+				condition: bookCondition.condition,
+				typeOfCover: cover.typeOfCover,
 			})
 		);
-		history.replace("/profile");
+		history.replace("/");
 	};
 
 	return (
@@ -99,21 +105,16 @@ const AddBook = () => {
 							<h2>New Book</h2>
 
 							<LabelStyled>
-								Name:
-								<InputFieldStyled
-									type="text"
-									name="name"
-									value={book.name}
-									onChange={handleChange}
-								/>
+								Name of Book :
+								<SearchBar />
 							</LabelStyled>
 
 							<LabelStyled>
-								Author:
+								Edition:
 								<InputFieldStyled
 									type="text"
-									name="author"
-									value={book.author}
+									name="edition"
+									value={book.edition}
 									onChange={handleChange}
 								/>
 							</LabelStyled>
@@ -121,29 +122,27 @@ const AddBook = () => {
 							<LabelStyled>
 								Type:
 								<TypeSelect
-									name="type"
-									options={options}
-									handleOptions={handleOptions}
+									name="typeOfExchange"
+									options={type}
+									handleOptions={handleType}
 								/>
 							</LabelStyled>
 
 							<LabelStyled>
-								Book Category:
-								<CategorySelect
-									name="category"
-									options={options}
-									_handleOptions={_handleOptions}
-									_options={categoryOptionsList}
-									set="categoryId"
+								Type Of Cover:
+								<TypeOfCoverSelect
+									name="typeOfCover"
+									options={cover}
+									handleOptions={handleCover}
 								/>
 							</LabelStyled>
 
 							<LabelStyled>
-								Image:
-								<InputFieldStyled
-									type="file"
-									name="image"
-									onChange={handleImage}
+								Condition:
+								<ConditionSelect
+									name="condition"
+									options={bookCondition}
+									handleOptions={handleBookCondition}
 								/>
 							</LabelStyled>
 

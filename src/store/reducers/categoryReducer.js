@@ -3,8 +3,6 @@ import * as types from "../actions/types";
 const initialState = {
 	categories: [],
 	loading: true,
-	books: [],
-	loadingOfBooks: true,
 };
 
 const reducer = (state = initialState, action) => {

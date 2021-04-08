@@ -4,12 +4,14 @@ import * as types from "./types";
 import { toast } from "react-toastify";
 //Actions
 import { fetchRequest } from "./requestActions";
+import { fetchMyBook } from "./bookActions";
 
 const setUser = (token) => {
 	return async (dispatch) => {
 		localStorage.setItem("myToken", token);
 		instance.defaults.headers.common.Authorization = `Bearer ${token}`;
 		await dispatch(profile());
+		await dispatch(fetchMyBook());
 		await dispatch({
 			type: types.SET_USER,
 			payload: decode(token),
@@ -115,18 +117,4 @@ export const checkForToken = () => (dispatch) => {
 			dispatch(signout());
 		}
 	}
-};
-
-export const fetchUsers = () => {
-	return async (dispatch) => {
-		try {
-			const res = await instance.get("/users");
-			dispatch({
-				type: types.FETCH_USERS,
-				payload: res.data,
-			});
-		} catch (error) {
-			console.log(error);
-		}
-	};
 };
