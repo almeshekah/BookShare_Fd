@@ -5,6 +5,7 @@ export const theme = createMuiTheme({
   palette: {
     primary: {
       main: "#00296b",
+      secondary: "#b1cffe",
     },
     secondary: {
       main: "#F7F0F5",
@@ -24,9 +25,11 @@ export const theme = createMuiTheme({
 
 export const GlobalStyle = createGlobalStyle`
   html {
-    --primary-color: #1d3557;
+    --primary-color: #00296b;
+    --secondary-color: #f7f0f5;
+    --light-color:#a7dbf5
   --dark-color: #333333;
-  --light-color: #f4f4f4;
+  /* --light-color: #f4f4f4; */
  
   }
 
@@ -38,8 +41,8 @@ body{
   font-family: 'Roboto', sans-serif;
   font-size: 1rem;
   line-height: 1.6;
-  background-color: #FFFFFF;
-  color: #1d3557;
+  background-color: #ffffff;
+  color: var(--primary-color);
 
 /* background-color: #d5fefd;
 background-image: linear-gradient(315deg, #d5fefd 0%, #fffcff 74%); */
@@ -55,7 +58,7 @@ export const FormStyled = styled.div`
   padding: 10px 20px;
   margin: 10px auto;
   padding: 20px;
-  background: #f4f7f8;
+  background: var(--secondary-color);
   border-radius: 8px;
   font-family: "Roboto", sans-serif;
 `;
@@ -86,8 +89,9 @@ export const InputFieldStyled = styled.input`
   box-sizing: border-box;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
-  background-color: #a8dadc;
-  color: #1d3557;
+  background-color: #a7dbf5;
+  /* background-color: var(--light-color); */
+  color: var(--primary-color);
   -webkit-box-shadow: 0 1px 0 rgba(0, 0, 0, 0.03) inset;
   box-shadow: 0 1px 0 rgba(0, 0, 0, 0.03) inset;
   margin-bottom: 30px;
@@ -99,17 +103,18 @@ export const FormAddButtonStyled = styled.button`
   padding: 19px 39px 18px 39px;
   color: #fff;
   margin: 0 auto;
-  background: #1d3557;
+  background: var(--primary-color);
   font-size: 18px;
   text-align: center;
   font-style: normal;
   width: 100%;
-  border: 1px solid #1d3557;
+  border: 1px solid var(--primary-color);
   border-width: 1px 1px 3px;
   margin-bottom: 10px;
   font-family: "Roboto", sans-serif;
   &:hover {
-    background: #457b9d;
+    /* background: var(--light-color); */
+    background: #a7dbf5;
   }
 `;
 
@@ -122,7 +127,7 @@ export const AddButtonStyled = styled.button`
   cursor: pointer;
   text-decoration: none;
   color: #fff;
-  background-color: #1d3557;
+  background-color: var(--primary-color);
   font-size: 15px;
   font-family: "Roboto", sans-serif;
   // float: right;
