@@ -18,55 +18,61 @@ import CheckIcon from "@material-ui/icons/Check";
 import CloseIcon from "@material-ui/icons/Close";
 
 const RequestItem = ({ request }) => {
-  const dispatch = useDispatch();
-  const useStyles = makeStyles((theme) => ({
-    root: {
-      maxWidth: 400,
-      borderRadius: 10,
-      backgroundColor: theme.palette.secondary.main,
-      color: theme.palette.primary.main,
-    },
-    media: {
-      height: 0,
-      paddingTop: "100%",
-    },
+	const dispatch = useDispatch();
+	const useStyles = makeStyles((theme) => ({
+		root: {
+			maxWidth: 400,
+			borderRadius: 10,
+			backgroundColor: theme.palette.secondary.main,
+			color: theme.palette.primary.main,
+		},
+		media: {
+			height: 0,
+			paddingTop: "100%",
+		},
 
-    successColor: {
-      backgroundColor: theme.palette.success.main,
-      "&:hover": {
-        background: theme.palette.success.secondary,
-      },
-    },
-    errorColor: {
-      backgroundColor: theme.palette.error.main,
-      "&:hover": {
-        background: theme.palette.error.secondary,
-      },
-    },
-  }));
+		successColor: {
+			backgroundColor: theme.palette.success.main,
+			"&:hover": {
+				background: theme.palette.success.secondary,
+			},
+		},
+		errorColor: {
+			backgroundColor: theme.palette.error.main,
+			"&:hover": {
+				background: theme.palette.error.secondary,
+			},
+		},
+	}));
 
-  const classes = useStyles();
+	const classes = useStyles();
 
-  const users = useSelector((state) => state.authReducer.users);
-  const requestby = users.find((_user) => _user.id === request.requstUserId);
+	const mybook = useSelector((state) => state.bookReducer.mybook);
+	const requestby = mybook.filter(
+		(book) => book.userId == request.requstUserId
+	);
 
-  const books = useSelector((state) => state.bookReducer.books);
+	const books = useSelector((state) => state.bookReducer.books);
 
-  const mybook = books.find((_book) => _book.id === request.bookId);
+	const _mybook = mybook
+		.filter((book) => book.userId == request.receivedUserId)
+		.map((_book) => _book.books.name);
 
-  const hisbook = request.Books.map((book) => book.name);
+	const hisbook = mybook
+		.filter((book) => book.userId == request.requstUserId)
+		.map((_book) => _book.books.name);
 
-  return (
-    <>
-      {!request || request.status !== 0 ? (
-        <>
-          <Typography align="center" color="primary">
-            You have no requests &nbsp;
-          </Typography>
-        </>
-      ) : (
-        <>
-          {/* <Grid
+	return (
+		<>
+			{!request || request.status !== 0 ? (
+				<>
+					<Typography align="center" color="primary">
+						You have no requests &nbsp;
+					</Typography>
+				</>
+			) : (
+				<>
+					{/* <Grid
             item
             xs={4}
             sm={5}
@@ -159,45 +165,45 @@ const RequestItem = ({ request }) => {
               </Grid>
             </Card>
           </Grid> */}
-          <tr>
-            <td>{requestby.firstName}</td>
-            <td>{mybook.name}</td>
-            <td>{hisbook}</td>
-            <td>
-              <Button
-                onClick={() => dispatch(acceptRequest(request.requstUserId))}
-                variant="contained"
-                className={classes.successColor}
-                endIcon={<CheckIcon></CheckIcon>}
-                style={{
-                  marginTop: "0.8em",
-                  marginBottom: "0.8em",
-                  // marginRight: "4em",
-                }}
-              >
-                Accpet
-              </Button>
-            </td>
-            <td>
-              <Button
-                onClick={() => dispatch(rejectRequest(request.requstUserId))}
-                variant="contained"
-                className={classes.errorColor}
-                endIcon={<CloseIcon></CloseIcon>}
-                style={{
-                  marginTop: "0.8em",
-                  marginBottom: "0.8em",
-                  marginLeft: "2em",
-                }}
-              >
-                Reject
-              </Button>
-            </td>
-          </tr>
-        </>
-      )}
-    </>
-  );
+					<tr>
+						<td>{requestby[0].user.firstName}</td>
+						<td>{_mybook}</td>
+						<td>{hisbook}</td>
+						<td>
+							<Button
+								onClick={() => dispatch(acceptRequest(request.requstUserId))}
+								variant="contained"
+								className={classes.successColor}
+								endIcon={<CheckIcon></CheckIcon>}
+								style={{
+									marginTop: "0.8em",
+									marginBottom: "0.8em",
+									// marginRight: "4em",
+								}}
+							>
+								Accpet
+							</Button>
+						</td>
+						<td>
+							<Button
+								onClick={() => dispatch(rejectRequest(request.requstUserId))}
+								variant="contained"
+								className={classes.errorColor}
+								endIcon={<CloseIcon></CloseIcon>}
+								style={{
+									marginTop: "0.8em",
+									marginBottom: "0.8em",
+									marginLeft: "2em",
+								}}
+							>
+								Reject
+							</Button>
+						</td>
+					</tr>
+				</>
+			)}
+		</>
+	);
 };
 
 export default RequestItem;

@@ -6,8 +6,6 @@ export const FETCH_PROFILE = "FETCH_PROFILE";
 
 export const UPDATE_PROFILE = "UPDATE_PROFILE";
 
-export const FETCH_USERS = "FETCH_USERS";
-
 export const VIEW_PROFILE = "VIEW_PROFILE";
 
 export const LOGOUT = "LOGOUT";
@@ -18,7 +16,9 @@ export const FETCH_CATEGORIES = "FETCH_CATEGORIES";
 //BOOK Types
 export const FETCH_BOOKS = "FETCH_BOOKS";
 
-export const CREATE_BOOK = "CREATE_BOOK";
+export const CREATE_MY_BOOK = "CREATE_MY_BOOK";
+
+export const FETCH_MY_BOOKS = "FETCH_MY_BOOKS";
 
 //Request Types
 export const FETCH_REQUEST = "FETCH_REQUEST";

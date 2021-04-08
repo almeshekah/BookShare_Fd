@@ -16,17 +16,29 @@ export const fetchBook = () => {
 	};
 };
 
-export const createBook = (newBook) => {
+export const createMyBook = (newBook) => {
 	return async (dispatch) => {
 		try {
-			const formData = new FormData();
-			for (const key in newBook) formData.append(key, newBook[key]);
-			const res = await instance.post("/books", formData);
+			const res = await instance.post("/mybook/create", newBook);
 			await dispatch({
-				type: types.CREATE_BOOK,
+				type: types.CREATE_MY_BOOK,
 				payload: { newBook: res.data },
 			});
 			toast.success("Book created successfuly!");
+		} catch (error) {
+			console.log(error);
+		}
+	};
+};
+
+export const fetchMyBook = () => {
+	return async (dispatch) => {
+		try {
+			const res = await instance.get("/mybook");
+			dispatch({
+				type: types.FETCH_MY_BOOKS,
+				payload: res.data,
+			});
 		} catch (error) {
 			console.log(error);
 		}

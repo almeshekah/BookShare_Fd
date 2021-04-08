@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 
 //Components
-import BookSelect from "./BookSelect";
+import BookMultiSelect from "./BookMultiSelect";
 
 //Actions
 import { createRequest } from "../../store/actions/requestActions";
@@ -22,14 +22,22 @@ import Loading from "../Loading";
 const Request = () => {
 	const dispatch = useDispatch();
 	const history = useHistory();
+	let [arr1, setArr1] = useState([]);
+	let [arr2, setArr2] = useState([]);
+
+	const mybook = useSelector((state) => state.bookReducer.mybook);
 	const user = useSelector((state) => state.authReducer.user);
-	const users = useSelector((state) => state.authReducer.users);
+	const _mybook = mybook.filter((book) => user.id == book.userId);
+	const bookuser1 = _mybook.map((book) => book.books);
+
 	const otheProfile = useSelector((state) => state.authReducer.otheProfile);
 	const otheProfileloading = useSelector(
 		(state) => state.authReducer.otheProfileloading
 	);
-
-	const requser = users.find((_user) => _user.id === user.id);
+	const hisbook = mybook.filter((book) => otheProfile.userId == book.userId);
+	const bookuser2 = hisbook.map((book) => book.books);
+	const [books, setBooks] = useState([]);
+	const [bookId, setBookIds] = useState([]);
 
 	const [request, setRequest] = useState({
 		requstUserId: user.id,
@@ -39,28 +47,33 @@ const Request = () => {
 		books: "",
 	});
 
-	const [options, setOptions] = useState({
-		bookId: null,
-		books: null,
-	});
+	const [options, setOptions] = useState([]);
 
-	const mybookOptionsList = requser.mybooks.map((book) => ({
+	const mybookOptionsList = bookuser1.map((book) => ({
 		value: book.id,
 		label: `${book.name} `,
 		name: "bookId",
 	}));
-	if (otheProfileloading) return <Loading />;
-	const otherBookOptionsList = otheProfile.hasbook.map((book) => ({
+
+	const otherBookOptionsList = bookuser2.map((book) => ({
 		value: book.id,
 		label: `${book.name} `,
 		name: "books",
 	}));
 
 	const _handleOptions = (selectedOption) => {
-		setOptions({
-			...options,
-			[selectedOption.name]: selectedOption,
-		});
+		const bookIdList = selectedOption.map((option) => option.value);
+		setRequest({ ...request, bookId: bookIdList });
+
+		setBooks(selectedOption);
+		setArr1(bookIdList);
+	};
+
+	const _handleOptions2 = (selectedOption2) => {
+		const booksIdList = selectedOption2.map((option) => option.value);
+		setRequest({ ...request, books: booksIdList });
+		setArr2(booksIdList);
+		setBookIds(selectedOption2);
 	};
 
 	const handleSubmit = (event) => {
@@ -68,12 +81,14 @@ const Request = () => {
 		dispatch(
 			createRequest({
 				...request,
-				books: options.books.value,
-				bookId: options.bookId.value,
+				bookId: arr1,
+				books: arr2,
 			})
 		);
 		history.replace("/");
 	};
+
+	if (otheProfileloading) return <Loading />;
 	return (
 		<>
 			<Helmet>
@@ -87,25 +102,27 @@ const Request = () => {
 
 							<LabelStyled>
 								My Books:
-								<BookSelect
+								<BookMultiSelect
 									name="bookId"
 									options={options}
 									_handleOptions={_handleOptions}
 									_options={mybookOptionsList}
 									set="bookId"
-								/>
-							</LabelStyled>
-							<LabelStyled>
-								{otheProfile.firstName} {otheProfile.lastName} Books:
-								<BookSelect
-									name="books"
-									options={options}
-									_handleOptions={_handleOptions}
-									_options={otherBookOptionsList}
-									set="books"
+									isMulti={true}
 								/>
 							</LabelStyled>
 
+							<LabelStyled>
+								{otheProfile.firstName} {otheProfile.lastName} Books:
+								<BookMultiSelect
+									name="books"
+									options={options}
+									_handleOptions={_handleOptions2}
+									_options={otherBookOptionsList}
+									set="books"
+									isMulti={true}
+								/>
+							</LabelStyled>
 							<FormAddButtonStyled onSubmit={handleSubmit}>
 								Send a Request
 							</FormAddButtonStyled>

@@ -4,9 +4,9 @@ import thunk from "redux-thunk";
 import reducer from "./reducers";
 
 //actions
-import { checkForToken, fetchUsers } from "./actions/authActions";
+import { checkForToken } from "./actions/authActions";
 import { fetchCategory } from "./actions/categoryActions";
-import { fetchBook } from "./actions/bookActions";
+import { fetchBook, fetchMyBook } from "./actions/bookActions";
 import { fetchRequest } from "./actions/requestActions";
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
@@ -17,6 +17,7 @@ store.dispatch(checkForToken());
 store.dispatch(fetchCategory());
 store.dispatch(fetchBook());
 store.dispatch(fetchRequest());
-store.dispatch(fetchUsers());
+
+store.dispatch(fetchMyBook());
 
 export default store;

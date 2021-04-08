@@ -2,7 +2,9 @@ import * as types from "../actions/types";
 
 const initialState = {
 	books: [],
+	mybook: [],
 	loading: true,
+	loadingMyBook: true,
 };
 
 const reducer = (state = initialState, action) => {
@@ -13,11 +15,17 @@ const reducer = (state = initialState, action) => {
 				books: action.payload,
 				loading: false,
 			};
-		case types.CREATE_BOOK:
+		case types.CREATE_MY_BOOK:
 			const { newBook } = action.payload;
 			return {
 				...state,
-				books: [...state.books, newBook],
+				mybook: [...state.mybook, newBook],
+			};
+		case types.FETCH_MY_BOOKS:
+			return {
+				...state,
+				mybook: action.payload,
+				loadingMyBook: false,
 			};
 
 		default:

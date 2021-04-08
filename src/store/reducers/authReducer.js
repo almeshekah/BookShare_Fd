@@ -16,12 +16,7 @@ const reducer = (state = initialState, action) => {
 				...state,
 				user: action.payload,
 			};
-		case types.FETCH_USERS:
-			return {
-				...state,
-				users: action.payload,
-				loading: false,
-			};
+
 		case types.FETCH_PROFILE:
 			return {
 				...state,
