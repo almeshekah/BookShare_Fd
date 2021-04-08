@@ -44,7 +44,6 @@ const CategoryItem = ({ category }) => {
             <Link to={`/categories/${category.slug}`}>
               <CardMedia
                 className={clsx(classes.media, classes.tr)}
-                className={classes.media}
                 image={category.image}
                 title={category.name}
               />

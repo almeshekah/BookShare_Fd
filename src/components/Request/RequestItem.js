@@ -2,10 +2,7 @@ import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 
 //Material-Ui
-import Card from "@material-ui/core/Card";
-import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
-import Divider from "@material-ui/core/Divider";
 import Button from "@material-ui/core/Button";
 
 //Actions
@@ -18,192 +15,104 @@ import CheckIcon from "@material-ui/icons/Check";
 import CloseIcon from "@material-ui/icons/Close";
 
 const RequestItem = ({ request }) => {
-	const dispatch = useDispatch();
-	const useStyles = makeStyles((theme) => ({
-		root: {
-			maxWidth: 400,
-			borderRadius: 10,
-			backgroundColor: theme.palette.secondary.main,
-			color: theme.palette.primary.main,
-		},
-		media: {
-			height: 0,
-			paddingTop: "100%",
-		},
+  const dispatch = useDispatch();
+  const useStyles = makeStyles((theme) => ({
+    root: {
+      maxWidth: 400,
+      borderRadius: 10,
+      backgroundColor: theme.palette.secondary.main,
+      color: theme.palette.primary.main,
+    },
+    media: {
+      height: 0,
+      paddingTop: "100%",
+    },
 
-		successColor: {
-			backgroundColor: theme.palette.success.main,
-			"&:hover": {
-				background: theme.palette.success.secondary,
-			},
-		},
-		errorColor: {
-			backgroundColor: theme.palette.error.main,
-			"&:hover": {
-				background: theme.palette.error.secondary,
-			},
-		},
-	}));
+    successColor: {
+      backgroundColor: theme.palette.success.main,
+      "&:hover": {
+        background: theme.palette.success.secondary,
+      },
+    },
+    errorColor: {
+      backgroundColor: theme.palette.error.main,
+      "&:hover": {
+        background: theme.palette.error.secondary,
+      },
+    },
+  }));
 
-	const classes = useStyles();
+  const classes = useStyles();
 
-	const mybook = useSelector((state) => state.bookReducer.mybook);
-	const requestby = mybook.filter(
-		(book) => book.userId == request.requstUserId
-	);
+  const mybook = useSelector((state) => state.bookReducer.mybook);
+  const requestby = mybook.filter(
+    (book) => book.userId == request.requstUserId
+  );
 
-	const books = useSelector((state) => state.bookReducer.books);
+  const books = useSelector((state) => state.bookReducer.books);
 
-	const _mybook = mybook
-		.filter((book) => book.userId == request.receivedUserId)
-		.map((_book) => _book.books.name);
+  const _mybook = mybook
+    .filter((book) => book.userId == request.receivedUserId)
+    .map((_book) => _book.books.name);
 
-	const hisbook = mybook
-		.filter((book) => book.userId == request.requstUserId)
-		.map((_book) => _book.books.name);
+  const hisbook = mybook
+    .filter((book) => book.userId == request.requstUserId)
+    .map((_book) => _book.books.name);
 
-	return (
-		<>
-			{!request || request.status !== 0 ? (
-				<>
-					<Typography align="center" color="primary">
-						You have no requests &nbsp;
-					</Typography>
-				</>
-			) : (
-				<>
-					{/* <Grid
-            item
-            xs={4}
-            sm={5}
-            direction="column"
-            justify="flex-start"
-            alignItems="flex-start"
-            style={{
-              marginTop: "0.8em",
-            }}
-          >
-            <Card
-              className={classes.root}
-              backgroundColor="secondary"
-              spacing={3}
-            >
-              <Typography
-                align="center"
-                color="primary"
-                variant="h6"
+  // console.log(
+  //   "🚀 ~ file: RequestItem.js ~ line 108 ~ RequestItem ~ user",
+  //   user
+  // );
+
+  return (
+    <>
+      {!request || request.status !== 0 ? (
+        <>
+          <Typography align="center" color="primary">
+            You have no requests &nbsp;
+          </Typography>
+        </>
+      ) : (
+        <>
+          <tr>
+            {/* will check this it is not working */}
+            <td>{requestby[0].user.firstName}</td>
+            <td>{_mybook}</td>
+            <td>{hisbook}</td>
+            <td>
+              <Button
+                onClick={() => dispatch(acceptRequest(request.requstUserId))}
+                variant="contained"
+                className={classes.successColor}
+                endIcon={<CheckIcon></CheckIcon>}
                 style={{
                   marginTop: "0.8em",
                   marginBottom: "0.8em",
                 }}
               >
-                Requested by :{requestby.firstName}
-              </Typography>
-              <Divider />
-              <Typography
-                align="center"
-                color="primary"
-                variant="h6"
+                Accpet
+              </Button>
+            </td>
+            <td>
+              <Button
+                onClick={() => dispatch(rejectRequest(request.requstUserId))}
+                variant="contained"
+                className={classes.errorColor}
+                endIcon={<CloseIcon></CloseIcon>}
                 style={{
                   marginTop: "0.8em",
                   marginBottom: "0.8em",
+                  marginLeft: "2em",
                 }}
               >
-                My Book :{mybook.name}
-              </Typography>
-              <Divider />
-              <Typography
-                align="center"
-                color="primary"
-                variant="h6"
-                style={{
-                  marginTop: "0.8em",
-                  marginBottom: "0.8em",
-                }}
-              >
-                His Book: {hisbook}
-              </Typography>
-              <Divider />
-              <Grid
-                item
-                container
-                direction="row"
-                justify="center"
-                alignItems="center"
-                spacing="0"
-                style={{
-                  marginTop: "0.8em",
-                  marginBottom: "0.8em",
-                }}
-              >
-                <Button
-                  onClick={() => dispatch(acceptRequest(request.requstUserId))}
-                  variant="contained"
-                  className={classes.successColor}
-                  endIcon={<CheckIcon></CheckIcon>}
-                  style={{
-                    marginTop: "0.8em",
-                    marginBottom: "0.8em",
-                    // marginRight: "4em",
-                  }}
-                >
-                  Accpet
-                </Button>
-                <Button
-                  onClick={() => dispatch(rejectRequest(request.requstUserId))}
-                  variant="contained"
-                  className={classes.errorColor}
-                  endIcon={<CloseIcon></CloseIcon>}
-                  style={{
-                    marginTop: "0.8em",
-                    marginBottom: "0.8em",
-                    marginLeft: "2em",
-                  }}
-                >
-                  Reject
-                </Button>
-              </Grid>
-            </Card>
-          </Grid> */}
-					<tr>
-						<td>{requestby[0].user.firstName}</td>
-						<td>{_mybook}</td>
-						<td>{hisbook}</td>
-						<td>
-							<Button
-								onClick={() => dispatch(acceptRequest(request.requstUserId))}
-								variant="contained"
-								className={classes.successColor}
-								endIcon={<CheckIcon></CheckIcon>}
-								style={{
-									marginTop: "0.8em",
-									marginBottom: "0.8em",
-									// marginRight: "4em",
-								}}
-							>
-								Accpet
-							</Button>
-						</td>
-						<td>
-							<Button
-								onClick={() => dispatch(rejectRequest(request.requstUserId))}
-								variant="contained"
-								className={classes.errorColor}
-								endIcon={<CloseIcon></CloseIcon>}
-								style={{
-									marginTop: "0.8em",
-									marginBottom: "0.8em",
-									marginLeft: "2em",
-								}}
-							>
-								Reject
-							</Button>
-						</td>
-					</tr>
-				</>
-			)}
-		</>
-	);
+                Reject
+              </Button>
+            </td>
+          </tr>
+        </>
+      )}
+    </>
+  );
 };
 
 export default RequestItem;

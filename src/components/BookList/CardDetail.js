@@ -15,20 +15,29 @@ import { makeStyles } from "@material-ui/core/styles";
 
 const CardDetail = ({ bookId }) => {
   const books = useSelector((state) => state.bookReducer.books);
+  // console.log("🚀 ~ file: CardDetail.js ~ line 18 ~ CardDetail ~ books", books);
 
   const book = books.find((book) => book.id === bookId);
+  console.log("🚀 ~ file: CardDetail.js ~ line 20 ~ CardDetail ~ book", book);
+  console.log(
+    "🚀 ~ file: CardDetail.js ~ line 24 ~ CardDetail ~ bookId",
+    bookId
+  );
 
   const useStyles = makeStyles((theme) => ({
     root: {
-      maxWidth: 500,
+      width: 500,
+      height: 500,
       borderRadius: 15,
       backgroundColor: theme.palette.secondary.main,
       color: theme.palette.primary.main,
     },
 
     media: {
-      height: 500,
-      width: 500,
+      height: 300,
+      width: 200,
+      marginLeft: "9.5em",
+      marginTop: "1em",
     },
   }));
 
@@ -36,24 +45,23 @@ const CardDetail = ({ bookId }) => {
 
   return (
     <>
-      <Helmet>
+      {/* <Helmet>
         <title>{book.name}</title>
-      </Helmet>
+      </Helmet> */}
       <Grid
         container
         spacing={0}
         direction="column"
         alignItems="center"
         justify="center"
-        style={{ minHeight: "100vh" }}
       >
         <Grid item xs={12}>
           <Card className={classes.root}>
             <CardActionArea>
               <CardMedia
                 className={classes.media}
-                image={book.image}
-                title={book.name}
+                image={books.image}
+                title={books.name}
               />
               <CardContent>
                 <>
@@ -79,7 +87,7 @@ const CardDetail = ({ bookId }) => {
                     component="h2"
                     align="center"
                   >
-                    Type: {book.type}
+                    Type: {book.typeOfExchange}
                   </Typography>
                   <Typography
                     gutterBottom
@@ -87,7 +95,7 @@ const CardDetail = ({ bookId }) => {
                     component="h2"
                     align="center"
                   >
-                    Category: {book.category.name}
+                    {/* Category: {book.category.name} */}
                   </Typography>
                 </>
               </CardContent>

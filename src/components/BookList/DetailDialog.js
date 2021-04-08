@@ -14,7 +14,6 @@ import Typography from "@material-ui/core/Typography";
 import { withStyles } from "@material-ui/core/styles";
 import IconButton from "@material-ui/core/IconButton";
 import CloseIcon from "@material-ui/icons/Close";
-import MoreIcon from "@material-ui/icons/More";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
 
 const styles = (theme) => ({
@@ -57,9 +56,16 @@ const DialogContent = withStyles((theme) => ({
 const DetailDialog = ({ bookId }) => {
   const [open, setOpen] = useState(false);
 
+  console.log(bookId);
+
   const books = useSelector((state) => state.bookReducer.books);
+  console.log(
+    "🚀 ~ file: DetailDialog.js ~ line 62 ~ DetailDialog ~ books",
+    books
+  );
 
   const book = books.find((book) => book.id === bookId);
+
   const handleClickOpen = () => {
     setOpen(true);
   };
@@ -86,7 +92,7 @@ const DetailDialog = ({ bookId }) => {
             Book Details
           </DialogTitle>
           <DialogContent dividers>
-            <CardDetail bookId={book.id} />
+            <CardDetail bookId={books.id} />
           </DialogContent>
         </Dialog>
       </div>
