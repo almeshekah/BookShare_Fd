@@ -2,6 +2,10 @@ import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 
+//Material Ui
+import clsx from "clsx";
+import Badge from "@material-ui/core/Badge";
+
 //Actions
 import { signout } from "../../store/actions/authActions";
 import { fetchCategory } from "../../store/actions/categoryActions";
@@ -21,10 +25,28 @@ import {
 } from "./styles";
 import * as FaIcons from "react-icons/fa";
 import * as AiIcons from "react-icons/ai";
-import * as CgIcons from "react-icons/cg";
 import { IconContext } from "react-icons/lib";
+import { makeStyles } from "@material-ui/core/styles";
+import { Avatar } from "@material-ui/core";
 
 const Sidebar = () => {
+  const useStyles = makeStyles((theme) => ({
+    avatar: {
+      marginLeft: "-0.3em",
+      marginBottom: "0.3em",
+    },
+    userName: {
+      marginLeft: "3em",
+      marginTop: "-2em",
+    },
+    large: {
+      width: theme.spacing(7),
+      height: theme.spacing(7),
+    },
+    badgeMargin: {},
+  }));
+  const classes = useStyles();
+
   const history = useHistory();
   const dispatch = useDispatch();
 
@@ -32,6 +54,12 @@ const Sidebar = () => {
   const [subnav, setSubnav] = useState(false);
 
   const user = useSelector((state) => state.authReducer.user);
+  const profile = useSelector((state) => state.authReducer.profile);
+  const requests = useSelector((state) => state.requestReducer.requests);
+
+  const pendingRequests = requests
+    .map((request) => request.status)
+    .filter((status) => status === 0);
 
   const showSubnav = () => setSubnav(!subnav);
 
@@ -69,7 +97,7 @@ const Sidebar = () => {
 
                   <SidebarLink to="/signin">
                     <div>
-                      <FaIcons.FaSignInAlt />{" "}
+                      <FaIcons.FaSignInAlt />
                       <SidebarLabel>Signin</SidebarLabel>
                     </div>
                   </SidebarLink>
@@ -77,9 +105,38 @@ const Sidebar = () => {
               </>
             )}
             {user && (
-              <SidebarLink to="profile" onClick={() => showSubnav}>
+              <SidebarLink
+                to="profile"
+                onClick={() => showSubnav}
+                style={{ marginBottom: "-0.3em" }}
+              >
+                {requests.status === 0 || 1 ? (
+                  <Badge
+                    color="secondary"
+                    badgeContent={pendingRequests.length}
+                    className={classes.badgeMargin}
+                  >
+                    <Avatar
+                      aria-label="user"
+                      src={profile.image}
+                      alt={user.firstName}
+                      className={clsx(classes.large, classes.avatar)}
+                    />
+                  </Badge>
+                ) : (
+                  <Badge color="secondary" badgeContent={0}>
+                    <Avatar
+                      aria-label="user"
+                      src={profile.image}
+                      alt={user.firstName}
+                      className={clsx(classes.large, classes.avatar)}
+                    />
+                  </Badge>
+                )}
                 <div>
-                  <CgIcons.CgProfile /> <SidebarLabel>Profile</SidebarLabel>
+                  <SidebarLabel style={{ marginLeft: "1em" }}>
+                    My Profile
+                  </SidebarLabel>
                 </div>
               </SidebarLink>
             )}

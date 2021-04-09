@@ -46,36 +46,32 @@ const RequestItem = ({ request }) => {
 
   const mybook = useSelector((state) => state.bookReducer.mybook);
   const requestby = mybook.filter(
-    (book) => book.userId == request.requstUserId
+    (book) => book.userId === request.requstUserId
   );
 
-  const books = useSelector((state) => state.bookReducer.books);
-
   const _mybook = mybook
-    .filter((book) => book.userId == request.receivedUserId)
+    .filter((book) => book.userId === request.receivedUserId)
     .map((_book) => _book.books.name);
 
   const hisbook = mybook
-    .filter((book) => book.userId == request.requstUserId)
+    .filter((book) => book.userId === request.requstUserId)
     .map((_book) => _book.books.name);
-
-  // console.log(
-  //   "🚀 ~ file: RequestItem.js ~ line 108 ~ RequestItem ~ user",
-  //   user
-  // );
 
   return (
     <>
       {!request || request.status !== 0 ? (
         <>
-          <Typography align="center" color="primary">
-            You have no requests &nbsp;
+          <Typography
+            align="center"
+            color="primary"
+            style={{ marginTop: "1em" }}
+          >
+            You have no requests
           </Typography>
         </>
       ) : (
         <>
           <tr>
-            {/* will check this it is not working */}
             <td>{requestby[0].user.firstName}</td>
             <td>{_mybook}</td>
             <td>{hisbook}</td>
