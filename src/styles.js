@@ -146,3 +146,7 @@ export const AddButtonStyled = styled.button`
     transform: scale(0.98);
   }
 `;
+
+export const StyledDivider = styled.div`
+  margin-top: 1rem;
+`;

@@ -40,10 +40,6 @@ const Userprofile = () => {
       backgroundColor: theme.palette.secondary.main,
       color: theme.palette.primary.main,
     },
-    media: {
-      height: 200,
-      width: 200,
-    },
 
     primaryColor: {
       backgroundColor: theme.palette.primary.main,
@@ -111,7 +107,6 @@ const Userprofile = () => {
   const profile = useSelector((state) => state.authReducer.profile);
   const loading = useSelector((state) => state.authReducer.loading);
   const mybook = useSelector((state) => state.bookReducer.mybook);
-  const loadingMyBook = useSelector((state) => state.bookReducer.loadingMyBook);
 
   const otheProfile = useSelector((state) => state.authReducer.otheProfile);
   const otheProfileloading = useSelector(
@@ -121,11 +116,11 @@ const Userprofile = () => {
   let _mybook = [];
   if (!userId) {
     if (loading) return <Loading />;
-    _mybook = mybook.filter((book) => profile.userId == book.userId);
+    _mybook = mybook.filter((book) => profile.userId === book.userId);
   } else {
     if (otheProfileloading) return <Loading />;
     else {
-      hisbook = mybook.filter((book) => otheProfile.userId == book.userId);
+      hisbook = mybook.filter((book) => otheProfile.userId === book.userId);
     }
   }
 
@@ -168,13 +163,11 @@ const Userprofile = () => {
                     />
                     <Grid
                       item
-                      // xs={12}
                       direction="row"
                       justify="flex-end"
                       alignItems="center"
                       spacing="0"
                       style={{
-                        // marginTop: "0.8em",
                         marginBottom: "0.8em",
                       }}
                     >
@@ -197,7 +190,6 @@ const Userprofile = () => {
                     <Divider className={classes.divider} />
 
                     <Typography
-                      align="left"
                       align="left"
                       color="primary"
                       variant="h6"
@@ -222,7 +214,6 @@ const Userprofile = () => {
                     ></Grid>
 
                     <Typography
-                      align="left"
                       align="left"
                       color="primary"
                       variant="h6"
