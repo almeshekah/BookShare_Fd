@@ -224,7 +224,7 @@ const BookItem = ({ book }) => {
 															// src={otheProfile.image}
 															className={classes.avatar}
 														>
-															R
+															R{book.user.firstName}
 														</Avatar>
 													</Link>
 												) : (
@@ -255,7 +255,7 @@ const BookItem = ({ book }) => {
 															// src={otheProfile.image}
 															className={classes.avatar}
 														>
-															R
+															R {book.user.firstName}
 														</Avatar>
 													</Link>
 												) : (
