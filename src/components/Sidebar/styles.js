@@ -16,6 +16,8 @@ export const Title = styled.h1`
 `;
 
 export const UsernameStyled = styled.p`
+  background: #00296b;
+  height: 60px;
   margin: 0 0.25rem;
   padding: 0.45rem;
   margin-right: 24px;
@@ -68,6 +70,24 @@ export const Nav = styled.div`
   display: flex;
   justify-content: flex-start;
   align-items: center;
+`;
+
+export const NavItmes = styled.div`
+  background: #00296b;
+  height: 80px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin-left: 60rem;
+`;
+
+export const NavItmes2 = styled.div`
+  background: #00296b;
+  height: 80px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin-left: 16rem;
 `;
 
 export const NavIcon = styled(Link)`
