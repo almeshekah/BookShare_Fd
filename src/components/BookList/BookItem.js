@@ -26,10 +26,6 @@ const BookItem = ({ book }) => {
 
   const profile = useSelector((state) => state.authReducer.profile);
   const otheProfile = useSelector((state) => state.authReducer.otheProfile);
-  console.log(
-    "🚀 ~ file: BookItem.js ~ line 29 ~ BookItem ~ otheProfile",
-    otheProfile
-  );
 
   const useStyles = makeStyles((theme) => ({
     root: {
@@ -182,7 +178,7 @@ const BookItem = ({ book }) => {
                   </Typography>
 
                   <Typography className={classes.bookAuthor}>
-                    by {book.author}
+                    by {book.books.author}
                   </Typography>
                   <CardContent>
                     {book.typeOfExchange === "trade" ? (
@@ -214,12 +210,23 @@ const BookItem = ({ book }) => {
                             </Typography>
                           </>
                         ) : (
-                          <Link to={`/signin`}>
-                            <Avatar
-                              aria-label="book"
-                              className={classes.avatar}
-                            ></Avatar>
-                          </Link>
+                          <>
+                            <Link to={`/signin`}>
+                              <Avatar
+                                aria-label="book"
+                                className={classes.avatar}
+                              ></Avatar>
+                            </Link>
+                            <Typography
+                              className={classes.userName}
+                            ></Typography>
+                            <Typography
+                              // className={classes.userName}
+                              align="center"
+                            >
+                              Sign in to make a request
+                            </Typography>
+                          </>
                         )}
                       </>
                     ) : (
@@ -257,13 +264,15 @@ const BookItem = ({ book }) => {
                                 aria-label="book"
                                 className={classes.avatar}
                               ></Avatar>
-                              <Typography
-                                className={classes.userName}
-                              ></Typography>
                             </Link>
-                            <Typography className={classes.userName}>
-                              Listed by {book.user.firstName}{" "}
-                              {book.user.lastName}
+                            <Typography
+                              className={classes.userName}
+                            ></Typography>
+                            <Typography
+                              // className={classes.userName}
+                              align="center"
+                            >
+                              Sign in to make a request
                             </Typography>
                           </>
                         )}
