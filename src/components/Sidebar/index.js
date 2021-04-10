@@ -24,6 +24,7 @@ import {
   SidebarLabel,
 } from "./styles";
 import * as FaIcons from "react-icons/fa";
+import InfoIcon from "@material-ui/icons/Info";
 import * as AiIcons from "react-icons/ai";
 import { IconContext } from "react-icons/lib";
 import { makeStyles } from "@material-ui/core/styles";
@@ -110,7 +111,7 @@ const Sidebar = () => {
                 onClick={() => showSubnav}
                 style={{ marginBottom: "-0.3em" }}
               >
-                {requests.status === 0 || 1 ? (
+                {requests.status !== 1 && 2 ? (
                   <Badge
                     color="secondary"
                     badgeContent={pendingRequests.length}
@@ -168,6 +169,12 @@ const Sidebar = () => {
             >
               <div>
                 <FaIcons.FaBookOpen /> <SidebarLabel>All Books</SidebarLabel>
+              </div>
+            </SidebarLink>
+
+            <SidebarLink to="/about">
+              <div>
+                <InfoIcon /> <SidebarLabel>About Us</SidebarLabel>
               </div>
             </SidebarLink>
           </SidebarWrap>
