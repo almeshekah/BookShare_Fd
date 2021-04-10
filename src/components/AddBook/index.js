@@ -1,10 +1,15 @@
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useHistory, useParams } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { Helmet } from "react-helmet";
+import _ from "lodash";
+
+//Material-Ui
+import TextField from "@material-ui/core/TextField";
+import Autocomplete from "@material-ui/lab/Autocomplete";
 
 //Actions
-import { createMyBook } from "../../store/actions/bookActions";
+import { createMyBook, searchBook } from "../../store/actions/bookActions";
 
 //Styling
 import {
@@ -21,7 +26,6 @@ import TypeSelect from "./TypeSelect";
 import CategorySelect from "./CategorySelect";
 import TypeOfCoverSelect from "./TypeOfCoverSelect";
 import ConditionSelect from "./ConditionSelect";
-import SearchBar from "../SearchBar";
 
 const AddBook = () => {
 	const history = useHistory();
@@ -29,6 +33,7 @@ const AddBook = () => {
 	const dispatch = useDispatch();
 
 	const user = useSelector((state) => state.authReducer.user);
+	const search = useSelector((state) => state.bookReducer.booksearsh);
 
 	const [book, setBook] = useState({
 		userId: user.id,
@@ -36,7 +41,7 @@ const AddBook = () => {
 		typeOfCover: "",
 		condition: "",
 		typeOfExchange: "",
-		bookId: 1,
+		bookId: "",
 	});
 
 	const [cover, setCover] = useState({
@@ -54,6 +59,31 @@ const AddBook = () => {
 		giveaway: null,
 	});
 
+	// Search term
+	const [searchTerm, setSearchTerm] = useState([]);
+
+	// Searching status (whether there is pending API request)
+	const [isSearching, setIsSearching] = useState(false);
+
+	const [autocomplete, setAuto] = useState(null);
+
+	const debounceSearch = useRef(
+		_.debounce((searchTerm) => {
+			dispatch(searchBook(searchTerm));
+		}, 1000)
+	);
+
+	useEffect(
+		() => {
+			if (searchTerm) {
+				setIsSearching(true);
+
+				debounceSearch.current(searchTerm);
+			}
+		},
+		[searchTerm] // Only call effect if debounced search term changes
+	);
+
 	const handleCover = (selectedOption) => {
 		console.log(selectedOption);
 		setCover({
@@ -62,14 +92,12 @@ const AddBook = () => {
 		});
 	};
 	const handleBookCondition = (selectedOption) => {
-		console.log(selectedOption);
 		setBookCondition({
 			...bookCondition,
 			condition: selectedOption.value,
 		});
 	};
 	const handleType = (selectedOption) => {
-		console.log(selectedOption);
 		setType({
 			...type,
 			typeOfExchange: selectedOption.value,
@@ -79,12 +107,18 @@ const AddBook = () => {
 	const handleChange = (event) => {
 		setBook({ ...book, [event.target.name]: event.target.value });
 	};
+	const handleAutocomplete = (event, newValue) => {
+		if (newValue != null) {
+			setAuto(newValue);
+		}
+	};
 
 	const handleSubmit = (event) => {
 		event.preventDefault();
 		dispatch(
 			createMyBook({
 				...book,
+				bookId: autocomplete.id,
 				typeOfExchange: type.typeOfExchange,
 				condition: bookCondition.condition,
 				typeOfCover: cover.typeOfCover,
@@ -103,12 +137,24 @@ const AddBook = () => {
 					<FieldSetStyled>
 						<LegendStyled>
 							<h2>New Book</h2>
-
-							<LabelStyled>
-								Name of Book :
-								<SearchBar />
-							</LabelStyled>
-
+							Name of Book :
+							<Autocomplete
+								id="combo-box-demo"
+								name="bookId"
+								options={search}
+								getOptionLabel={(option) => option.name}
+								style={{ width: 300 }}
+								onChange={handleAutocomplete}
+								set="bookId"
+								renderInput={(params) => (
+									<TextField
+										{...params}
+										label="Combo box"
+										variant="outlined"
+										onChange={(e) => setSearchTerm(e.target.value)}
+									/>
+								)}
+							/>
 							<LabelStyled>
 								Edition:
 								<InputFieldStyled
@@ -118,7 +164,6 @@ const AddBook = () => {
 									onChange={handleChange}
 								/>
 							</LabelStyled>
-
 							<LabelStyled>
 								Type:
 								<TypeSelect
@@ -127,7 +172,6 @@ const AddBook = () => {
 									handleOptions={handleType}
 								/>
 							</LabelStyled>
-
 							<LabelStyled>
 								Type Of Cover:
 								<TypeOfCoverSelect
@@ -136,7 +180,6 @@ const AddBook = () => {
 									handleOptions={handleCover}
 								/>
 							</LabelStyled>
-
 							<LabelStyled>
 								Condition:
 								<ConditionSelect
@@ -145,7 +188,6 @@ const AddBook = () => {
 									handleOptions={handleBookCondition}
 								/>
 							</LabelStyled>
-
 							<FormAddButtonStyled onSubmit={handleSubmit}>
 								New Book
 							</FormAddButtonStyled>

@@ -6,6 +6,7 @@ export const fetchBook = () => {
 	return async (dispatch) => {
 		try {
 			const res = await instance.get("/books");
+
 			dispatch({
 				type: types.FETCH_BOOKS,
 				payload: res.data,
@@ -37,6 +38,20 @@ export const fetchMyBook = () => {
 			const res = await instance.get("/mybook");
 			dispatch({
 				type: types.FETCH_MY_BOOKS,
+				payload: res.data,
+			});
+		} catch (error) {
+			console.log(error);
+		}
+	};
+};
+
+export const searchBook = (search) => {
+	return async (dispatch) => {
+		try {
+			const res = await instance.get(`/books/booksearch/${search}`);
+			await dispatch({
+				type: types.FETCH_SEARCH,
 				payload: res.data,
 			});
 		} catch (error) {

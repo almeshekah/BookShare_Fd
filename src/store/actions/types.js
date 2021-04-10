@@ -20,6 +20,8 @@ export const CREATE_MY_BOOK = "CREATE_MY_BOOK";
 
 export const FETCH_MY_BOOKS = "FETCH_MY_BOOKS";
 
+export const FETCH_SEARCH = "FETCH_SEARCH";
+
 //Request Types
 export const FETCH_REQUEST = "FETCH_REQUEST";
 

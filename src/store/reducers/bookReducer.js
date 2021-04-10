@@ -3,6 +3,7 @@ import * as types from "../actions/types";
 const initialState = {
 	books: [],
 	mybook: [],
+	booksearsh: [],
 	loading: true,
 	loadingMyBook: true,
 };
@@ -13,6 +14,12 @@ const reducer = (state = initialState, action) => {
 			return {
 				...state,
 				books: action.payload,
+				loading: false,
+			};
+		case types.FETCH_SEARCH:
+			return {
+				...state,
+				booksearsh: action.payload,
 				loading: false,
 			};
 		case types.CREATE_MY_BOOK:
