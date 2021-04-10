@@ -1,9 +1,13 @@
+import RecentlyAddedList from "../BookList/RecentlyAddedList";
+import HomeBanner from "./HomeBanner";
+
 const Home = () => {
-	return (
-		<div>
-			<h3> Home page</h3>
-		</div>
-	);
+  return (
+    <>
+      <HomeBanner />
+      <RecentlyAddedList />
+    </>
+  );
 };
 
 export default Home;

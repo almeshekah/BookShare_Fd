@@ -16,7 +16,7 @@ export const Title = styled.h1`
 `;
 
 export const UsernameStyled = styled.p`
-  background: #00296b;
+  background: #413b89;
   height: 60px;
   margin: 0 0.25rem;
   padding: 0.45rem;
@@ -37,7 +37,7 @@ export const SidebarLink = styled(Link)`
   text-decoration: none;
   font-size: 18px;
   &:hover {
-    background: #001f52;
+    background: #342f6c;
     border-left: 4px solid #f7f0f5;
     cursor: pointer;
     text-decoration: none;
@@ -50,7 +50,7 @@ export const SidebarLabel = styled.span`
 `;
 
 export const DropdownLink = styled(Link)`
-  background: #00296b;
+  background: #413b89;
   height: 60px;
   padding-left: 3rem;
   display: flex;
@@ -65,7 +65,7 @@ export const DropdownLink = styled(Link)`
 `;
 
 export const Nav = styled.div`
-  background: #00296b;
+  background: #413b89;
   height: 80px;
   display: flex;
   justify-content: flex-start;
@@ -73,7 +73,7 @@ export const Nav = styled.div`
 `;
 
 export const NavItmes = styled.div`
-  background: #00296b;
+  background: #413b89;
   height: 80px;
   display: flex;
   justify-content: flex-end;
@@ -82,7 +82,7 @@ export const NavItmes = styled.div`
 `;
 
 export const NavItmes2 = styled.div`
-  background: #00296b;
+  background: #413b89;
   height: 80px;
   display: flex;
   justify-content: flex-end;
@@ -100,7 +100,7 @@ export const NavIcon = styled(Link)`
 `;
 
 export const SidebarNav = styled.nav`
-  background: #00296b;
+  background: #413b89;
   width: 250px;
   height: 100vh;
   display: flex;

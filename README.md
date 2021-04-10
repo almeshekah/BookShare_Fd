@@ -6,3 +6,4 @@ yarn add react-icons
 yarn add react-select
 yarn add @material-ui/core @material-ui/icons
 yarn add classnames
+yarn add react-material-ui-carousel
