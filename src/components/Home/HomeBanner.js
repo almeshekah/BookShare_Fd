@@ -15,10 +15,6 @@ import redaingImage from "../../assets/images/Reading.svg";
 
 const HomeBanner = () => {
   const useStyles = makeStyles((theme) => ({
-    // root: {
-    //   width: 455,
-    //   height: 260,
-    // },
     banner: {
       width: 970,
       height: 250,
@@ -31,7 +27,6 @@ const HomeBanner = () => {
       fontWeight: "bold",
       marginTop: "1em",
       marginLeft: "1em",
-      // marginBottom: "1em",
     },
     paragraph: {
       marginTop: "0.9em",
@@ -59,8 +54,6 @@ const HomeBanner = () => {
 
     recently: {
       fontWeight: "bold",
-
-      // marginLeft: "3em",
       marginTop: "2em",
     },
   }));

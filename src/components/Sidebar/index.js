@@ -5,6 +5,9 @@ import { useHistory } from "react-router-dom";
 //Material Ui
 import clsx from "clsx";
 import Badge from "@material-ui/core/Badge";
+import { IconContext } from "react-icons/lib";
+import { Avatar } from "@material-ui/core";
+import Grid from "@material-ui/core/Grid";
 
 //Actions
 import { signout } from "../../store/actions/authActions";
@@ -22,13 +25,14 @@ import {
   SidebarWrap,
   SidebarLink,
   SidebarLabel,
+  LogoStyled,
 } from "./styles";
 import * as FaIcons from "react-icons/fa";
 import InfoIcon from "@material-ui/icons/Info";
 import * as AiIcons from "react-icons/ai";
-import { IconContext } from "react-icons/lib";
 import { makeStyles } from "@material-ui/core/styles";
-import { Avatar } from "@material-ui/core";
+import Logo from "../../assets/images/Logo.png";
+import BookShareText from "../../assets/images/BookShareText.png";
 
 const Sidebar = () => {
   const useStyles = makeStyles((theme) => ({
@@ -72,6 +76,17 @@ const Sidebar = () => {
           <NavIcon to="#">
             <FaIcons.FaBars onClick={showSidebar} />
           </NavIcon>
+          <Grid
+            container
+            direction="row"
+            justify="flex-start"
+            alignItems="flex-start"
+            style={{ marginLeft: "12em" }}
+          >
+            <SidebarLink to="/">
+              <LogoStyled src={Logo} />
+            </SidebarLink>
+          </Grid>
           <NavItmes>
             {user ? (
               <>

@@ -9,7 +9,6 @@ import Grid from "@material-ui/core/Grid";
 //Styling
 import { makeStyles } from "@material-ui/core/styles";
 import Logo from "../../assets/images/Logo.png";
-import Exchange from "../../assets/images/Exchange.svg";
 import * as FaIcons from "react-icons/fa";
 import * as BsIcons from "react-icons/bs";
 

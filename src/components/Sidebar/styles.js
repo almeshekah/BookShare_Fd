@@ -49,6 +49,19 @@ export const SidebarLabel = styled.span`
   margin-left: 16px;
 `;
 
+export const LogoStyledMargin = styled.img`
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: flex-start;
+  align-content: flex-start;
+`;
+export const LogoStyled = styled.img`
+  height: 60px;
+  width: 60px;
+`;
+
 export const DropdownLink = styled(Link)`
   background: #413b89;
   height: 60px;
@@ -78,7 +91,7 @@ export const NavItmes = styled.div`
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  margin-left: 60rem;
+  margin-left: 40rem;
 `;
 
 export const NavItmes2 = styled.div`
@@ -87,7 +100,7 @@ export const NavItmes2 = styled.div`
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  margin-left: 16rem;
+  margin-left: 5rem;
 `;
 
 export const NavIcon = styled(Link)`

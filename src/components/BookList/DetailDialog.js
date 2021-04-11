@@ -15,7 +15,6 @@ import Button from "@material-ui/core/Button";
 import { withStyles } from "@material-ui/core/styles";
 import IconButton from "@material-ui/core/IconButton";
 import CloseIcon from "@material-ui/icons/Close";
-import ListAltIcon from "@material-ui/icons/ListAlt";
 
 const styles = (theme) => ({
   root: {
