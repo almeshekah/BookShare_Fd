@@ -292,22 +292,17 @@ const Userprofile = () => {
 
                       {/* </div> */}
                     </>
-                    <Link>
-                      <Link
-                        to={`/books/new`}
-                        style={{ textDecoration: "none" }}
+                    <Link to={`/books/new`} style={{ textDecoration: "none" }}>
+                      <Button
+                        variant="contained"
+                        startIcon={<AddIcon />}
+                        className={clsx(
+                          classes.primaryColor,
+                          classes.buttonMargin
+                        )}
                       >
-                        <Button
-                          variant="contained"
-                          startIcon={<AddIcon />}
-                          className={clsx(
-                            classes.primaryColor,
-                            classes.buttonMargin
-                          )}
-                        >
-                          Add books
-                        </Button>
-                      </Link>
+                        Add books
+                      </Button>
                     </Link>
                   </CardContent>
                 </Card>

@@ -44,7 +44,15 @@ const BookItem = ({ book }) => {
     },
     divider: {
       background: theme.palette.primary.main,
-      marginTop: "2.5em",
+      marginTop: "2em",
+    },
+    dividerNotSignin: {
+      background: theme.palette.primary.main,
+      marginTop: "5.5em",
+    },
+    dividerSignin: {
+      background: theme.palette.primary.main,
+      marginTop: "5.7em",
     },
     icons: {
       marginTop: "-1em",
@@ -86,6 +94,9 @@ const BookItem = ({ book }) => {
       marginLeft: "3em",
       marginTop: "-2em",
     },
+    notSignin: {
+      marginTop: "1.3em",
+    },
   }));
   const classes = useStyles();
   return (
@@ -126,24 +137,8 @@ const BookItem = ({ book }) => {
                             className={classes.bookTypeIcons}
                           />
                         </Typography>
-                        <Link
-                          to={`/requests/new`}
-                          style={{ textDecoration: "none" }}
-                        >
-                          <Button
-                            variant="contained"
-                            className={clsx(
-                              classes.primaryColor,
-                              classes.button,
-                              classes.moreButton
-                            )}
-                            endIcon={<MessageIcon />}
-                          >
-                            Request
-                          </Button>
-                        </Link>
 
-                        <Divider className={classes.divider} />
+                        <Divider className={classes.dividerSignin} />
                         <Link to={`/profile`}>
                           <Avatar
                             aria-label="user"
@@ -168,23 +163,8 @@ const BookItem = ({ book }) => {
                             className={classes.bookTypeIcons}
                           />
                         </Typography>
-                        <Link
-                          to={`/requests/new`}
-                          style={{ textDecoration: "none" }}
-                        >
-                          <Button
-                            variant="contained"
-                            className={clsx(
-                              classes.primaryColor,
-                              classes.button,
-                              classes.moreButton
-                            )}
-                            endIcon={<MessageIcon />}
-                          >
-                            Request
-                          </Button>
-                        </Link>
-                        <Divider className={classes.divider} />
+
+                        <Divider className={classes.dividerSignin} />
                         <Link to={`/profile`}>
                           <Avatar
                             aria-label="book"
@@ -194,7 +174,7 @@ const BookItem = ({ book }) => {
                           />
                         </Link>
                         <Typography className={classes.userName}>
-                          Listed by {user.firstName} {user.lastName}
+                          {user.firstName} {user.lastName}
                         </Typography>
                       </>
                     )}
@@ -229,26 +209,35 @@ const BookItem = ({ book }) => {
                             className={classes.bookTypeIcons}
                           />
                         </Typography>
-                        <Link
-                          to={`/requests/new`}
-                          style={{ textDecoration: "none" }}
-                        >
-                          <Button
-                            variant="contained"
-                            className={clsx(
-                              classes.primaryColor,
-                              classes.button,
-                              classes.moreButton
-                            )}
-                            endIcon={<MessageIcon />}
-                          >
-                            Request
-                          </Button>
-                        </Link>
-                        <Divider className={classes.divider} />
                         {user ? (
                           <>
-                            <Link to={`/otherprofile/${book.userId}`}>
+                            <Link
+                              to={`/requests/new`}
+                              style={{ textDecoration: "none" }}
+                            >
+                              <Button
+                                variant="contained"
+                                className={clsx(
+                                  classes.primaryColor,
+                                  classes.button,
+                                  classes.moreButton
+                                )}
+                                endIcon={<MessageIcon />}
+                              >
+                                Request
+                              </Button>
+                            </Link>
+                            <Divider className={classes.divider} />
+                          </>
+                        ) : (
+                          <Divider className={classes.dividerNotSignin} />
+                        )}
+                        {user ? (
+                          <>
+                            <Link
+                              to={`/otherprofile/${book.userId}`}
+                              style={{ textDecoration: "none" }}
+                            >
                               <Avatar
                                 aria-label="book"
                                 // src={otheProfile.image}
@@ -264,21 +253,18 @@ const BookItem = ({ book }) => {
                           </>
                         ) : (
                           <>
-                            <Link to={`/signin`}>
-                              <Avatar
-                                aria-label="book"
-                                className={classes.avatar}
-                              ></Avatar>
-                            </Link>
-                            <Typography
-                              className={classes.userName}
-                            ></Typography>
-                            <Typography
-                              // className={classes.userName}
-                              align="center"
+                            <Link
+                              to={`/signin`}
+                              style={{ textDecoration: "none" }}
                             >
-                              Sign in to make a request
-                            </Typography>
+                              <Typography
+                                align="center"
+                                className={classes.notSignin}
+                                color="primary"
+                              >
+                                Sign in to make a request
+                              </Typography>
+                            </Link>
                           </>
                         )}
                       </>
@@ -293,26 +279,38 @@ const BookItem = ({ book }) => {
                             className={classes.bookTypeIcons}
                           />
                         </Typography>
-                        <Link
-                          to={`/requests/new`}
-                          style={{ textDecoration: "none" }}
-                        >
-                          <Button
-                            variant="contained"
-                            className={clsx(
-                              classes.primaryColor,
-                              classes.button,
-                              classes.moreButton
-                            )}
-                            endIcon={<MessageIcon />}
-                          >
-                            Request
-                          </Button>
-                        </Link>
-                        <Divider className={classes.divider} />
+
+                        {/* User not Sign in can not make req */}
                         {user ? (
                           <>
-                            <Link to={`/otherprofile/${book.userId}`}>
+                            <Link
+                              to={`/requests/new`}
+                              style={{ textDecoration: "none" }}
+                            >
+                              <Button
+                                variant="contained"
+                                className={clsx(
+                                  classes.primaryColor,
+                                  classes.button,
+                                  classes.moreButton
+                                )}
+                                endIcon={<MessageIcon />}
+                              >
+                                Request
+                              </Button>
+                            </Link>
+                            <Divider className={classes.divider} />
+                          </>
+                        ) : (
+                          <Divider className={classes.dividerNotSignin} />
+                        )}
+
+                        {user ? (
+                          <>
+                            <Link
+                              to={`/otherprofile/${book.userId}`}
+                              style={{ textDecoration: "none" }}
+                            >
                               <Avatar
                                 aria-label="book"
                                 // src={otheProfile.image}
@@ -328,17 +326,10 @@ const BookItem = ({ book }) => {
                           </>
                         ) : (
                           <>
-                            <Link to={`/signin`}>
-                              <Avatar
-                                aria-label="book"
-                                className={classes.avatar}
-                              ></Avatar>
-                            </Link>
+                            <Link to={`/signin`}></Link>
+
                             <Typography
-                              className={classes.userName}
-                            ></Typography>
-                            <Typography
-                              // className={classes.userName}
+                              className={classes.notSignin}
                               align="center"
                             >
                               Sign in to make a request
