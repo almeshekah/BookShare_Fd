@@ -1,7 +1,7 @@
 import { toast } from "react-toastify";
 import instance from "./instance";
 import * as types from "./types";
-
+import { fetchMyBook } from "./bookActions";
 export const fetchRequest = () => {
 	return async (dispatch) => {
 		try {
@@ -38,6 +38,7 @@ export const acceptRequest = (userId2) => {
 				type: types.UPDATE_REQUEST,
 				payload: res.data,
 			});
+			dispatch(fetchMyBook());
 			toast.success("Request accepted successfuly!");
 		} catch (error) {
 			console.log(error);
