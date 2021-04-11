@@ -21,9 +21,10 @@ const setUser = (token) => {
 export const signup = (newUser, history) => {
 	return async (dispatch) => {
 		try {
+			console.log("newUser", newUser);
 			const formData = new FormData();
 			for (const key in newUser) formData.append(key, newUser[key]);
-			const res = await instance.post("/signup", formData);
+			const res = await instance.post("/signup", newUser);
 			localStorage.setItem("myToken", res.data.token);
 			await dispatch(setUser(res.data.token));
 			history.replace("/");
