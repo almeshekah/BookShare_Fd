@@ -4,6 +4,8 @@ import { useForm } from "react-hook-form";
 import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 
+//Components
+import CategoriesSelect from "./CategoriesSelect";
 import { register } from "../../serviceWorker";
 
 //Actions
@@ -24,9 +26,13 @@ import { faEye } from "@fortawesome/free-solid-svg-icons";
 const Signup = () => {
 	const dispatch = useDispatch();
 	const history = useHistory();
+
 	const profile = useSelector((state) => state.authReducer.profile);
+	const categories = useSelector((state) => state.categoryReducer.categories);
 
 	const [passwordShown, setPasswordShown] = useState(false);
+	let [arr1, setArr1] = useState([]);
+	const [options, setOptions] = useState([]);
 	const [user, setUser] = useState(
 		profile ?? {
 			username: "",
@@ -35,11 +41,24 @@ const Signup = () => {
 			firstName: "",
 			lastName: "",
 			image: "",
+			categories: "",
 		}
 	);
 
 	const eye = <FontAwesomeIcon icon={faEye} />;
 	const { errors } = useForm();
+
+	const categoryOptionsList = categories.map((category) => ({
+		value: category.id,
+		label: `${category.name} `,
+		name: "categoryId",
+	}));
+
+	const _handleOptions = (selectedOption) => {
+		const categoryList = selectedOption.map((option) => option.value);
+		setUser({ ...user, categories: categoryList });
+		setArr1(categoryList);
+	};
 
 	const togglePasswordVisiblity = () => {
 		setPasswordShown(passwordShown ? false : true);
@@ -57,9 +76,11 @@ const Signup = () => {
 		if (profile) {
 			dispatch(updateProfile(user));
 			history.replace("/");
-		} else dispatch(signup(user, history));
+		} else {
+			dispatch(signup({ ...user, categories: arr1 }, history));
+		}
 	};
-
+	console.log(arr1);
 	return (
 		<>
 			<Helmet>
@@ -131,6 +152,17 @@ const Signup = () => {
 									type="email"
 									name="email"
 									onChange={handleChange}
+								/>
+							</LabelStyled>
+							<LabelStyled>
+								Interested categories:
+								<CategoriesSelect
+									name="categories"
+									options={options}
+									_handleOptions={_handleOptions}
+									_options={categoryOptionsList}
+									set="categories"
+									isMulti={true}
 								/>
 							</LabelStyled>
 
