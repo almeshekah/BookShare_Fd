@@ -5,7 +5,7 @@ export const theme = createMuiTheme({
   palette: {
     primary: {
       main: "#413b89",
-      secondary: "#b1cffe",
+      secondary: "#c2a792",
     },
     secondary: {
       main: "#f3e7dd",
@@ -27,7 +27,7 @@ export const GlobalStyle = createGlobalStyle`
   html {
     --primary-color: #413b89;
     --secondary-color: #f3e7dd;
-    --light-color:#a7dbf5
+    --light-color:#ffffff
   --dark-color: #333333;
   /* --light-color: #f4f4f4; */
  
@@ -89,7 +89,7 @@ export const InputFieldStyled = styled.input`
   box-sizing: border-box;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
-  background-color: #a7dbf5;
+  background-color: #ffffff;
   /* background-color: var(--light-color); */
   color: var(--primary-color);
   -webkit-box-shadow: 0 1px 0 rgba(0, 0, 0, 0.03) inset;
@@ -114,7 +114,7 @@ export const FormAddButtonStyled = styled.button`
   font-family: "Roboto", sans-serif;
   &:hover {
     /* background: var(--light-color); */
-    background: #a7dbf5;
+    background: #ffffff;
   }
 `;
 

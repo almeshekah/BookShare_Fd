@@ -73,12 +73,12 @@ const Userprofile = () => {
     userName: { marginTop: "0.8em", marginBottom: "0.8em" },
     card: {
       marginLeft: "-6em",
-      marginTop: "-26em",
+      marginTop: "-83em",
     },
     otherUserCard: {
       marginRight: "-10em",
       marginLeft: "15em",
-      marginTop: "-1em",
+      marginTop: "1em",
     },
     gridMargin: { marginTop: "0.5em" },
     link: {
@@ -198,8 +198,6 @@ const Userprofile = () => {
                       Username: {profile.username}
                     </Typography>
 
-                    {/* <Divider className={classes.divider} /> */}
-
                     <Grid
                       container
                       spacing={0}
@@ -222,7 +220,6 @@ const Userprofile = () => {
                       Name: {profile.firstName} {profile.lastName}
                     </Typography>
 
-                    {/* <Divider className={classes.divider} /> */}
                     <Typography
                       align="left"
                       color="primary"

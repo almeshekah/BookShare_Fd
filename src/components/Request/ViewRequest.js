@@ -43,9 +43,29 @@ const ViewRequest = () => {
 
   return (
     <>
-      <Typography variant="h4" align="center" color="primary">
-        My Requests
-      </Typography>
+      <Grid
+        container
+        direction="row"
+        justify="center"
+        alignItems="center"
+        style={{
+          marginTop: "65em",
+          marginBottom: "-45em",
+        }}
+      >
+        <Typography
+          variant="h4"
+          align="center"
+          color="primary"
+          style={{
+            marginTop: "-23em",
+            marginBottom: "-15em",
+          }}
+        >
+          My Requests
+        </Typography>
+      </Grid>
+
       {requests.length === 0 ? (
         <>
           <Typography align="center" color="primary">
@@ -55,7 +75,7 @@ const ViewRequest = () => {
       ) : (
         <Grid
           style={{
-            marginLeft: "40em",
+            marginTop: "40em",
           }}
         >
           <div className="App">
