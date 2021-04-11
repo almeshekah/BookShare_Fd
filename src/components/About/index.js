@@ -1,13 +1,10 @@
 import { Link } from "react-router-dom";
 
 //Material-Ui
-import clsx from "clsx";
 import Card from "@material-ui/core/Card";
 import CardMedia from "@material-ui/core/CardMedia";
-import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";
 import Grid from "@material-ui/core/Grid";
-import Button from "@material-ui/core/Button";
 
 //Styling
 import { makeStyles } from "@material-ui/core/styles";
@@ -18,11 +15,6 @@ import * as BsIcons from "react-icons/bs";
 
 const About = () => {
   const useStyles = makeStyles((theme) => ({
-    // root: {
-    //   width: 455,
-    //   height: 260,
-    // },
-
     card: {
       width: 800,
       height: 400,
@@ -35,7 +27,6 @@ const About = () => {
       fontWeight: "bold",
       marginTop: "1em",
       marginLeft: "1em",
-      // marginBottom: "1em",
     },
     paragraph: {
       marginTop: "0.9em",
@@ -66,19 +57,9 @@ const About = () => {
       height: 175,
       marginTop: "2em",
     },
-    iconColor: {
-      color: theme.palette.primary.main,
-      // "&:hover": {
-      //   background: theme.palette.primary.secondary,
-      //   color: theme.palette.primary.main,
-      // },
-      // color: theme.palette.secondary.main,
-    },
 
     recently: {
       fontWeight: "bold",
-
-      // marginLeft: "3em",
       marginTop: "1em",
     },
     what: {
@@ -93,8 +74,6 @@ const About = () => {
     },
     bookShare: {
       fontWeight: "bold",
-
-      // marginLeft: "3em",
       marginTop: "1em",
     },
   }));
