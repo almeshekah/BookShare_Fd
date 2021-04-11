@@ -50,49 +50,50 @@ const Userprofile = () => {
 			color: theme.palette.secondary.main,
 		},
 
-		successColor: {
-			backgroundColor: theme.palette.success.main,
-			"&:hover": {
-				background: theme.palette.success.secondary,
-			},
-			color: theme.palette.primary.main,
-		},
-		errorColor: {
-			backgroundColor: theme.palette.error.main,
-		},
-		media: {
-			height: 200,
-			width: 200,
-			marginTop: "0.8em",
-			marginLeft: "2em",
-			marginBottom: "0.8em",
-		},
-		divider: {
-			background: theme.palette.primary.main,
-		},
-		userName: { marginTop: "0.8em", marginBottom: "0.8em" },
-		card: {
-			marginLeft: "-6em",
-			marginTop: "-26em",
-		},
-		otherUserCard: {
-			marginRight: "-10em",
-			marginLeft: "15em",
-			marginTop: "-1em",
-		},
-		gridMargin: { marginTop: "0.5em" },
-		link: {
-			textDecoration: "none",
-		},
-		buttonMargin: {
-			marginLeft: "4.5em",
-			marginTop: "1em",
-		},
-		editButtonMargin: {
-			marginLeft: "3em",
-			marginTop: "1em",
-		},
-	}));
+    successColor: {
+      backgroundColor: theme.palette.success.main,
+      "&:hover": {
+        background: theme.palette.success.secondary,
+      },
+      color: theme.palette.primary.main,
+    },
+    errorColor: {
+      backgroundColor: theme.palette.error.main,
+    },
+    media: {
+      height: 200,
+      width: 200,
+      marginTop: "0.8em",
+      marginLeft: "2em",
+      marginBottom: "0.8em",
+    },
+    divider: {
+      background: theme.palette.primary.main,
+    },
+    userName: { marginTop: "0.8em", marginBottom: "0.8em" },
+    card: {
+      marginLeft: "-6em",
+      marginTop: "-83em",
+    },
+    otherUserCard: {
+      marginRight: "-10em",
+      marginLeft: "15em",
+      marginTop: "1em",
+    },
+    gridMargin: { marginTop: "0.5em" },
+    link: {
+      textDecoration: "none",
+    },
+    buttonMargin: {
+      marginLeft: "4.5em",
+      marginTop: "1em",
+    },
+    editButtonMargin: {
+      marginLeft: "3em",
+      marginTop: "1em",
+    },
+  }));
+
 
 	const classes = useStyles();
 
@@ -217,20 +218,19 @@ const Userprofile = () => {
 											Username: {profile.username}
 										</Typography>
 
-										{/* <Divider className={classes.divider} /> */}
+                    <Grid
+                      container
+                      spacing={0}
+                      // direction="row"
+                      alignItems="center"
+                      justify="center"
+                      flexWrap="wrap"
+                      display="flex"
+                      // style={{
+                      //   marginTop: "0.8em",
+                      // }}
+                    ></Grid>
 
-										<Grid
-											container
-											spacing={0}
-											// direction="row"
-											alignItems="center"
-											justify="center"
-											flexWrap="wrap"
-											display="flex"
-											// style={{
-											//   marginTop: "0.8em",
-											// }}
-										></Grid>
 
 										<Typography
 											align="left"
@@ -240,6 +240,7 @@ const Userprofile = () => {
 										>
 											Name: {profile.firstName} {profile.lastName}
 										</Typography>
+
 
 										{/* <Divider className={classes.divider} /> */}
 										<Typography
