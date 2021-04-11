@@ -114,7 +114,7 @@ export const FormAddButtonStyled = styled.button`
   font-family: "Roboto", sans-serif;
   &:hover {
     /* background: var(--light-color); */
-    background: #ffffff;
+    background: #c2a792;
   }
 `;
 
