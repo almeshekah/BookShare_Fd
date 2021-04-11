@@ -43,9 +43,6 @@ body{
   line-height: 1.6;
   background-color: #ffffff;
   color: var(--primary-color);
-
-/* background-color: #d5fefd;
-background-image: linear-gradient(315deg, #d5fefd 0%, #fffcff 74%); */
 height: 100%;
 width: 100%;
 
