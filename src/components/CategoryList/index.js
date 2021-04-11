@@ -28,7 +28,7 @@ const CategoryList = () => {
           marginTop: "0.3em",
         }}
       >
-        Select a category to see books
+        Select a category to view books
       </Typography>
       <Grid
         container

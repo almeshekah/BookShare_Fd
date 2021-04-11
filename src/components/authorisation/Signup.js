@@ -29,6 +29,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye } from "@fortawesome/free-solid-svg-icons";
 
 const Signup = () => {
+  const userCondition = useSelector((state) => state.authReducer.user);
+
   const dispatch = useDispatch();
   const history = useHistory();
 
@@ -170,17 +172,24 @@ const Signup = () => {
                   isMulti={true}
                 />
               </LabelStyled>
-              <Link style={{ textDecoration: "none" }} to={`/signin`}>
-                <Typography
-                  variant="h6"
-                  align="center"
-                  color="primary"
-                  style={{ marginTop: "0.5em", marginBottom: "1em" }}
-                >
-                  Already a member? Sign In{" "}
-                </Typography>
-              </Link>
-
+              <>
+                {userCondition ? (
+                  <>
+                    <Typography></Typography>
+                  </>
+                ) : (
+                  <Link style={{ textDecoration: "none" }} to={`/signin`}>
+                    <Typography
+                      variant="h6"
+                      align="center"
+                      color="primary"
+                      style={{ marginTop: "0.5em", marginBottom: "1em" }}
+                    >
+                      Already a member? Sign In
+                    </Typography>
+                  </Link>
+                )}
+              </>
               <FormAddButtonStyled onSubmit={handleSubmit}>
                 {profile ? "Update" : "Sign Up"}
               </FormAddButtonStyled>

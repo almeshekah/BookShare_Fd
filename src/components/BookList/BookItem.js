@@ -326,14 +326,18 @@ const BookItem = ({ book }) => {
                           </>
                         ) : (
                           <>
-                            <Link to={`/signin`}></Link>
-
-                            <Typography
-                              className={classes.notSignin}
-                              align="center"
+                            <Link
+                              to={`/signin`}
+                              style={{ textDecoration: "none" }}
                             >
-                              Sign in to make a request
-                            </Typography>
+                              <Typography
+                                className={classes.notSignin}
+                                align="center"
+                                color="primary"
+                              >
+                                Sign in to make a request
+                              </Typography>
+                            </Link>
                           </>
                         )}
                       </>
