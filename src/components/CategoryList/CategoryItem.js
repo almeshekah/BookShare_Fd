@@ -8,6 +8,7 @@ import Grid from "@material-ui/core/Grid";
 
 //Styling
 import { makeStyles } from "@material-ui/core/styles";
+import { ParentS, ChildS } from "./styles";
 
 const CategoryItem = ({ category }) => {
   const useStyles = makeStyles((theme) => ({
@@ -33,10 +34,6 @@ const CategoryItem = ({ category }) => {
       height: "150px",
       margin: "10px",
       width: "150px",
-
-      // "&:hover": {
-      //   transform: "scale(1.2)",
-      // },
     },
   }));
 
@@ -45,31 +42,45 @@ const CategoryItem = ({ category }) => {
   return (
     <>
       <Grid
-        container
         item
         xs={3}
-        spacing={0}
-        style={{ marginLeft: "-1em", marginRight: "-4em" }}
+        style={{ marginLeft: "-1em", marginRight: "-3em", marginBottom: "1em" }}
       >
-        <Card className={classes.card}>
-          <Link to={`/categories/${category.slug}`}>
-            <Grid
-              container
-              direction="row"
-              justify="center"
-              alignItems="center"
-            >
-              <CardMedia
-                className={classes.media}
-                image={category.image}
-                title={category.name}
-              />
-            </Grid>
-          </Link>
-          <Typography align="center" variant="h6" className={classes.tr}>
-            {category.name}
-          </Typography>
-        </Card>
+        {/* <ParentS>
+          <ChildS> */}
+        <Grid
+          container
+          spacing={1}
+          // direction="row"
+          // justify="center"
+          // alignItems="center"
+          // style={{
+          //   marginLeft: "-1em",
+          //   marginRight: "-4em",
+          // }}
+        >
+          <Card className={classes.card}>
+            <Link to={`/categories/${category.slug}`}>
+              <Grid
+                container
+                direction="row"
+                justify="center"
+                alignItems="center"
+              >
+                <CardMedia
+                  className={classes.media}
+                  image={category.image}
+                  title={category.name}
+                />
+              </Grid>
+            </Link>
+            <Typography align="center" variant="h6" className={classes.tr}>
+              {category.name}
+            </Typography>
+          </Card>
+        </Grid>
+        {/* </ChildS>
+        </ParentS> */}
       </Grid>
     </>
   );

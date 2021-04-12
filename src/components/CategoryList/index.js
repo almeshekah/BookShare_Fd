@@ -32,15 +32,17 @@ const CategoryList = () => {
       </Typography>
       <Grid
         container
-        spacing={3}
-        direction="row"
-        alignItems="center"
-        justify="center"
-        flexWrap="wrap"
-        display="flex"
+        spacing={10}
+        // direction="row"
+        // alignItems="center"
+        // justify="center"
+        // flexWrap="wrap"
+        // display="flex"
         style={{
-          marginLeft: "15.2em",
-          marginTop: "2em",
+          marginLeft: "5em",
+          marginTop: "1em",
+          // marginBottom: "-6em",
+          paddingLeft: "15em",
         }}
       >
         {categoryList}
