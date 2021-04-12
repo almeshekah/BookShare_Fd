@@ -32,10 +32,6 @@ const Userprofile = () => {
   const userId = useParams().userId;
 
   const useStyles = makeStyles((theme) => ({
-    // root: {
-
-    // },
-
     primaryColor: {
       backgroundColor: theme.palette.primary.main,
       "&:hover": {
@@ -73,13 +69,13 @@ const Userprofile = () => {
       borderRadius: 5,
       backgroundColor: theme.palette.secondary.main,
       color: theme.palette.primary.main,
-      marginLeft: "6em",
-      marginTop: "-90em",
-      // marginBottom: "-60em",
     },
     otherUserCard: {
-      marginRight: "-10em",
-      marginLeft: "15em",
+      maxWidth: 300,
+      maxHeight: 700,
+      borderRadius: 5,
+      backgroundColor: theme.palette.secondary.main,
+      color: theme.palette.primary.main,
       marginTop: "1em",
     },
     gridMargin: { marginTop: "0.5em" },
@@ -150,7 +146,6 @@ const Userprofile = () => {
       {!userId ? (
         <>
           <>
-            <ViewRequest />
             {/* <Grid
               container
               spacing={0}
@@ -161,106 +156,100 @@ const Userprofile = () => {
               display="flex"
               className={classes.gridMargin}
             > */}
-            <Grid item xs={6}>
-              <Grid
-                container
-                spacing={3}
-                direction="row"
-                alignItems="center"
-                justify="center"
-                flexWrap="wrap"
-                display="flex"
-              >
-                <Card className={classes.card}>
-                  <CardContent>
-                    <CardMedia
-                      className={classes.media}
-                      image={profile.image}
-                      title="Profile image"
-                      style={{
-                        marginTop: "0.8em",
-                        marginBottom: "0.8em",
-                      }}
-                    />
-                    <Grid
-                      item
-                      direction="row"
-                      justify="flex-end"
-                      alignItems="center"
-                      spacing="0"
-                      style={{
-                        marginBottom: "0.8em",
-                      }}
-                    >
-                      <Link
-                        to="/profile/edit"
-                        style={{ textDecoration: "none" }}
+            {/* <Grid item xs={6}> */}
+            <Grid
+              container
+              direction="row"
+              justify="center"
+              alignItems="center"
+            >
+              <Card className={classes.card}>
+                <CardContent>
+                  <CardMedia
+                    className={classes.media}
+                    image={profile.image}
+                    title="Profile image"
+                    style={{
+                      marginTop: "0.8em",
+                      marginBottom: "0.8em",
+                    }}
+                  />
+                  <Grid
+                    item
+                    direction="row"
+                    justify="flex-end"
+                    alignItems="center"
+                    spacing="0"
+                    style={{
+                      marginBottom: "0.8em",
+                    }}
+                  >
+                    <Link to="/profile/edit" style={{ textDecoration: "none" }}>
+                      <Button
+                        variant="contained"
+                        endIcon={<FaIcons.FaUserEdit />}
+                        className={clsx(
+                          classes.successColor,
+                          classes.editButtonMargin
+                        )}
                       >
-                        <Button
-                          variant="contained"
-                          endIcon={<FaIcons.FaUserEdit />}
-                          className={clsx(
-                            classes.successColor,
-                            classes.editButtonMargin
-                          )}
-                        >
-                          Edit My Profile
-                        </Button>
-                      </Link>
-                    </Grid>
-                    <Divider className={classes.divider} />
+                        Edit My Profile
+                      </Button>
+                    </Link>
+                  </Grid>
+                  <Divider className={classes.divider} />
 
-                    <Typography
-                      align="left"
-                      color="primary"
-                      variant="h6"
-                      className={classes.userName}
-                    >
-                      Username: {profile.username}
-                    </Typography>
+                  <Typography
+                    align="left"
+                    color="primary"
+                    variant="h6"
+                    className={classes.userName}
+                  >
+                    Username: {profile.username}
+                  </Typography>
 
-                    <Grid
-                      container
-                      spacing={0}
-                      // direction="row"
-                      alignItems="center"
-                      justify="center"
-                      flexWrap="wrap"
-                      display="flex"
-                      // style={{
-                      //   marginTop: "0.8em",
-                      // }}
-                    ></Grid>
+                  <Grid
+                    container
+                    spacing={0}
+                    // direction="row"
+                    alignItems="center"
+                    justify="center"
+                    flexWrap="wrap"
+                    display="flex"
+                    // style={{
+                    //   marginTop: "0.8em",
+                    // }}
+                  ></Grid>
 
-                    <Typography
-                      align="left"
-                      color="primary"
-                      variant="h6"
-                      className={classes.userName}
-                    >
-                      Name: {profile.firstName} {profile.lastName}
-                    </Typography>
+                  <Typography
+                    align="left"
+                    color="primary"
+                    variant="h6"
+                    className={classes.userName}
+                  >
+                    Name: {profile.firstName} {profile.lastName}
+                  </Typography>
 
-                    {/* <Divider className={classes.divider} /> */}
-                    <Typography
-                      align="left"
-                      color="primary"
-                      variant="h6"
-                      className={classes.userName}
-                    >
-                      {`Email: ${profile.email}`}
-                    </Typography>
-                    <Typography
-                      align="left"
-                      color="primary"
-                      variant="h6"
-                      className={classes.userName}
-                    >
-                      {`Interested categories: ${mycategories}`}
-                    </Typography>
-                    <Divider className={classes.divider} />
-                    <>
-                      {/* <Grid
+                  {/* <Divider className={classes.divider} /> */}
+                  <Typography
+                    align="left"
+                    color="primary"
+                    variant="h6"
+                    className={classes.userName}
+                  >
+                    {`Email: ${profile.email}`}
+                  </Typography>
+                  <Typography
+                    align="left"
+                    color="primary"
+                    variant="h6"
+                    className={classes.userName}
+                  >
+                    {`Categories of Interest: ${mycategories}`}
+                  </Typography>
+                  <Divider className={classes.divider} />
+                  <>
+                    {/* <Grid
                         item
                         container
                         direction="row"
@@ -272,8 +261,8 @@ const Userprofile = () => {
                           marginBottom: "0.8em",
                         }}
                       > */}
-                      {/* <div style={{ textDecoration: 'none' }> */}
-                      {/* 
+                    {/* <div style={{ textDecoration: 'none' }> */}
+                    {/* 
                       <Link to="/viewrequest">
                         <Button
                           variant="contained"
@@ -288,31 +277,41 @@ const Userprofile = () => {
                           View Requests
                         </Button>
                       </Link> */}
-                      {/* </Grid> */}
+                    {/* </Grid> */}
 
-                      {/* </div> */}
-                    </>
-                    <Link to={`/books/new`} style={{ textDecoration: "none" }}>
-                      <Button
-                        variant="contained"
-                        startIcon={<AddIcon />}
-                        className={clsx(
-                          classes.primaryColor,
-                          classes.buttonMargin
-                        )}
-                      >
-                        Add books
-                      </Button>
-                    </Link>
-                  </CardContent>
-                </Card>
-              </Grid>
+                    {/* </div> */}
+                  </>
+                  <Link to={`/books/new`} style={{ textDecoration: "none" }}>
+                    <Button
+                      variant="contained"
+                      startIcon={<AddIcon />}
+                      className={clsx(
+                        classes.primaryColor,
+                        classes.buttonMargin
+                      )}
+                    >
+                      Add books
+                    </Button>
+                  </Link>
+                </CardContent>
+              </Card>
             </Grid>
             {/* </Grid> */}
+            {/* </Grid> */}
           </>
+          <ViewRequest />
 
           <div>
-            <Title>My Books</Title>
+            <Typography
+              variant="h4"
+              align="center"
+              color="primary"
+              style={{
+                marginTop: "0.5em",
+              }}
+            >
+              My Books
+            </Typography>
 
             <BookList books={_mybook} />
           </div>
@@ -329,36 +328,23 @@ const Userprofile = () => {
             display="flex"
             className={classes.gridMargin}
           >
-            <Grid item xs={6}>
-              <Card
-                container
-                spacing={3}
-                direction="row"
-                alignItems="center"
-                justify="center"
-                flexWrap="wrap"
-                display="flex"
-                className={clsx(classes.root, classes.otherUserCard)}
-              >
+            <Grid
+              container
+              spacing={3}
+              direction="row"
+              alignItems="center"
+              justify="center"
+              flexWrap="wrap"
+              display="flex"
+            >
+              <Card className={clsx(classes.root, classes.otherUserCard)}>
                 <CardContent>
                   <CardMedia
                     className={classes.media}
                     image={otheProfile.image}
                     title="Profile image"
                   />
-                  {/* <Grid
-                    item
-                    direction="row"
-                    justify="flex-end"
-                    alignItems="center"
-                    spacing="0"
-                    style={
-                      {
-                        // marginTop: "0.8em",
-                        marginBottom: "0.8em",
-                      }
-                    }
-                  ></Grid> */}
+
                   <Divider className={classes.divider} />
 
                   <Typography
@@ -393,7 +379,7 @@ const Userprofile = () => {
                     variant="h6"
                     className={classes.userName}
                   >
-                    {`Interested categories: ${hiscategories}`}
+                    {`Categories of Interest: ${hiscategories}`}
                   </Typography>
                   <Divider className={classes.divider} />
                   <></>
@@ -420,9 +406,17 @@ const Userprofile = () => {
           </Grid>
 
           <div>
-            <Title>
+            <Typography
+              variant="h4"
+              align="center"
+              color="primary"
+              style={{
+                marginTop: "1em",
+                marginBottom: "0.5em",
+              }}
+            >
               {otheProfile.firstName} {otheProfile.lastName} Books
-            </Title>
+            </Typography>
 
             <BookList books={hisbook} />
           </div>

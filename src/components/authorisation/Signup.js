@@ -162,7 +162,7 @@ const Signup = () => {
                 />
               </LabelStyled>
               <LabelStyled>
-                Interested categories:
+                Categories of Interest:
                 <CategoriesSelect
                   name="categories"
                   options={options}

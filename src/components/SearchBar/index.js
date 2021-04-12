@@ -21,6 +21,7 @@ const SearchBar = (props) => {
     },
     textField: {
       width: "500px",
+      borderRadius: 0,
     },
     color: {
       backgroundColor: theme.palette.secondary.main,
