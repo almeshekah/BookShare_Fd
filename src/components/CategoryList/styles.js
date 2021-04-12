@@ -46,3 +46,24 @@ export const CardHeader = styled.div`
   color: $white;
   margin: 25px;
 `;
+
+export const ParentS = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  /* display: flex;
+  flex-direction: row; */
+  /* flex-wrap: nowrap; */
+  /* justify-content: center; */
+  align-items: center;
+  align-content: center;
+  margin-left: 80%;
+  padding: 10%;
+`;
+
+export const ChildS = styled.div`
+  flex: 1 0 20%; /* explanation below */
+  margin: 15px;
+  /* height: 100px; */
+  background-color: blue;
+`;
