@@ -43,7 +43,10 @@ const CategoryItem = ({ category }) => {
     <>
       <Grid
         item
-        xs={3}
+        xs={4}
+        sm={4}
+        md={4}
+        xl={3}
         style={{ marginLeft: "-1em", marginRight: "-3em", marginBottom: "1em" }}
       >
         {/* <ParentS>

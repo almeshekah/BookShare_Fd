@@ -32,7 +32,6 @@ import InfoIcon from "@material-ui/icons/Info";
 import * as AiIcons from "react-icons/ai";
 import { makeStyles } from "@material-ui/core/styles";
 import Logo from "../../assets/images/Logo.png";
-import BookShareText from "../../assets/images/BookShareText.png";
 
 const Sidebar = () => {
   const useStyles = makeStyles((theme) => ({
@@ -87,7 +86,14 @@ const Sidebar = () => {
               <LogoStyled src={Logo} />
             </SidebarLink>
           </Grid>
-          <NavItmes>
+          {/* <NavItmes> */}
+          <Grid
+            container
+            direction="row"
+            justify="flex-start"
+            alignItems="flex-start"
+            style={{ marginBottom: "-0.5em" }}
+          >
             {user ? (
               <>
                 <UsernameStyled>Welcome , {user.username}! </UsernameStyled>
@@ -103,7 +109,14 @@ const Sidebar = () => {
               </>
             ) : (
               <>
-                <NavItmes2>
+                {/* <NavItmes2> */}
+                <Grid
+                  container
+                  direction="row"
+                  justify="flex-start"
+                  alignItems="flex-start"
+                  style={{ marginLeft: "13em" }}
+                >
                   <SidebarLink to="/signup">
                     <div>
                       <AiIcons.AiOutlineUserAdd />
@@ -117,9 +130,11 @@ const Sidebar = () => {
                       <SidebarLabel>Signin</SidebarLabel>
                     </div>
                   </SidebarLink>
-                </NavItmes2>
+                </Grid>
+                {/* </NavItmes2> */}
               </>
             )}
+
             {user && (
               <SidebarLink
                 to="profile"
@@ -156,7 +171,8 @@ const Sidebar = () => {
                 </div>
               </SidebarLink>
             )}
-          </NavItmes>
+            {/* </NavItmes> */}
+          </Grid>
         </Nav>
         <SidebarNav sidebar={sidebar}>
           <SidebarWrap>
