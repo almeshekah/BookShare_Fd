@@ -91,7 +91,7 @@ export const NavItmes = styled.div`
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  margin-left: 40rem;
+  /* margin-left: 0rem; */
 `;
 
 export const NavItmes2 = styled.div`
