@@ -27,15 +27,14 @@ const Request = () => {
 
 	const mybook = useSelector((state) => state.bookReducer.mybook);
 	const user = useSelector((state) => state.authReducer.user);
-	const _mybook = mybook.filter((book) => user.id == book.userId);
-	const bookuser1 = _mybook.map((book) => book.books);
+	const _mybook = mybook.filter((book) => user.id === book.userId);
 
 	const otheProfile = useSelector((state) => state.authReducer.otheProfile);
 	const otheProfileloading = useSelector(
 		(state) => state.authReducer.otheProfileloading
 	);
-	const hisbook = mybook.filter((book) => otheProfile.userId == book.userId);
-	const bookuser2 = hisbook.map((book) => book.books);
+	const hisbook = mybook.filter((book) => otheProfile.userId === book.userId);
+
 	const [books, setBooks] = useState([]);
 	const [bookId, setBookIds] = useState([]);
 
@@ -49,15 +48,15 @@ const Request = () => {
 
 	const [options, setOptions] = useState([]);
 
-	const mybookOptionsList = bookuser1.map((book) => ({
+	const mybookOptionsList = _mybook.map((book) => ({
 		value: book.id,
-		label: `${book.name} `,
+		label: `${book.books.name} `,
 		name: "bookId",
 	}));
 
-	const otherBookOptionsList = bookuser2.map((book) => ({
+	const otherBookOptionsList = hisbook.map((book) => ({
 		value: book.id,
-		label: `${book.name} `,
+		label: `${book.books.name} `,
 		name: "books",
 	}));
 
