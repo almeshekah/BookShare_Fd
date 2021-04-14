@@ -30,7 +30,7 @@ export const createRequest = (newRequest) => {
 	};
 };
 
-export const acceptRequest = (userId2) => {
+export const acceptRequest = (userId2, history) => {
 	return async (dispatch) => {
 		try {
 			const res = await instance.put(`/requests/acceptRequest/${userId2}`);
@@ -40,6 +40,7 @@ export const acceptRequest = (userId2) => {
 			});
 			dispatch(fetchMyBook());
 			toast.success("Request accepted successfuly!");
+			history.replace("/");
 		} catch (error) {
 			console.log(error);
 		}
