@@ -42,7 +42,7 @@ body{
   font-size: 1rem;
   line-height: 1.6;
   background-color: #ffffff;
-  color: var(--primary-color);
+  color: #413b89;
 height: 100%;
 width: 100%;
 
