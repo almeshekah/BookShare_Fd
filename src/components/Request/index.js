@@ -15,6 +15,7 @@ import {
 	LabelStyled,
 	FieldSetStyled,
 	LegendStyled,
+	InputFieldStyled,
 	FormAddButtonStyled,
 } from "../../styles";
 import Loading from "../Loading";
@@ -44,6 +45,7 @@ const Request = () => {
 		bookId: "",
 		status: 0,
 		books: "",
+		note: "",
 	});
 
 	const [options, setOptions] = useState([]);
@@ -67,6 +69,9 @@ const Request = () => {
 		setBooks(selectedOption);
 		setArr1(bookIdList);
 	};
+
+	const handleChange = (event) =>
+		setRequest({ ...request, [event.target.name]: event.target.value });
 
 	const _handleOptions2 = (selectedOption2) => {
 		const booksIdList = selectedOption2.map((option) => option.value);
@@ -120,6 +125,15 @@ const Request = () => {
 									_options={otherBookOptionsList}
 									set="books"
 									isMulti={true}
+								/>
+							</LabelStyled>
+							<LabelStyled>
+								Add Your Notes
+								<InputFieldStyled
+									type="text"
+									name="note"
+									value={request.note}
+									onChange={handleChange}
 								/>
 							</LabelStyled>
 							<FormAddButtonStyled onSubmit={handleSubmit}>

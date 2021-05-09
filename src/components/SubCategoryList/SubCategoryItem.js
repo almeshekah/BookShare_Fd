@@ -9,7 +9,7 @@ import Grid from "@material-ui/core/Grid";
 //Styling
 import { makeStyles } from "@material-ui/core/styles";
 
-const CategoryItem = ({ category }) => {
+const SubCategoryItem = ({ category }) => {
 	const useStyles = makeStyles((theme) => ({
 		root: {
 			minWidth: 250,
@@ -50,7 +50,7 @@ const CategoryItem = ({ category }) => {
 			>
 				<Grid container spacing={1}>
 					<Card className={classes.card}>
-						<Link to={`/category/${category.slug}`}>
+						<Link to={`/categories/${category.slug}`}>
 							<Grid
 								container
 								direction="row"
@@ -74,4 +74,4 @@ const CategoryItem = ({ category }) => {
 	);
 };
 
-export default CategoryItem;
+export default SubCategoryItem;

@@ -8,6 +8,7 @@ import { checkForToken } from "./actions/authActions";
 import { fetchCategory } from "./actions/categoryActions";
 import { fetchBook, fetchMyBook } from "./actions/bookActions";
 import { fetchRequest } from "./actions/requestActions";
+import { fetchSubCategory } from "./actions/subCategoryActions";
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
@@ -17,7 +18,7 @@ store.dispatch(checkForToken());
 store.dispatch(fetchCategory());
 store.dispatch(fetchBook());
 store.dispatch(fetchRequest());
-
+store.dispatch(fetchSubCategory());
 store.dispatch(fetchMyBook());
 
 export default store;

@@ -1,7 +1,7 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
-
+import Moment from "moment";
 //Material-Ui
 import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
@@ -43,6 +43,7 @@ const RequestItem = ({ request }) => {
 			},
 		},
 	}));
+	const date = Moment(request.createdAt).format("DD-MM-YYYY");
 
 	const classes = useStyles();
 
@@ -55,7 +56,6 @@ const RequestItem = ({ request }) => {
 	const _mybook = allbook
 		.filter((book) => book.userId === request.receivedUserId)
 		.map((_book) => _book.books.name);
-	console.log("_mybook", _mybook);
 
 	const hisbook = allbook
 		.filter((book) => book.userId === request.requstUserId)
@@ -77,8 +77,10 @@ const RequestItem = ({ request }) => {
 				<>
 					<tr>
 						<td>{requestby[0].user.firstName}</td>
+						<td>{date}</td>
 						<td>{_mybook}</td>
 						<td>{hisbook}</td>
+
 						<td>
 							<Button
 								onClick={() =>
@@ -110,6 +112,7 @@ const RequestItem = ({ request }) => {
 								Reject
 							</Button>
 						</td>
+						<td>{request.note}</td>
 					</tr>
 				</>
 			)}

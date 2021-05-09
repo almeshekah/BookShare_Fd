@@ -18,6 +18,7 @@ export const fetchRequest = () => {
 export const createRequest = (newRequest) => {
 	return async (dispatch) => {
 		try {
+			console.log(newRequest);
 			const res = await instance.post(`/requests/sendRequest`, newRequest);
 			await dispatch({
 				type: types.CREATE_REQUEST,
